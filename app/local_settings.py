@@ -24,7 +24,7 @@ MAIL_PORT = 587
 MAIL_USE_SSL = False
 MAIL_USE_TLS = True
 MAIL_USERNAME = 'loic.laureote@gmail.com'
-MAIL_PASSWORD = 'babarlesource972'
+MAIL_PASSWORD = ''
 
 # Sendgrid settings
 SENDGRID_API_KEY='place-your-sendgrid-api-key-here'
