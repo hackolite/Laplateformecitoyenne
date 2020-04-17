@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+{% block content %}
+
+
+{% if current_user.is_authenticated %}
+<iframe class="chat-iframe" src="https://laplateformecitoyenne.rocket.chat/channel/global?layout=embedded" frameborder="0"></iframe>
+{% endif %}
+
+<div id="mapid"></div>
+<script src="static/js/map.js" charset="utf-8"></script>
+
+{% endblock %}

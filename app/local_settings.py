@@ -23,8 +23,8 @@ MAIL_SERVER = 'smtp.gmail.com'
 MAIL_PORT = 587
 MAIL_USE_SSL = False
 MAIL_USE_TLS = True
-MAIL_USERNAME = 'yourname@gmail.com'
-MAIL_PASSWORD = 'password'
+MAIL_USERNAME = 'loic.laureote@gmail.com'
+MAIL_PASSWORD = 'babarlesource972'
 
 # Sendgrid settings
 SENDGRID_API_KEY='place-your-sendgrid-api-key-here'
