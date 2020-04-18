@@ -7,7 +7,7 @@
 	integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
 	crossorigin=""></script>
 
-<?php
+
 
 
 include('content/_head.php'); // l'en-tête contenant les fonctions de bases
@@ -16,11 +16,13 @@ include('content/_head.php'); // l'en-tête contenant les fonctions de bases
 
 if($_GET['page'] == 'index'){
 	include('content/map.php');
+
 	$_GET['action'] = 'recevoir';
 	include('content/receive.php');
 
 	$_GET['action'] = 'donner';
 	include('content/receive.php');
+
 
 	if(!isset($_SESSION['session']) || $_SESSION['session'] != 'true'){
 		// si pas de session on inclut le formualire d'inscription et de connexion
