@@ -8,7 +8,6 @@ from flask_user import current_user, login_required, roles_required
 from rocketchat_API.rocketchat import RocketChat
 from app import db
 from app.models.user_models import UserProfileForm,UserNeedForm
-from app.commands.init_db import add_marker
 from app import rocketChatAuth
 from flask_cors import CORS, cross_origin
 from app.models.user_models import User, Role,Marker
@@ -169,3 +168,16 @@ def get_user():
 
 
     return redirect(url_for('main.home_page'))
+
+
+
+@main_blueprint.route('/delete_user',methods=["GET"])
+@roles_required('admin')  # Limits access to users with the 'admin' role
+def delete_user():
+    """Delete a user from the database. The user who make the request need to be an admin"""
+    email = request.args.get("email") or None;
+
+    User.query.filter_by(email=email).delete()
+    db.session.commit()
+
+    return '{"status":"success"}'
