@@ -19,15 +19,16 @@ L.control.attribution({
 
 
 
-function testCors(){
+function test() {
+  const url ="http://0.0.0.0:5000/addmarker"
 
-  const url = 'http://0.0.0.0:5000/api/testcors';
-  fetch(url)
-  .then((resp) => resp.json())
-  .then(function(data) {
-    console.log(data)
-  })
-  .catch(function(error) {
-    console.log(error);
+  var data = {name:"john", description:"100"};
+
+  $post(url, data).then(function(response){
+    if(response.data){
+      console.log("success");
+    } else {
+      console.log("failure");
+    }
   });
 }

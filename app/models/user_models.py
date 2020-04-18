@@ -37,6 +37,18 @@ class User(db.Model, UserMixin):
     chatuuid =  db.Column(UUIDType(binary=False), unique=True)
 
 
+class Marker(db.Model):
+    __tablename__ = 'marker'
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.Unicode(50), nullable=False, server_default=u'')
+    fabricMask = db.Column(db.Integer)
+    surgicalMask = db.Column(db.Integer)
+    constructionMask = db.Column(db.Integer)
+    glasses = db.Column(db.Integer)
+    blouse = db.Column(db.Integer)
+    visor = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'))
+
 
 # Define the Role data model
 class Role(db.Model):

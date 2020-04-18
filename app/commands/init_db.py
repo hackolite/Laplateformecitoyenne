@@ -10,7 +10,7 @@ from flask import current_app
 from flask_script import Command
 
 from app import db
-from app.models.user_models import User, Role
+from app.models.user_models import User, Role,Marker
 
 class InitDbCommand(Command):
     """ Initialize the database."""
@@ -69,3 +69,9 @@ def find_or_create_user(first_name, last_name, email, password, role=None):
 
 
 
+def add_marker(type,fabricMask,surgicalMask,constructionMask,glasses,blouse,visor,id):
+    new_marker = Marker(type=type,fabricMask=fabricMask,surgicalMask=surgicalMask,constructionMask=constructionMask, glasses=glasses, blouse=blouse,visor=visor,user_id=id)
+    print("New marker created")
+    # add the new user to the database
+    db.session.add(new_marker)
+    db.session.commit()
