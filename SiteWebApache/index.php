@@ -24,6 +24,8 @@ if($_GET['page'] == 'index'){
 
 }else if($_GET['page'] == 'about'){
 	include('content/about.php');
+}else if($_GET['page'] == 'team'){
+	include('content/team.php');
 }
 
 

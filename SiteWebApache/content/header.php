@@ -29,8 +29,11 @@
 			?>
 			<li class="btt"><a class="btt" href='<?php
 				echo "?page=about&lang=".$l['list_lang'][$l['lang']];?>'><?php echo search("about"); ?></a></li>
-			<li class="btt"><a class="btt" href=''><?php echo search("team"); ?></a></li>
+			<li class="btt"><a class="btt" href='<?php
+				echo "?page=team&lang=".$l['list_lang'][$l['lang']];?>'><?php echo search("team"); ?></a></li>
 			<li class="btt"><a class="btt" href=''><?php echo search("files"); ?></a></li>
 		</ul>
 	</div>
 </header>
+
+<div id="white_space"></div>

@@ -32,7 +32,7 @@ if(!isset($_GET['action'])){
 
 			<input type="text" name="name" placeholder="<?php echo search('nom');?>">
 			<input type="email" name="email" placeholder="<?php echo search('email');?>">
-			<input type="text" name="postale" placeholder="<?php echo search('code postale');?>">
+			<input type="text" name="postal" placeholder="<?php echo search('code postal');?>">
 			<input type="password" name="mdp" placeholder="<?php echo search('password'); ?>">
 
 			<label class='checkbox off'>

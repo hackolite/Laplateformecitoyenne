@@ -59,11 +59,10 @@ f.page.load.action = function(e, action){
 	var btt = f.query('header .'+action);
 	var p = [];
 
-	console.log("LOL");
-
 	for(var i = 0; i < page.length; i++){
 
 		if(page[i].id == action){
+
 			// si la page correspond à l'action
 			if(/hide/.test(page[i].className)){
 				// on affiche l'onglet et on cache le bottom de la map, et on 'allume' le bouton
@@ -76,12 +75,15 @@ f.page.load.action = function(e, action){
 			page[i].classList.remove(p[1]);
 
 		}else if(/visible/.test(page[i].className)){
-			// on chache toutes les autres fenêtre non caché
+			// on cache toutes les autres fenêtres non cachées
 			page[i].classList.add('hide');
 			page[i].classList.remove('visible');
 			let _btt = f.query('header .' + page[i].id);
-			_btt.classList.add('off');
-			_btt.classList.remove('on');
+			if(_btt != null){
+				// on s'assure qu'il y a la présence d'un bouton dans l'en-tête qui a été mise en surbrillance ou non
+				_btt.classList.add('off');
+				_btt.classList.remove('on');
+			}
 		}
 
 
@@ -100,12 +102,14 @@ f.page.load.action = function(e, action){
 
 	}
 
-
+	// afficher/cacher le bottom de la carte contenant les boutons
 	bottom.classList.add(p[1]);
 	bottom.classList.remove(p[0]);
-
-	btt.classList.add(p[2]);
-	btt.classList.remove(p[3]);
+	// mise en surbrillance ou non du boutons sur l'en-tete
+	if(btt != null){
+		btt.classList.add(p[2]);
+		btt.classList.remove(p[3]);
+	}
 
 };
 

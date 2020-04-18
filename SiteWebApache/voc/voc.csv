@@ -11,6 +11,7 @@ médicaux,medicals
 personnel médical,medical staff
 nombres,numbers
 besoin,need
+production,production
 jour,day
 masque en tissu,cloth mask
 masque de chirurgie,chirurgical mask
@@ -19,7 +20,7 @@ lunettes,glasses
 blouse,blouse
 visière,visor
 nom,name
-code postale,zip code
+code postal,zip code
 email,email
 mot de passe,password
 les makers,the makers
@@ -32,5 +33,6 @@ connexion,sign in
 connecté,log on
 pays,country
 ville,city
+l'équipe,team
 LPC est une platforme d'échange créée en réponse à la crise du COVID-19 qui fait le lien entre <span class="green">les besoins de matériel du personnel médical</span> et <span class="blue">les ressources disponibles des makers les plus proches.</span>,LPC is an exchange platform create to respond the crisis of COVID-19 allowing to link <span class="green">material needs of the medical personnel</span> and <span class="blue">the available ressources of the nearest makers.</span>
 En cochant cette case j'accepte et je reconnais avoir pris connaissance des termes et conditions d'utilisations de la platforme.,By checking this case you agree with our terms and conditions.

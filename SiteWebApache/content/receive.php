@@ -14,9 +14,11 @@ if(!isset($_GET['action'])){
 			// affichage du titre
 				if($_GET['action'] == 'recevoir'){
 					$color = 'green';
+					$quantite = search('besoin');
 					echo search("medical staff"); 
 				}else if($_GET['action'] == 'donner'){
 					$color = 'blue';
+					$quantite = search('production');
 					echo search("les makers"); 
 				}
 
@@ -61,7 +63,8 @@ for($i = 0; $i < sizeof($html); $i++):
 							</div>
 						</div>
 						<div class="right">
-							<div class="label"><?php echo search('besoin').' / '.search('jour'); ?></div>
+							<div class="label"><?php 
+							echo $quantite.' / '.search('jour'); ?></div>
 							<input type="number" name="" placeholder="<?php echo search('nombres'); ?>...">
 						</div>
 					</label>
@@ -78,7 +81,7 @@ endfor;
 		</div>
 		<div class="form right hide">
 			<input type="text" name="name" placeholder="<?php echo search("nom");?>">
-			<input type="text" name="postal" placeholder="<?php echo search("code postale");?>">
+			<input type="text" name="postal" placeholder="<?php echo search("code postal");?>">
 			<input type="email" name="email" placeholder="<?php echo search("email");?>">
 
 			<label class='checkbox off'>

@@ -9,7 +9,7 @@
 			
 			<span class='img img_info' data-click="map_info"></span>
 			<input type="text"name='pays' placeholder="<?php echo search('pays'); ?>">
-			<input type="text" name='city' placeholder="<?php echo search('ville'); ?>">
+			<input type="text" name='city' placeholder="<?php echo search('ville').' / '.search('code postal'); ?>">
 			<span class='img img_search'></span>
 
 		</div>
