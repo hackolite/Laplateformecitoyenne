@@ -38,7 +38,7 @@ body{
 	height: 70px;
 }
 
-/* 
+/*
 	###### HEADER #######
 */
 header {
@@ -133,7 +133,7 @@ header {
 	text-decoration: none;
 }
 .btt:hover{
-	color: #e42b2b;	
+	color: #e42b2b;
 }
 
 
@@ -164,25 +164,25 @@ header {
     background: #fff;
 }
 
-.btt_submit.fill.green, 
+.btt_submit.fill.green,
 .btt_submit.empty.green:hover, .btt_submit.empty.green.on{
 	color: #fff;
 	border-color: #00D08F;
 	background: #00D08F;
 }
-.btt_submit.fill.blue, 
+.btt_submit.fill.blue,
 .btt_submit.empty.blue:hover, .btt_submit.empty.blue.on{
 	color: #fff;
 	border-color: #005DEE;
 	background: #005DEE;
 }
-.btt_submit.fill.red, 
+.btt_submit.fill.red,
 .btt_submit.empty.red:hover, .btt_submit.empty.red.on{
     color: #fff;
     border-color: #ee0042;
     background: #ee0042;
 }
-.btt_submit.fill.black, 
+.btt_submit.fill.black,
 .btt_submit.empty.black:hover, .btt_submit.empty.black.on{
     color: #fff;
     border-color: #111111;
@@ -209,6 +209,12 @@ header {
     min-height: 200px;
     background: url('img/carte_test.jpg');
     overflow: auto;
+}
+
+
+#mapid {
+  z-index: 0;
+  height:100%;
 }
 
 
@@ -297,7 +303,7 @@ header {
 
 #map .checkbox.on{
 	opacity: 1;
-	filter:  grayscale(0%); 
+	filter:  grayscale(0%);
 }
 #map .checkbox.off{
 	opacity: 0.5;
@@ -569,12 +575,12 @@ nav.off_info #info{
 	text-transform: capitalize;
 }
 
-.formulaire .btt_submit{ 
+.formulaire .btt_submit{
 	height: 56px;
 	font-size: 20px;
-	line-height: 52px; 
-	width: 200px; 
-	position: absolute; 
+	line-height: 52px;
+	width: 200px;
+	position: absolute;
 	bottom: 6px;
 }
 

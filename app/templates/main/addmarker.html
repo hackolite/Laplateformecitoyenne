@@ -1,0 +1,73 @@
+{% from "main/_formhelpers.html" import render_field %}
+
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Add point</h3>
+    <div class="box">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          <div class="notification is-danger">
+              {{ messages[0] }}.
+          </div>
+      {% endif %}
+      {% endwith %}
+      <form method="POST" action="/update_user_need" class="form" role="form">
+        {{ form.hidden_tag() }}
+          <dl>
+            {{ render_field(form.type) }}
+            {{ render_field(form.postCode) }}
+            {{ render_field(form.fabricMask) }}
+            {{ render_field(form.surgicalMask) }}
+            {{ render_field(form.constructionMask) }}
+            {{ render_field(form.glasses) }}
+            {{ render_field(form.blouse) }}
+            {{ render_field(form.visor) }}
+          </dl>
+          <p><input type=submit value=Register>
+          <!-- <div class="field">
+              <div class="control">
+                  <input class="input is-large" type="text" name="type" placeholder="Type" autofocus="">
+              </div>
+          </div>
+          <div class="field">
+              <div class="control">
+                  <input class="input is-large" type="text" name="postCode" placeholder="Code postal" autofocus="">
+              </div>
+          </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="fabricMask" placeholder="Masque en tissu" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="surgicalMask" placeholder="Masque de chirurgie" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="constructionMask" placeholder="Masque de chantier" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="glasses" placeholder="Lunettes" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="blouse" placeholder="Blouse" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="visor" placeholder="Visiere" autofocus="">
+                </div>
+            </div>
+            <button class="button is-block is-info is-large is-fullwidth">Add Point</button> -->
+        </form>
+    </div>
+</div>
+<script src="static/js/map.js" charset="utf-8"></script>

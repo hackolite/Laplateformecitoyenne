@@ -1,12 +1,32 @@
 
-<div id="map" class='visible'>	
-	<div id="mapid">
+<div id="map" class='visible'>
+	<div id="mapid"></div>
+	<script>
 
-	</div>
+	var map = L.map('mapid').setView([48.8589507,2.2770202], 10);
+
+
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+	    // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+	    maxZoom: 18,
+	    id: 'mapbox/streets-v11',
+	    tileSize: 512,
+	    zoomOffset: -1,
+	    zoomControl: false,
+	    attributionControl: false,
+	    accessToken: 'pk.eyJ1IjoiYmlrZW5kZXYiLCJhIjoiY2sxeHp3amcwMGdvYTNobDh6Ym55ZW1ibSJ9.lGWM8-RyVB2NoQRSgIL9nQ'
+	}).addTo(map);
+
+	L.control.attribution({
+	  position: 'bottomleft',
+	  prefix: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
+	}).addTo(map);
+
+	</script>
 
 	<nav class='on_info'>
 		<div id="search">
-			
+
 			<span class='img img_info' data-click="map_info"></span>
 			<input type="text"name='pays' placeholder="<?php echo search('pays'); ?>">
 			<input type="text" name='city' placeholder="<?php echo search('ville').' / '.search('code postal'); ?>">
@@ -18,7 +38,7 @@
 			<?php
 				echo search("LPC(.+).</span>", null, false);
 			?>
-			</p> 
+			</p>
 		</div>
 	</nav>
 	<bottom>
@@ -41,7 +61,7 @@
 			<?php echo search("recevoir"); ?>
 		</div>
 		<div class="btt_submit fill blue" data-click="donner">
-			<?php echo search("give") ?>	
+			<?php echo search("give") ?>
 		</div>
 
 	</bottom>

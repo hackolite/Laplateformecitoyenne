@@ -1,0 +1,104 @@
+
+
+#mapid {
+  z-index: 0;
+  height:100%;
+}
+
+
+.chat-container {
+  position: absolute;
+  display: none;
+  z-index: 10;
+  bottom: 0px;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background-color: white;
+  /* background-color: red; */
+
+}
+
+
+.chat-header {
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
+}
+
+
+
+.name-holder {
+  padding: 10px 10px 10px;
+  /* width: 100%; */
+  color:rgb(57, 57, 57);
+}
+
+
+.message-list-container {
+  height: 270px;
+  overflow: scroll;
+  /* bottom: 16px; */
+  background-color: rgb(255, 255, 255);
+
+}
+
+/* Chat containers */
+.message-container {
+  border: 2px solid #dedede;
+  /* background-color: #f1f1f1; */
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Darker chat container */
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+.message-container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.message {
+  margin-bottom: 3px;
+}
+.time {
+  margin-bottom: 0px;
+}
+
+/* Style time text */
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: #999;
+}
+
+
+/* Msg input */
+
+.msgsender-container {
+  display:flex;
+  flex-direction:row;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+}
+
+
+.messageinput {
+  width: 100%;
+
+}
