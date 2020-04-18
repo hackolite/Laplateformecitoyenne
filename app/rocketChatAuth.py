@@ -5,7 +5,7 @@ from secrets import *
 import os
 
 
-rocketChatServer = 'http://laplateformecitoyenne.rocket.chat'
+rocketChatServer = 'https://laplateformecitoyenne.rocket.chat'
 
 ADMIN_ID = os.environ['ADMIN_ID']
 ADMIN_PASS = os.environ['ADMIN_PASS']
@@ -22,9 +22,13 @@ def createNewUser(username,email,name,password):
 
 
 def loginUser(email,password):
+    print("loginUser :",email)
+
     rep = rocket.login(email,password).json()
+    print("loginUserResponse :",rep)
 
     if rep["success"]:
         authToken = rep["data"]["authToken"]
+        print("authToken :",authToken)
         return authToken
     else : return False
