@@ -5,7 +5,7 @@
 from flask_user import UserMixin
 # from flask_user.forms import RegisterForm
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, validators
+from wtforms import StringField, SubmitField, validators,IntegerField
 from app import db
 from sqlalchemy.dialects.postgresql import UUID
 from flask_sqlalchemy import SQLAlchemy
@@ -33,13 +33,48 @@ class User(db.Model, UserMixin):
     # Relationships
     roles = db.relationship('Role', secondary='users_roles',
                             backref=db.backref('users', lazy='dynamic'))
-
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
+    type = db.Column(db.Unicode(50), nullable=False, server_default=u'')
+    fabricMask = db.Column(db.Integer)
+    surgicalMask = db.Column(db.Integer)
+    constructionMask = db.Column(db.Integer)
+    glasses = db.Column(db.Integer)
+    blouse = db.Column(db.Integer)
+    visor = db.Column(db.Integer)
     chatuuid =  db.Column(UUIDType(binary=False), unique=True)
+
+    @property
+    def serialize(self):
+       """Return object data in easily serializable format"""
+       return {
+            'id': self.id,
+            'email': self.email,
+            'email_confirmed_at': self.email_confirmed_at,
+            'password': self.password,
+            'active':self.active,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'latitude': self.latitude,
+            'longitude':self.longitude,
+            'type': self.type,
+            'fabricMask': self.fabricMask,
+            'surgicalMask': self.surgicalMask,
+            'constructionMask': self.constructionMask,
+            'glasses': self.glasses,
+            'blouse': self.blouse,
+            'visor': self.visor,
+            'chatuuid': self.chatuuid
+       }
+
+
 
 
 class Marker(db.Model):
     __tablename__ = 'marker'
     id = db.Column(db.Integer, primary_key=True)
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
     type = db.Column(db.Unicode(50), nullable=False, server_default=u'')
     fabricMask = db.Column(db.Integer)
     surgicalMask = db.Column(db.Integer)
@@ -66,14 +101,6 @@ class UsersRoles(db.Model):
     role_id = db.Column(db.Integer(), db.ForeignKey('roles.id', ondelete='CASCADE'))
 
 
-# # Define the User registration form
-# # It augments the Flask-User RegisterForm with additional fields
-# class MyRegisterForm(RegisterForm):
-#     first_name = StringField('First name', validators=[
-#         validators.DataRequired('First name is required')])
-#     last_name = StringField('Last name', validators=[
-#         validators.DataRequired('Last name is required')])
-
 
 # Define the User profile form
 class UserProfileForm(FlaskForm):
@@ -81,4 +108,19 @@ class UserProfileForm(FlaskForm):
         validators.DataRequired('First name is required')])
     last_name = StringField('Last name', validators=[
         validators.DataRequired('Last name is required')])
+    submit = SubmitField('Save')
+
+
+
+# Define the User profile form
+class UserNeedForm(FlaskForm):
+    type = StringField('Type',[validators.DataRequired()], render_kw={"placeholder": "Medical or Maker"})
+    postCode = IntegerField('PostCode',[validators.Length(min=3, max=5),validators.InputRequired("You have to enter some a number")], render_kw={"placeholder": "00000"})
+    fabricMask = IntegerField('Masque en tissu',[validators.InputRequired("You have to enter some a number")], render_kw={"placeholder": "Nombre"})
+    surgicalMask = IntegerField('Masque chirugical', [validators.InputRequired("You have to enter some a number")], render_kw={"placeholder": "Nombre"})
+    constructionMask = IntegerField('Masque de chantier', [validators.InputRequired("You have to enter some a number")],render_kw={"placeholder": "Nombre"})
+    glasses = IntegerField('Lunettes', [validators.InputRequired("You have to enter some a number")],render_kw={"placeholder": "Nombre"})
+    blouse = IntegerField('Blouse', [validators.InputRequired("You have to enter some a number")],render_kw={"placeholder": "Nombre"})
+    visor = IntegerField('Visière',[validators.InputRequired("You have to enter some a number")], render_kw={"placeholder": "Nombre"})
+
     submit = SubmitField('Save')

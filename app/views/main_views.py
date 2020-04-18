@@ -1,18 +1,19 @@
 # Copyright 2014 SolidBuilds.com. All rights reserved
 #
 # Authors: Ling Thio <ling.thio@gmail.com>
-
-from flask import Blueprint, redirect, render_template
+import os
+from flask import Blueprint, redirect, render_template,flash
 from flask import request, url_for,jsonify
 from flask_user import current_user, login_required, roles_required
 from rocketchat_API.rocketchat import RocketChat
 from app import db
-from app.models.user_models import UserProfileForm
+from app.models.user_models import UserProfileForm,UserNeedForm
 from app.commands.init_db import add_marker
 from app import rocketChatAuth
 from flask_cors import CORS, cross_origin
-
-
+from app.models.user_models import User, Role,Marker
+from geopy.geocoders import MapBox
+import json
 
 main_blueprint = Blueprint('main', __name__, template_folder='templates')
 # CORS(main_blueprint)
@@ -104,15 +105,18 @@ def user_profile_page():
 @main_blueprint.route('/addmarker')
 @login_required
 def addmarker():
-    form = UserProfileForm(request.form, obj=current_user)
+    form = UserNeedForm(request.form, obj=current_user)
 
     return render_template('main/addmarker.html',form=form)
 
 
-@main_blueprint.route('/addmarker',methods=["POST"])
+@main_blueprint.route('/update_user_need',methods=["POST"])
 @login_required
-def addmarker_post():
-    type="medical"
+def update_user_need():
+    API_KEY = os.environ['API_KEY']
+    geolocator = MapBox(api_key=API_KEY)
+    type = request.form.get('type') or "None"
+    postCode = request.form.get('postCode') or "0"
     fabricMask = request.form.get('fabricMask') or 0
     surgicalMask = request.form.get('surgicalMask') or 0
     constructionMask = request.form.get('constructionMask') or 0
@@ -120,9 +124,48 @@ def addmarker_post():
     blouse = request.form.get('blouse') or 0
     visor = request.form.get('visor') or 0
 
+    print(type,postCode,fabricMask,surgicalMask,constructionMask,glasses,blouse,visor)
 
-    print("Add new point:",fabricMask,surgicalMask,constructionMask,glasses,blouse,visor)
+    location = geolocator.geocode(postCode+" France")
+    user = User.query.filter_by(email=current_user.email).first()
 
-    add_marker(type,fabricMask,surgicalMask,constructionMask,glasses,blouse,visor,current_user.id)
+    if user and location:
+        print("User found")
+        user.type=type
+        user.latitude=location.latitude
+        user.longitude=location.longitude
+        user.fabricMask=fabricMask
+        user.surgicalMask=surgicalMask
+        user.constructionMask=constructionMask
+        user.glasses=glasses
+        user.blouse=blouse
+        user.visor=visor
+        db.session.commit()
+        return redirect(url_for('main.home_page'))
+
+    else :
+        flash("User not found")
+        return redirect(url_for('main.addmarker'))
+
+
+
+@main_blueprint.route('/user_need',methods=["GET"])
+def get_user():
+    """Return all the users form the DB. If no parameters specified for type, medic and maker are returned"""
+    # API_KEY = os.environ['API_KEY']
+    # geolocator = MapBox(api_key=API_KEY)
+
+    # /user_need?type=maker
+
+    type = request.args.get("type") or None;
+
+
+    if type != None:
+        users = User.query.filter_by(type=type).all()
+        return jsonify(json_list=[i.serialize for i in users])
+    else:
+        users = User.query.all()
+        return jsonify(json_list=[i.serialize for i in users])
+
 
     return redirect(url_for('main.home_page'))

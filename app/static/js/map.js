@@ -32,3 +32,16 @@ function test() {
     }
   });
 }
+
+
+
+function testGet(theUrl)
+{
+    const url ="http://0.0.0.0:5000/user_need?type=maker"
+
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", url, false ); // false for synchronous request
+    xmlHttp.send( null );
+    console.log(xmlHttp.responseText);
+    return xmlHttp.responseText;
+}
