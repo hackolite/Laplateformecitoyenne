@@ -15,7 +15,9 @@
 		</div>
 		<div id="info">
 			<p>
-			LPC est une platforme de liaison, créee suite à la crise du COVID-19, entre <span class="green">les personnels médicaux</span> qui souhaitent <span class="green">recevoir</span> du matériels et <span class="blue">les makers</span> de tous horizons qui peuvent <span class="blue">fournir/donner</span> du matériels.
+			<?php
+				echo search("LPC(.+).</span>", null, false);
+			?>
 			</p> 
 		</div>
 	</nav>

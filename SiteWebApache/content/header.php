@@ -1,21 +1,21 @@
 
 <header>
 	<div id="logo">
-		<a href="<?php echo $_SERVER['HOST'];?>">
+		<a href="/laplatformecitoyenne/">
 			<img src="img/small_logo.png" >
 			<span>La Platforme Citoyenne</span>
 		</a>
-		<select id="lang">
-				<option>FR</option>
-				<option>EN</option>
-		</select>
+		<p id="lang">
+			<a href="?lang=fr">FR</a>
+			<a href="?lang=en">EN</a>
+		</p>
 	</div>
 	<div id="bouton">
 		<ul>
 			<?php
 
 				// on affiche le compte utilisateur
-				if(isset($_SESSION['session']) == 'true'):
+				if(isset($_SESSION['session']) && $_SESSION['session'] == 'true'):
 			?>
 			<li class="btt_submit fill signin red" data-click="account"><?php echo search("connecté"); ?></li>
 			<?php

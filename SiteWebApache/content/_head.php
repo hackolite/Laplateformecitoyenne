@@ -48,8 +48,16 @@ function search($word, $lang=null){
 		for ($j=0; $j < sizeof($t[$i]); $j++) { 
 		// on parcours toutes les traductions d'un mot, car $word peut être de n'importe qu'elle langue
 			// on convertit en url car %0D peut apparaitre avec le fichier csv, indiquant une fin de ligne
+
 			$test = str_replace("+", " ", urlencode($t[$i][$j]));
 			$tested = str_replace("+", " ", urlencode($word));
+			/*
+			 dans le cas de phrase à rechercher, il y a la présence de regex
+			 il ne faut donc pas les encoder. seul (.+) est admit pour l'instant
+			*/
+			$tested = str_replace("%28.%2B%29", "(.+)", $tested);
+
+
 			if(preg_match('/^'.$tested.'(%0D)?$/i', $test, $matches)){
 
 				try {

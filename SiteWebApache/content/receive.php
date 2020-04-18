@@ -81,6 +81,14 @@ endfor;
 			<input type="text" name="postal" placeholder="<?php echo search("code postale");?>">
 			<input type="email" name="email" placeholder="<?php echo search("email");?>">
 
+			<label class='checkbox off'>
+				<input type="checkbox" data-click='checkbox'>
+			</label>
+			<p>
+				<?php echo search("En(.+)platforme.");?>
+			</p>
+
+
 			<div class='bottom'>
 				<div class="btt_submit fill <?php echo $color; ?> off next" data-click='next'>
 					<?php echo search('return'); ?>

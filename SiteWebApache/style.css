@@ -73,7 +73,15 @@ header {
 #lang{
 	position: absolute;
     left: 340px;
-    top: 25px;
+    top: 10px;
+}
+
+#lang a{
+	color: #575757;
+	text-decoration: none;
+	border: 1px solid #cccccc;
+	padding: 2px 6px;
+	font-size: 10px;;
 }
 
 #bouton{
@@ -154,12 +162,14 @@ header {
 	border-color: #005DEE;
 	background: #005DEE;
 }
-.btt_submit.fill.red, .btt_submit.empty.red:hover{
+.btt_submit.fill.red, 
+.btt_submit.empty.red:hover, .btt_submit.empty.red.on{
     color: #fff;
     border-color: #ee0042;
     background: #ee0042;
 }
-.btt_submit.fill.black, .btt_submit.empty.black:hover{
+.btt_submit.fill.black, 
+.btt_submit.empty.black:hover, .btt_submit.empty.black.on{
     color: #fff;
     border-color: #111111;
     background: #111111;
@@ -361,8 +371,8 @@ header {
 nav.off_info .img_info{
 	filter: grayscale(100%);
 }
-nav.on_info .img_info{
-	filter: grayscale(0%);
+nav.on_info .img_info, .img_info:hover{
+	filter: grayscale(0%)!important;
 }
 
 #info{
@@ -408,11 +418,12 @@ nav.off_info #info{
     height: 100%;
     top: 70px;
     position: fixed;
-    overflow: auto;
     box-sizing: border-box;
     z-index: 500;
     border-radius: 8px;
     padding-bottom: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .formulaire.visible{
 	right: 0px;
@@ -425,6 +436,7 @@ nav.off_info #info{
 	top: 39px;
 	margin: auto;
 	width: 92%;
+	overflow-x: hidden;
 
 }
 
@@ -628,4 +640,56 @@ nav.off_info #info{
 .formulaire .form.right{
 	position: relative;
 	bottom: 1042px;
+}
+
+.checkbox{
+	width: 80px;
+	height: 33px;
+	display: block;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: all 300ms ease;
+	margin: auto;
+}
+
+.checkbox::before{
+	content: '';
+	width: 28px;
+	height: 28px;
+	background: #fff;
+	display: block;
+	border-radius: 50%;
+	position: relative;
+	transition: all 300ms ease;
+	top: 2px;
+}
+.checkbox.on{
+	background: #00d08f;
+}
+.checkbox.on::before{
+	left: 50px;
+}
+.checkbox.off{
+	background: #ee0042;
+}
+.checkbox.off::before{
+	left: 1px;
+}
+
+
+.checkbox input{
+	opacity: 0;
+}
+
+.formulaire .form.right p{
+	text-align: center;
+	font-size: 14px;
+	font-weight: 300;
+	width: 410px;
+	margin: auto;
+	background: #ee0042;
+	color: white;
+	padding: 12px 6px;
+	box-sizing: border-box;
+	margin-top: 20px;;;;
 }

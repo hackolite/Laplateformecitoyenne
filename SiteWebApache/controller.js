@@ -59,6 +59,8 @@ f.page.load.action = function(e, action){
 	var btt = f.query('header .'+action);
 	var p = [];
 
+	console.log("LOL");
+
 	for(var i = 0; i < page.length; i++){
 
 		if(page[i].id == action){
@@ -107,10 +109,11 @@ f.page.load.action = function(e, action){
 
 };
 
-f.page.load.recevoir = f.page.load.donner = function(e){
+f.page.load.recevoir = f.page.load.donner = f.page.load.signup = f.page.load.signin = function(e){
 	// on assigne les fonctions recevoir et donner à la même fonction
 	f.page.load.action(e, e.target.getAttribute('data-click'));
 };
+
 
 f.page.load.next = function(e){
 
@@ -165,6 +168,7 @@ f.page.load.submit = function(e){
 };
 
 f.page.load.map_info = function(e){
+	// message d'info afficher sous la barre de recherche sur la map
 
 	let nav = e.target.parentNode.parentNode;
 	let p = [];
@@ -181,6 +185,25 @@ f.page.load.map_info = function(e){
 
 };
 
+
+f.page.load.checkbox = function(e){
+
+	var label = e.target.parentNode;
+	var p = [];
+
+
+	if(/off/.test(label.className)){
+		p = ['on', 'off'];
+	}else{
+		p = ['off', 'on'];
+	}
+
+		console.log(p);
+
+	label.classList.add(p[0]);
+	label.classList.remove(p[1]);
+
+};
 
 
 o.carte.box.checker = function(e){
