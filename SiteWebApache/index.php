@@ -18,7 +18,7 @@
 <!-- AwesomeMarkers -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
 
-
+<?php
 
 
 include('content/_head.php'); // l'en-tête contenant les fonctions de bases
@@ -27,13 +27,11 @@ include('content/_head.php'); // l'en-tête contenant les fonctions de bases
 
 if($_GET['page'] == 'index'){
 	include('content/map.php');
-
 	$_GET['action'] = 'recevoir';
 	include('content/receive.php');
 
 	$_GET['action'] = 'donner';
 	include('content/receive.php');
-
 
 	if(!isset($_SESSION['session']) || $_SESSION['session'] != 'true'){
 		// si pas de session on inclut le formualire d'inscription et de connexion
