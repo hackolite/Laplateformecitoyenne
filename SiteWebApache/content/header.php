@@ -36,4 +36,4 @@
 	</div>
 </header>
 
-<div id="white_space"></div>
+<div class="white_space"></div>

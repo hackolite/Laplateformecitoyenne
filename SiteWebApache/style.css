@@ -33,12 +33,12 @@ body{
 	transition: right 1s ease;
 }
 
-#white_space{
+.white_space{
 	margin: 0;
 	height: 70px;
 }
 
-/*
+/* 
 	###### HEADER #######
 */
 header {
@@ -133,7 +133,7 @@ header {
 	text-decoration: none;
 }
 .btt:hover{
-	color: #e42b2b;
+	color: #e42b2b;	
 }
 
 
@@ -164,25 +164,25 @@ header {
     background: #fff;
 }
 
-.btt_submit.fill.green,
+.btt_submit.fill.green, 
 .btt_submit.empty.green:hover, .btt_submit.empty.green.on{
 	color: #fff;
 	border-color: #00D08F;
 	background: #00D08F;
 }
-.btt_submit.fill.blue,
+.btt_submit.fill.blue, 
 .btt_submit.empty.blue:hover, .btt_submit.empty.blue.on{
 	color: #fff;
 	border-color: #005DEE;
 	background: #005DEE;
 }
-.btt_submit.fill.red,
+.btt_submit.fill.red, 
 .btt_submit.empty.red:hover, .btt_submit.empty.red.on{
     color: #fff;
     border-color: #ee0042;
     background: #ee0042;
 }
-.btt_submit.fill.black,
+.btt_submit.fill.black, 
 .btt_submit.empty.black:hover, .btt_submit.empty.black.on{
     color: #fff;
     border-color: #111111;
@@ -200,6 +200,12 @@ header {
 	######## MAP ########
 */
 
+#mapid {
+  z-index: 0;
+  height:100%;
+}
+
+
 #map {
     position: absolute;
     top: 70px;
@@ -207,14 +213,8 @@ header {
     width: 100%;
     height: auto;
     min-height: 200px;
-    background: url('img/carte_test.jpg');
+    /*background: url('img/carte_test.jpg');*/
     overflow: auto;
-}
-
-
-#mapid {
-  z-index: 0;
-  height:100%;
 }
 
 
@@ -303,7 +303,7 @@ header {
 
 #map .checkbox.on{
 	opacity: 1;
-	filter:  grayscale(0%);
+	filter:  grayscale(0%); 
 }
 #map .checkbox.off{
 	opacity: 0.5;
@@ -575,16 +575,16 @@ nav.off_info #info{
 	text-transform: capitalize;
 }
 
-.formulaire .btt_submit{
+.formulaire .btt_submit{ 
 	height: 56px;
 	font-size: 20px;
-	line-height: 52px;
-	width: 200px;
-	position: absolute;
+	line-height: 52px; 
+	width: 200px; 
+	position: absolute; 
 	bottom: 6px;
 }
 
-.close{
+.close_btt{
 	transform: rotate(45deg);
 	font-family: "Avenir";
 	color: #000000;
@@ -598,7 +598,7 @@ nav.off_info #info{
 	margin-left: 15px;
 	text-shadow: 0px 0px 0px #eebb00;
 }
-.close:hover{
+.close_btt:hover{
 	text-shadow: 0px 0px 6px #eebb00;
 }
 
@@ -662,43 +662,46 @@ nav.off_info #info{
 }
 
 .checkbox{
-	width: 80px;
+	width: 70px;
 	height: 33px;
 	display: block;
 	border-radius: 20px;
 	cursor: pointer;
 	transition: all 300ms ease;
 	margin: auto;
+	box-shadow: inset 0px 0px 4px #00000082;
 }
 
 .checkbox::before{
 	content: '';
-	width: 28px;
-	height: 28px;
+	width: 30px;
+	height: 30px;
 	background: #fff;
 	display: block;
 	border-radius: 50%;
 	position: relative;
 	transition: all 300ms ease;
-	top: 2px;
+	top: 1px;
+	/*box-shadow: 0px 0px 7px #464646;*/
 }
 .checkbox.on{
 	background: #00d08f;
 }
 .checkbox.on::before{
-	left: 50px;
+	left: 40px;
 }
 .checkbox.off{
 	background: #ee0042;
 }
 .checkbox.off::before{
-	left: 1px;
+	left: 0px;
 }
 
 
 .checkbox input{
 	opacity: 0;
 }
+
 
 .formulaire .form.right p{
 	text-align: center;
@@ -720,7 +723,7 @@ nav.off_info #info{
 #### AUTRES FICHIERS #####
 */
 
-#page div.text{
+#page div.paragraphe{
     position: relative;
     top: 50px;
     text-align: justify;
@@ -731,7 +734,7 @@ nav.off_info #info{
 	box-shadow: 0px 0px 5px #424242;
 	padding: 30px 80px;
 }
-#page div.text, #page > .center{
+#page div.paragraphe, #page > .center{
 	width: 80%;
     min-width: 600px;
     max-width: 800px;

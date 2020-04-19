@@ -1,6 +1,7 @@
-<div class='text center'>
+<div class='paragraphe center'>
 
-<h2>L'équipe !</h2>
+<h1>L'équipe !</h1>
+<br >
 <p>
 Quand les institutions ne sont pas en mesure de couvrir tous les besoins, La Plateforme Citoyenne compte sur chaque citoyen : Connectons-nous !
 </p>
@@ -10,10 +11,14 @@ Quand les institutions ne sont pas en mesure de couvrir tous les besoins, La Pla
 </p>
 <p>Durant le développement de cette initiative citoyenne et a but non lucratif, nous avonsconstaté que ce processus pouvait palier à d'autres problèmes comme ceux liés à l'environnement, à l'habitat et au monde animalier. C'est pourquoi nous travaillons aujourd'hui à proposer plusieurs domaines d’actions aux futurs inscrits de la plateforme citoyenne.
 </p>
-<p>Tout au long de notre chemin, nous avons été rejoints par : Ménélick Bekolo, Morgane Pauron, Quentin Phillip, Julien Zhu, Yann Djoli, Oriane Rainero.”
+<p>Tout au long de notre chemin, nous avons été rejoints par : Morgane Pauron, Quentin Phillip, Julien Zhu, Oriane Rainero.”
 <br ><br >
 La TEAM
+<br ><br >
+<img src="img/team.png" title='The Team !' alt="The Team !" style="width:100%;">
 
 </p>
+
+
 
 </div>

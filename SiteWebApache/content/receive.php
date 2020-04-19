@@ -5,7 +5,7 @@ if(!isset($_GET['action'])){
 
 ?>
 <div id="<?php echo $_GET['action']; ?>" class='formulaire hide'>
-	<div class='close' title="<?php echo search('fermer'); ?>" data-click="<?php echo $_GET['action'];?>">+</div>
+	<div class='close_btt' title="<?php echo search('fermer'); ?>" data-click="<?php echo $_GET['action'];?>">+</div>
 	<form method="POST">
 
 		<div class='title'>
