@@ -116,10 +116,11 @@ def addmarker():
 
 
 @main_blueprint.route('/update_user_need',methods=["POST"])
-@login_required
 def update_user_need():
     API_KEY = os.environ['API_KEY']
     geolocator = MapBox(api_key=API_KEY)
+    name = request.form.get('name') or "None"
+    email = request.form.get('email') or "None"
     type = request.form.get('type') or "None"
     town = request.form.get('town') or "Paris"
     fabricMask = request.form.get('fabricMask') or 0
@@ -134,8 +135,10 @@ def update_user_need():
     location = geolocator.geocode(town,country="FR")
     user = User.query.filter_by(email=current_user.email).first()
 
-    if user and location:
+    if user:
         print("User found")
+        user.name=name
+        user.email=email
         user.type=type
         user.latitude=location.latitude
         user.longitude=location.longitude
@@ -149,8 +152,10 @@ def update_user_need():
         return redirect(url_for('main.home_page'))
 
     else :
-        flash("User not found")
-        return redirect(url_for('main.addmarker'))
+        user = User(name=name,email=email,type=type,latitude=latitude,longitude=longitude,fabricMask=fabricMask,surgicalMask=surgicalMask,constructionMask=constructionMask,glasses=glasses,blouse=blouse,visor=visor)
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('main.home_page'))
 
 
 
