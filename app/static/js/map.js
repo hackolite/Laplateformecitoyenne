@@ -37,7 +37,7 @@ function test() {
 
 function testGet()
 {
-    const url ="http://0.0.0.0:5000/user_need?type=maker"
+    const url ="http://0.0.0.0:5000/user_need"
 
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", url, false ); // false for synchronous request

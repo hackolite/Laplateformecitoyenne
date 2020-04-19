@@ -104,6 +104,11 @@ def user_profile_page():
 @main_blueprint.route('/addmarker')
 @login_required
 def addmarker():
+
+    user = User.query.filter_by(email=current_user.email).first()
+
+    if user.latitude:
+        flash("Vous avez deja un point, cette operation va mettre a jour ce point")
     form = UserNeedForm(request.form, obj=current_user)
 
     return render_template('main/addmarker.html',form=form)
