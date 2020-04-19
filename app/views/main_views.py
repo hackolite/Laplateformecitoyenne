@@ -11,6 +11,7 @@ from app.models.user_models import UserProfileForm,UserNeedForm
 from app import rocketChatAuth
 from flask_cors import CORS, cross_origin
 from app.models.user_models import User, Role,Marker
+from werkzeug.security import check_password_hash
 from geopy.geocoders import MapBox
 import json
 
@@ -120,7 +121,7 @@ def update_user_need():
     API_KEY = os.environ['API_KEY']
     geolocator = MapBox(api_key=API_KEY)
     type = request.form.get('type') or "None"
-    postCode = request.form.get('postCode') or "0"
+    town = request.form.get('town') or "Paris"
     fabricMask = request.form.get('fabricMask') or 0
     surgicalMask = request.form.get('surgicalMask') or 0
     constructionMask = request.form.get('constructionMask') or 0
@@ -128,9 +129,9 @@ def update_user_need():
     blouse = request.form.get('blouse') or 0
     visor = request.form.get('visor') or 0
 
-    print(type,postCode,fabricMask,surgicalMask,constructionMask,glasses,blouse,visor)
+    print(type,town,fabricMask,surgicalMask,constructionMask,glasses,blouse,visor)
 
-    location = geolocator.geocode(postCode+" France")
+    location = geolocator.geocode(town,country="FR")
     user = User.query.filter_by(email=current_user.email).first()
 
     if user and location:
@@ -187,3 +188,19 @@ def delete_user():
     db.session.commit()
 
     return '{"status":"success"}'
+
+
+@main_blueprint.route('/login',methods=["GET"])
+@cross_origin(origin='http://192.168.64.2/',headers=['Content- Type','Authorization'])
+def login_user():
+    print(request)
+    email = request.args.get("email");
+    password = request.args.get("password");
+    print(email)
+    print(password)
+
+    user = User.query.filter_by(email=email).all()
+    if check_password_hash(user.password,password):
+        current_user=user
+    else :
+        print("Bad password")

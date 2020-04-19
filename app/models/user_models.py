@@ -115,7 +115,7 @@ class UserProfileForm(FlaskForm):
 # Define the User profile form
 class UserNeedForm(FlaskForm):
     type = StringField('Type',[validators.DataRequired()], render_kw={"placeholder": "Medical or Maker"})
-    postCode = IntegerField('PostCode',[validators.Length(min=3, max=5),validators.InputRequired("You have to enter some a number")], render_kw={"placeholder": "00000"})
+    town = StringField('Ville',[validators.DataRequired()], render_kw={"placeholder": "Ville"})
     fabricMask = IntegerField('Masque en tissu',[validators.InputRequired("You have to enter some a number")], render_kw={"placeholder": "Nombre"})
     surgicalMask = IntegerField('Masque chirugical', [validators.InputRequired("You have to enter some a number")], render_kw={"placeholder": "Nombre"})
     constructionMask = IntegerField('Masque de chantier', [validators.InputRequired("You have to enter some a number")],render_kw={"placeholder": "Nombre"})

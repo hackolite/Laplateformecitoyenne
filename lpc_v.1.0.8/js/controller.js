@@ -167,8 +167,13 @@ f.page.load.next = function(e){
 f.page.load.submit = function(e){
 	let inputs = f.query('#' + e.target.getAttribute('data-form') + 'input', true);
 
-	alert("Oops, les données ne sont pas envoyées sur le serveur car nous sommes en phases de test !\n\nMerci d'avoir utilisé notre platforme :D");
+	let url= "http://0.0.0.0:5000/login?&email=test@email.com&password=password";
 
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open( "GET", url, false ); // false for synchronous request
+	xmlHttp.send( null );
+	console.log(xmlHttp.responseText);
+	var points = JSON.parse(xmlHttp.responseText);
 };
 
 f.page.load.map_info = function(e){

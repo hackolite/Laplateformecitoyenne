@@ -1,23 +1,23 @@
 <?php
 if(!isset($_GET['action'])){
 	exit();
-}	
+}
 
 ?>
 <div id="<?php echo $_GET['action']; ?>" class='formulaire hide'>
 	<div class='close_btt' title="<?php echo search('fermer'); ?>" data-click="<?php echo $_GET['action'];?>">+</div>
-	<form method="POST">
+	<form method="POST" >
 
 		<div class='title'>
 			<span class="img <?php echo $_GET['action']; ?>"></span>
-			<span class="text"><?php 
+			<span class="text"><?php
 			// affichage du titre
 				if($_GET['action'] == 'signup'){
 					$color = 'green';
-					echo search("sign up"); 
+					echo search("sign up");
 				}else if($_GET['action'] == 'signin'){
 					$color = 'black';
-					echo search("sign in"); 
+					echo search("sign in");
 				}
 
 			?></span>
