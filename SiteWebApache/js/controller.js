@@ -142,7 +142,7 @@ f.page.load.next = function(e){
 	}
 
 	bloc1.classList.add(p[0]);
-	bloc1.classList.remove(p[1]);	
+	bloc1.classList.remove(p[1]);
 
 	bloc2.classList.add(p[1]);
 	bloc2.classList.remove(p[0]);
@@ -217,21 +217,27 @@ o.carte.box.checker = function(e){
 	}else{
 		var v = ['off','on'];
 		// on affiche les points correpondant s de la carte
-		try{
-			if(/medicals/.test(e.target.className)){
-				getMarkers('medical');
-			}else{
-				getMarkers('maker');
-			}
-		}catch(err){
-			console.warn(err);
-		}
-
-		
 	}
-	console.log(v);
+
 	e.target.classList.remove(v[0]);
 	e.target.classList.add(v[1]);
+
+	try{
+		let type = [];
+		if(/on/.test(o.carte.box.maker.className)){
+			type.push('maker');
+		}
+		if(/on/.test(o.carte.box.medical.className)){
+			type.push('medical');
+		}
+
+		getMarkers(type);
+
+	}catch(err){
+		console.warn(err);
+	}
+
+
 
 };
 

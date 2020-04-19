@@ -65,7 +65,7 @@ for($i = 0; $i < sizeof($html); $i++):
 						<div class="right">
 							<div class="label"><?php 
 							echo $quantite.' / '.search('jour'); ?></div>
-							<input type="number" name="" placeholder="<?php echo search('nombres'); ?>...">
+							<input type="number" name="" placeholder="<?php echo search('nombres'); ?>..." min="0" max="1000000000">
 						</div>
 					</label>
 				</div>
