@@ -99,6 +99,9 @@ function eraseMarker()
 								desc+="Visière : "+point.visor+"<br />"
 							}
 
+							desc+="<a href='mailto:"+point.email+"?subject=La Plateforme Citoyenne'>Envoyer un email</a>"
+
+
 
 						  //create the popup
 						  var popup = L.popup()
@@ -115,9 +118,9 @@ function eraseMarker()
 
 
 						  //open popup when mouse over the marker
-						  marker.on('mouseover', function (e) { this.openPopup(); });
-						  //close popup when mouse is not over the marker
-						  marker.on('mouseout', function (e) { this.closePopup(); });
+						  // marker.on('mouseover', function (e) { this.openPopup(); });
+						  // //close popup when mouse is not over the marker
+						  // marker.on('mouseout', function (e) { this.closePopup(); });
 
 						  //add the marker on the map
 						  marker.addTo(map)
