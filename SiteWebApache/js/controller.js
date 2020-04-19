@@ -167,7 +167,10 @@ f.page.load.next = function(e){
 f.page.load.submit = function(e){
 	let inputs = f.query('#' + e.target.getAttribute('data-form') + 'input', true);
 
-	alert("Oops, les données ne sont pas envoyées sur le serveur car nous sommes en phases de test !\n\nMerci d'avoir utilisé notre platforme :D");
+	alert("Oops...\nNous sommes actuellement en phase de test, cette fonctionnalité n'est malheuresement pas encore disponible 😥"
+		+"\nNous vous invitons à revenir quand nous serons prêt ! Merci de votre soutien !"
+		+"\n\nOops...\nWe are currently in testing phase, this fonctionnality are unfortunately not available 😥"
+		+"\nWe invite you to come back when we are ready ! Thank you for your support !");
 
 };
 
