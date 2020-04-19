@@ -121,9 +121,10 @@ if(!isset($_GET['page'])){
 	<!-- AwesomeMarkers -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
 
-	<script src="js/controller.js"></script>
+	
 	<script src="js/map.js"></script>
 	<?php endif; ?>
+	<script src="js/controller.js"></script>
 </head>
 <body>
 

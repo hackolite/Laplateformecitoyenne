@@ -11,7 +11,49 @@ f.query = function(elmt, all=false){
 		return document.querySelectorAll(elmt);
 	}
 	return document.querySelector(elmt);
-}
+};
+
+f.AJAX = function (e){
+	/*
+		e = {
+			location, type, ready, settings, responseText
+		}
+
+	*/
+	var xhr = new XMLHttpRequest();
+
+	if(e.type == "GET"){
+		e.location += "?" + e.settings;
+	}
+
+	xhr.open(e.type, e.location);
+	
+	if(e.type=="POST"){
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	}
+
+	xhr.onreadystatechange = function(){
+		if(xhr.status == 200 && xhr.readyState == 4){
+			if(e.responseText == true){
+				e.ready(xhr.responseText);
+			}else{
+				e.ready(xhr.response);
+			}
+			
+			//console.log(xhr.responseText);
+		}
+	};
+
+	if(e.type == "GET"){
+		xhr.send(null);
+	}
+	else{
+		xhr.send(e.settings);
+	}
+	
+};
+
+
 
 var onReady = function(){
 
@@ -20,10 +62,14 @@ var onReady = function(){
 */
 
 o.carte = {};
-o.carte.box = {
-	maker: f.query('.checkbox.makers'),
-	medical: f.query('.checkbox.medicals')
-};
+try{
+	o.carte.box = {
+		maker: f.query('.checkbox.makers'),
+		medical: f.query('.checkbox.medicals')
+	};
+}catch(err){
+	console.warn(err);
+}
 
 /*
 ##### FONCTION EVENT #####
@@ -165,12 +211,24 @@ f.page.load.next = function(e){
 
 
 f.page.load.submit = function(e){
-	let inputs = f.query('#' + e.target.getAttribute('data-form') + 'input', true);
+	// listage de tous les champs du formulaire afin de les passer en paramètres
+	let inputs = f.query('#' + e.target.getAttribute('data-form') + ' input', true);
+// pour valider les formulaires
+try{
+// location, type, ready, settings, responseText
+console.log(inputs)
 
-	alert("Oops...\nNous sommes actuellement en phase de test, cette fonctionnalité n'est malheuresement pas encore disponible 😥"
+
+}
+
+	catch(err){
+		alert("Oops...\nNous sommes actuellement en phase de test, cette fonctionnalité n'est malheuresement pas encore disponible 😥"
 		+"\nNous vous invitons à revenir quand nous serons prêt ! Merci de votre soutien !"
 		+"\n\nOops...\nWe are currently in testing phase, this fonctionnality are unfortunately not available 😥"
 		+"\nWe invite you to come back when we are ready ! Thank you for your support !");
+	}
+
+
 
 };
 
@@ -247,9 +305,13 @@ o.carte.box.checker = function(e){
 /*
 #### EVENT CALL ASSIGNEMENT ###
 */
+try{
 
-o.carte.box.maker.addEventListener('click', o.carte.box.checker);
-o.carte.box.medical.addEventListener('click', o.carte.box.checker);
+	o.carte.box.maker.addEventListener('click', o.carte.box.checker);
+	o.carte.box.medical.addEventListener('click', o.carte.box.checker);
+}catch(err){
+	console.warn(err);
+}
 
 document.addEventListener('click', function(e){
 

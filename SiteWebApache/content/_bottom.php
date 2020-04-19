@@ -7,9 +7,9 @@ var t = setInterval(function(){
 
 	if(document.querySelector && document.addEventListener){
 		// page prête
-		<?php if($_GET['page'] == 'index'): ?>
+		<?php /*if($_GET['page'] == 'index'):*/ ?>
 		onReady();
-		<?php endif; ?>
+		<?php /*endif;*/ ?>
 		clearInterval(t);
 	}
 

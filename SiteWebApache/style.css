@@ -449,6 +449,7 @@ nav.off_info #info{
     padding-bottom: 150px;
     overflow-x: hidden;
     overflow-y: auto;
+    box-shadow: 6px 0px 20px #0000006b;
 }
 .formulaire.visible{
 	right: 0px;

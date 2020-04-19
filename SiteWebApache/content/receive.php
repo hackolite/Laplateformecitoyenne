@@ -81,7 +81,7 @@ endfor;
 		</div>
 		<div class="form right hide">
 			<input type="text" name="name" placeholder="<?php echo search("nom");?>">
-			<input type="text" name="postal" placeholder="<?php echo search("code postal");?>">
+			<input type="text" name="postal" placeholder="<?php echo search("ville");?>">
 			<input type="email" name="email" placeholder="<?php echo search("email");?>">
 
 			<label class='checkbox off'>
