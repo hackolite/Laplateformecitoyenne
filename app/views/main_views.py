@@ -154,6 +154,7 @@ def update_user_need():
 
 
 @main_blueprint.route('/user_need',methods=["GET"])
+@cross_origin(origin='http://192.168.64.2/',headers=['Content- Type','Authorization'])
 def get_user():
     """Return all the users form the DB. If no parameters specified for type, medic and maker are returned"""
     # API_KEY = os.environ['API_KEY']
