@@ -20,13 +20,13 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 ?>
 <header>
 	<div id="logo">
-		<a href="/">
+		<a href="/?lang=<?php echo $l['list_lang'][$l['lang']];?>">
 			<img src="img/small_logo.png" >
 			<span>La Platforme Citoyenne</span>
 		</a>
 		<p id="lang">
 			<a href="<?php 
-			
+
 			if(strlen($url_param) > 0){
 				echo $url_param.'&';
 			}else{
