@@ -14,9 +14,11 @@ from app.models.user_models import User, Role,Marker
 from werkzeug.security import check_password_hash
 from geopy.geocoders import MapBox
 import json
+import random
 
 main_blueprint = Blueprint('main', __name__, template_folder='templates')
-# CORS(main_blueprint)
+
+# CORS policy
 cors = CORS(main_blueprint, resources={r"/*": {"origins": "*"}})
 
 
@@ -105,6 +107,7 @@ def user_profile_page():
 @main_blueprint.route('/addmarker')
 @login_required
 def addmarker():
+    """Debug only, permet d'afficher une page pour ajouter des points"""
 
     user = User.query.filter_by(email=current_user.email).first()
 
@@ -117,6 +120,8 @@ def addmarker():
 
 @main_blueprint.route('/update_user_need',methods=["POST"])
 def update_user_need():
+    """Creer un point a un endroit designé par un nom de ville. Ce point est associé a un email.
+    Si l'utilisateur a deja un point cela va l'update, sinon cela va creer un nouveau point"""
     API_KEY = os.environ['API_KEY']
     geolocator = MapBox(api_key=API_KEY)
     name = request.form.get('name') or "None"
@@ -135,6 +140,18 @@ def update_user_need():
     location = geolocator.geocode(town,country="FR")
     user = User.query.filter_by(email=current_user.email).first()
 
+
+    # Ajout d'un legere difference de coordonnée pour ne pas superposer les points
+    # !!!!!  Pas eu le temps de tester ca !!!!!!!
+    # Si vous voulez utilisez ca, remplacez les location.latitude par latitude
+    # WARNING: !!!!!!!!!!!!!
+
+    latitude = location.latitude + random.random()/10000
+    lontitude = location.latitude + random.random()/10000
+
+    # WARNING: !!!!!!!!!!!!!
+
+
     if user:
         print("User found")
         user.name=name
@@ -152,7 +169,7 @@ def update_user_need():
         return redirect(url_for('main.home_page'))
 
     else :
-        user = User(name=name,email=email,type=type,latitude=latitude,longitude=longitude,fabricMask=fabricMask,surgicalMask=surgicalMask,constructionMask=constructionMask,glasses=glasses,blouse=blouse,visor=visor)
+        user = User(name=name,email=email,type=type,latitude=location.latitude,longitude=location.longitude,fabricMask=fabricMask,surgicalMask=surgicalMask,constructionMask=constructionMask,glasses=glasses,blouse=blouse,visor=visor)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('main.home_page'))
@@ -160,13 +177,12 @@ def update_user_need():
 
 
 @main_blueprint.route('/user_need',methods=["GET"])
-@cross_origin(origin='http://192.168.64.2/',headers=['Content- Type','Authorization'])
+@cross_origin(origin='http://192.168.64.2/',headers=['Content- Type','Authorization'])      #allow CORS request form the origin
 def get_user():
     """Return all the users form the DB. If no parameters specified for type, medic and maker are returned"""
-    # API_KEY = os.environ['API_KEY']
-    # geolocator = MapBox(api_key=API_KEY)
-
-    # /user_need?type=maker
+    # /user_need?type=maker return all maker
+    # /user_need?type=medical return all hospital etc..
+    # /user_need return all users
 
     type = request.args.get("type") or None;
 
@@ -196,7 +212,7 @@ def delete_user():
 
 
 @main_blueprint.route('/login',methods=["GET"])
-@cross_origin(origin='http://192.168.64.2/',headers=['Content- Type','Authorization'])
+@cross_origin(origin='http://192.168.64.2/',headers=['Content- Type','Authorization'])  #allow CORS request form the origin
 def login_user():
     print(request)
     email = request.args.get("email");
