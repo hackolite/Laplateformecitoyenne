@@ -217,11 +217,16 @@ o.carte.box.checker = function(e){
 	}else{
 		var v = ['off','on'];
 		// on affiche les points correpondant s de la carte
-		if(/medicals/.test(e.target.className)){
-			getMarkers('medicals');
-		}else{
-			getMarkers('makers');
+		try{
+			if(/medicals/.test(e.target.className)){
+				getMarkers('medical');
+			}else{
+				getMarkers('maker');
+			}
+		}catch(err){
+			console.warn(err);
 		}
+
 		
 	}
 	console.log(v);

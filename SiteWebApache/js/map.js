@@ -1,5 +1,9 @@
 var onReady2 = function(){
 
+
+
+};
+
 function getMarkers(type)
 	{
 	    const url ="http://0.0.0.0:5000/user_need/?type=" + type;
@@ -79,7 +83,4 @@ function getMarkers(type)
 					});
 			}
 
-
-	window.getMarkers = getMarkers;
-
-};
+		getMarkers();
