@@ -1,3 +1,6 @@
 <?php
 
-echo isset($_SERVER);
+if(preg_match("/^(.+)\.(.+)$/", 'fichier.png')){
+	echo "Valide";
+}
+

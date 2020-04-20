@@ -95,7 +95,7 @@ if(!isset($_GET['page'])){
 		echo ucfirst($page_text); 
 
 	?> | La Platforme Citoyenne</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="style.css" importance='high'>
 	<link rel="icon" type="image/png" href="img/minia_logo.png" />
 	<?php 
 	if($_GET['page'] == 'index'): 

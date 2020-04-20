@@ -31,15 +31,15 @@ if(!isset($_GET['action'])){
 
 $pre = "img/materiel/";
 // liste des champs de saisies à implémenter
-// ordre: text illustratif, image_url
+// ordre: text illustratif, image_url, name des input
 $ressources = [
 
-["masque en tissu","mask_tissue.png"],
-["masque de chirurgie", "mask_chirurgie.png"],
-["masque de chantier", "mask_chantier.png"],
-["lunettes", "glasses.png"],
-["blouse", "doctor.png"],
-["visor", "visor.png"]
+["masque en tissu","mask_tissue.png", "fabricMask"],
+["masque de chirurgie", "mask_chirurgie.png", "surgicalMask"],
+["masque de chantier", "mask_chantier.png", "constructionMask"],
+["lunettes", "glasses.png", "glasses"],
+["blouse", "doctor.png", "blouse"],
+["visor", "visor.png", "visor"]
 
 ];
 
@@ -47,7 +47,8 @@ $html = [];
 
 
 for ($i=0; $i < sizeof($ressources); $i++){
-	array_push($html, [search($ressources[$i][0]), $pre.$ressources[$i][1] ]);
+	// on applique les traductions, les prefix de dossier pour l'url des images et les name
+	array_push($html, [search($ressources[$i][0]), $pre.$ressources[$i][1], $ressources[$i][2] ]);
 }
 
 for($i = 0; $i < sizeof($html); $i++):
@@ -65,7 +66,7 @@ for($i = 0; $i < sizeof($html); $i++):
 						<div class="right">
 							<div class="label"><?php 
 							echo $quantite.' / '.search('jour'); ?></div>
-							<input type="number" name="" placeholder="<?php echo search('nombres'); ?>..." min="0" max="1000000000">
+							<input type="number" name="<?php echo $html[$i][2]; ?>"placeholder="<?php echo search('nombres'); ?>..." min="0" max="1000000000">
 						</div>
 					</label>
 				</div>
@@ -81,7 +82,7 @@ endfor;
 		</div>
 		<div class="form right hide">
 			<input type="text" name="name" placeholder="<?php echo search("nom");?>">
-			<input type="text" name="postal" placeholder="<?php echo search("ville");?>">
+			<input type="text" name="town" placeholder="<?php echo search("ville");?>">
 			<input type="email" name="email" placeholder="<?php echo search("email");?>">
 
 			<label class='checkbox off'>

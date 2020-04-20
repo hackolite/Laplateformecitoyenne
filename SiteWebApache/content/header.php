@@ -22,7 +22,7 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 	<div id="logo">
 		<a href="/?lang=<?php echo $l['list_lang'][$l['lang']];?>">
 			<img src="img/small_logo.png" >
-			<span>La Platforme Citoyenne</span>
+			<span class='title'>La Plateforme Citoyenne</span>
 		</a>
 		<p id="lang">
 			<a href="<?php 

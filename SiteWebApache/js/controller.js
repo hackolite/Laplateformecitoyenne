@@ -216,8 +216,23 @@ f.page.load.submit = function(e){
 // pour valider les formulaires
 try{
 // location, type, ready, settings, responseText
-console.log(inputs)
 
+/*
+name = request.form.get('name') or "None"
+    email = request.form.get('email') or "None"
+    type = request.form.get('type') or "None"
+    town = request.form.get('town') or "Paris"
+    fabricMask = request.form.get('fabricMask') or 0
+    surgicalMask = request.form.get('surgicalMask') or 0
+    constructionMask = request.form.get('constructionMask') or 0
+    glasses = request.form.get('glasses')  or 0
+    blouse = request.form.get('blouse') or 0
+    visor = request.form.get('visor') or 0
+*/
+alert("Oops...\nNous sommes actuellement en phase de test, cette fonctionnalité n'est malheuresement pas encore disponible 😥"
+		+"\nNous vous invitons à revenir quand nous serons prêt ! Merci de votre soutien !"
+		+"\n\nOops...\nWe are currently in testing phase, this fonctionnality are unfortunately not available 😥"
+		+"\nWe invite you to come back when we are ready ! Thank you for your support !");
 
 }
 
