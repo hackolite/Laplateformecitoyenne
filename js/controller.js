@@ -282,7 +282,11 @@ f.page.form.log = function(e, url){
 			ready: function(rep){
 				// quand le serveur emmet une réponse
 
-				alert(rep);
+				if(String(rep) == "200"){
+					alert("Bravo connexion réussi !");
+				}else{
+					alert("Données renvoyés par le serveur:\n" + rep);
+				}
 
 			},
 			error: function(err){
