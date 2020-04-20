@@ -4,7 +4,7 @@ if(!isset($_GET['action'])){
 }	
 
 ?>
-<div id="<?php echo $_GET['action']; ?>" class='formulaire hide'>
+<div id="<?php echo $_GET['action']; ?>" class='formulaire hidden'>
 	<div class='close_btt' title="<?php echo search('fermer'); ?>" data-click="<?php echo $_GET['action'];?>">+</div>
 	<form method="POST">
 
@@ -23,20 +23,23 @@ if(!isset($_GET['action'])){
 			?></span>
 		</div>
 
-		<div class="form left visible">
+		<div class="form left shown">
 			<div class='article'>
 
 			<?php
 			if($_GET['action'] == 'signup'):
 			?>
 
-			<input type="text" name="name" placeholder="<?php echo search('nom');?>">
-			<input type="email" name="email" placeholder="<?php echo search('email');?>">
-			<input type="text" name="postal" placeholder="<?php echo search('code postal');?>">
-			<input type="password" name="mdp" placeholder="<?php echo search('password'); ?>">
+			<input type="text" name="username" require placeholder="<?php echo search('nom');?>">
+			<input type="email" name="email" require placeholder="<?php echo search('email');?>">
+			<input type="text" name="postal" require placeholder="<?php echo search('code postal');?>">
+			<label class='mdp'>
+			<input type="password" name="mdp" require placeholder="<?php echo search('password'); ?>">
+			<span class='mdp'>Afficher</span>
+			</label>
 
 			<label class='checkbox off'>
-				<input type="checkbox" data-click='checkbox'>
+				<input type="checkbox" data-click='checkbox' name="cgu">
 			</label>
 			<p>
 				<?php echo search("En(.+)platforme.");?>
@@ -46,8 +49,8 @@ if(!isset($_GET['action'])){
 			elseif($_GET['action'] == 'signin'):
 			?>
 
-			<input type="email" name="email" placeholder="<?php echo search('email'); ?>">
-			<input type="password" name="mdp" placeholder='<?php echo search("password");?>'>
+			<input type="email" name="email" require placeholder="<?php echo search('email'); ?>">
+			<input type="password" name="mdp" require placeholder='<?php echo search("password");?>'>
 
 			<?php
 			endif;
@@ -56,7 +59,7 @@ if(!isset($_GET['action'])){
 			</div>
 		</div>
 
-		<div class="form right hide"></div>
+		<div class="form right hidden"></div>
 
 		<div class='bottom'>
 			<div class="btt_submit fill <?php echo $color; ?> off next" data-click='next'>

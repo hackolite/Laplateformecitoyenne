@@ -4,7 +4,7 @@ if(!isset($_GET['action'])){
 }	
 
 ?>
-<div id="<?php echo $_GET['action']; ?>" class='formulaire hide'>
+<div id="<?php echo $_GET['action']; ?>" class='formulaire hidden'>
 	<div class='close_btt' title="<?php echo search('fermer'); ?>" data-click="<?php echo $_GET['action'];?>">+</div>
 	<form method="POST">
 
@@ -25,7 +25,7 @@ if(!isset($_GET['action'])){
 			?></span>
 		</div>
 
-		<div class="form left visible">
+		<div class="form left shown">
 			<div class='article'>
 <?php
 
@@ -80,7 +80,7 @@ endfor;
 				</div>
 			</div>
 		</div>
-		<div class="form right hide">
+		<div class="form right hidden">
 			<input type="text" name="name" placeholder="<?php echo search("nom");?>">
 			<input type="text" name="town" placeholder="<?php echo search("ville");?>">
 			<input type="email" name="email" placeholder="<?php echo search("email");?>">

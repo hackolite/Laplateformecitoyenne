@@ -114,6 +114,7 @@ header {
 	position: absolute;
     left: 350px;
     top: 11px;
+    margin-bottom: 0px;
 }
 
 #lang a{
@@ -152,11 +153,12 @@ header {
 	box-sizing: border-box;
 }
 
-.btt{
+a.btt{
 	min-width: 75px;
 	max-width: 124px;
 	color: #000;
 	text-decoration: none!important;
+	transition: all 200ms ease;
 }
 .btt:hover{
 	color: #e42b2b;	
@@ -252,10 +254,10 @@ header {
 	transition: bottom 1s ease;
 }
 
-#map bottom.visible{
+#map bottom.shown{
 	bottom: 0px;
 }
-#map bottom.hide{
+#map bottom.hidden{
 	bottom: -50%;
 }
 
@@ -473,10 +475,10 @@ nav.off_info #info{
     overflow-y: auto;
     box-shadow: 6px 0px 20px #0000006b;
 }
-.formulaire.visible{
+.formulaire.shown{
 	right: 0px;
 }
-.formulaire.hide{
+.formulaire.hidden{
 	right: -800px;
 }
 .formulaire form{
@@ -642,10 +644,10 @@ nav.off_info #info{
 	position: relative;
 }
 
-.formulaire form > div.visible{
+.formulaire form > div.shown{
 	animation: 400ms linear forwards form_visible;
 }
-.formulaire form > div.hide{
+.formulaire form > div.hidden{
 	animation: 400ms linear forwards form_hide;
 }
 
@@ -780,4 +782,21 @@ nav.off_info #info{
 
 iframe.center{
 	margin-top: 80px!important;
+
+}
+
+.article label.mdp{
+	width: 100%;
+}
+
+.article label.mdp .mdp{
+	content: 'Afficher';
+	position: relative;
+	bottom: 77px;
+	float: right;
+	right: 85px;
+	font-size: 17px;
+	cursor: pointer;
+	border-left: 1px solid #c2c2c2;
+	padding: 6px 13px;
 }

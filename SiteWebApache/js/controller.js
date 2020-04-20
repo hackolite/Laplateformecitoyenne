@@ -16,7 +16,7 @@ f.query = function(elmt, all=false){
 f.AJAX = function (e){
 	/*
 		e = {
-			location, type, ready, settings, responseText
+			location, type, ready, settings, responseText, error
 		}
 
 	*/
@@ -33,15 +33,19 @@ f.AJAX = function (e){
 	}
 
 	xhr.onreadystatechange = function(){
-		if(xhr.status == 200 && xhr.readyState == 4){
-			if(e.responseText == true){
-				e.ready(xhr.responseText);
-			}else{
-				e.ready(xhr.response);
-			}
+		if(xhr.readyState == 4){
+			if(xhr.status == 200 ){
+				if(e.responseText == true){
+					e.ready(xhr.responseText);
+				}else{
+					e.ready(xhr.response);
+				}
 			
-			//console.log(xhr.responseText);
+			}else{
+				e.error(xhr.status);
+			}
 		}
+
 	};
 
 	if(e.type == "GET"){
@@ -86,7 +90,6 @@ f.clickEvent = function(e, v = null){
 
 	try{
 		f.page.load[v](e);
-
 	}catch(err){
 		//console.error(err);
 	}
@@ -110,20 +113,20 @@ f.page.load.action = function(e, action){
 		if(page[i].id == action){
 
 			// si la page correspond à l'action
-			if(/hide/.test(page[i].className)){
+			if(/hidden/.test(page[i].className)){
 				// on affiche l'onglet et on cache le bottom de la map, et on 'allume' le bouton
-				p = ['visible', 'hide', 'on', 'off'];
+				p = ['shown', 'hidden', 'on', 'off'];
 			}else{
-				p = ['hide', 'visible', 'off', 'on'];
+				p = ['hidden', 'shown', 'off', 'on'];
 			}
 
 			page[i].classList.add(p[0]);
 			page[i].classList.remove(p[1]);
 
-		}else if(/visible/.test(page[i].className)){
+		}else if(/shown/.test(page[i].className)){
 			// on cache toutes les autres fenêtres non cachées
-			page[i].classList.add('hide');
-			page[i].classList.remove('visible');
+			page[i].classList.add('hidden');
+			page[i].classList.remove('shown');
 			let _btt = f.query('header .' + page[i].id);
 			if(_btt != null){
 				// on s'assure qu'il y a la présence d'un bouton dans l'en-tête qui a été mise en surbrillance ou non
@@ -137,13 +140,13 @@ f.page.load.action = function(e, action){
 		let left = page[i].querySelector('.form.left');
 		let right = page[i].querySelector('.form.right');
 
-		if(!/visible/.test(left.className)){
+		if(!/shown/.test(left.className)){
 			// si le left n'est pas affiché par défault
-			left.classList.add('visible');
-			left.classList.remove('hide');
+			left.classList.add('shown');
+			left.classList.remove('hidden');
 
-			right.classList.add('hide');
-			right.classList.remove('visible');
+			right.classList.add('hidden');
+			right.classList.remove('shown');
 		}
 
 	}
@@ -181,10 +184,10 @@ f.page.load.next = function(e){
 	// les div left ou right de chaque onglet respectif du bouton déclencheur
 	var p = [];
 
-	if(/hide/.test(bloc1.className)){
-		p = ['visible', 'hide'];
+	if(/hidden/.test(bloc1.className)){
+		p = ['shown', 'hidden'];
 	}else{
-		p = ['hide', 'visible'];
+		p = ['hidden', 'shown'];
 	}
 
 	bloc1.classList.add(p[0]);
@@ -211,40 +214,81 @@ f.page.load.next = function(e){
 
 
 f.page.load.submit = function(e){
-	// listage de tous les champs du formulaire afin de les passer en paramètres
-	let inputs = f.query('#' + e.target.getAttribute('data-form') + ' input', true);
+
 // pour valider les formulaires
 try{
-// location, type, ready, settings, responseText
+	const form = e.target.getAttribute('data-form');
 
-/*
-name = request.form.get('name') or "None"
-    email = request.form.get('email') or "None"
-    type = request.form.get('type') or "None"
-    town = request.form.get('town') or "Paris"
-    fabricMask = request.form.get('fabricMask') or 0
-    surgicalMask = request.form.get('surgicalMask') or 0
-    constructionMask = request.form.get('constructionMask') or 0
-    glasses = request.form.get('glasses')  or 0
-    blouse = request.form.get('blouse') or 0
-    visor = request.form.get('visor') or 0
-*/
-alert("Oops...\nNous sommes actuellement en phase de test, cette fonctionnalité n'est malheuresement pas encore disponible 😥"
-		+"\nNous vous invitons à revenir quand nous serons prêt ! Merci de votre soutien !"
-		+"\n\nOops...\nWe are currently in testing phase, this fonctionnality are unfortunately not available 😥"
-		+"\nWe invite you to come back when we are ready ! Thank you for your support !");
+	if(/sign/.test(form)){
+
+		// si formulaire de log
+		let url = "";
+		if(form == "signup"){
+			url="laplateformecitoyenne.com/login";
+		}
+		else if(form == "signin"){
+			url="http://laplateformecitoyenne.com/register";
+		}
+
+		f.page.form.log(e, url);
+	}
 
 }
 
-	catch(err){
-		alert("Oops...\nNous sommes actuellement en phase de test, cette fonctionnalité n'est malheuresement pas encore disponible 😥"
-		+"\nNous vous invitons à revenir quand nous serons prêt ! Merci de votre soutien !"
-		+"\n\nOops...\nWe are currently in testing phase, this fonctionnality are unfortunately not available 😥"
-		+"\nWe invite you to come back when we are ready ! Thank you for your support !");
+catch(err){
+	alert("Oops...\nNous sommes actuellement en phase de test, cette fonctionnalité n'est malheuresement pas encore disponible 😥"
+	+"\nNous vous invitons à revenir quand nous serons prêt ! Merci de votre soutien !"
+	+"\n\nOops...\nWe are currently in testing phase, this fonctionnality are unfortunately not available 😥"
+	+"\nWe invite you to come back when we are ready ! Thank you for your support !");
+}
+
+
+};
+
+f.page.form = {};
+f.page.form.log = function(e, url){
+	// listage de tous les champs du formulaire afin de les passer en paramètres
+	let inputs = f.query('#' + e.target.getAttribute('data-form') + ' input', true);
+
+	// données à envoyer au serveur
+	let settings = ''; 
+
+	for(var i = 0; i < inputs.length; i++){
+
+		if(inputs[i].name == 'cgu'){
+			if(inputs[i].checked != true){
+				// on bloque si une checkbox n'est pas check
+				alert("Veuillez accepter les conditions générales d'utilisation");
+				return
+			}
+		}
+
+		if(inputs[i].value == ""){
+			alert("Champs vide(s) détecté(s) !");
+			return;
+		}
+
+		let prefixe = '';
+			if(i != 0){
+				prefixe = '&';
+			}
+			settings += prefixe +  inputs[i].name + "=" + inputs[i].value;
 	}
 
+		f.AJAX({
+			location: url,
+			settings: settings,
+			type: 'POST',
+			ready: function(rep){
+				// quand le serveur emmet une réponse
 
+				alert(rep);
 
+			},
+			error: function(err){
+				alert("Status :" + err);
+			}
+		});
 };
 
 f.page.load.map_info = function(e){
