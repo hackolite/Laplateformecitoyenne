@@ -11,6 +11,25 @@ if(!isset($_SESSION['session']) || $_SESSION['session'] != 'true'){
 	include('content/logpage.php');
 	$_GET['action'] = 'signup';
 	include('content/logpage.php');
+}else{
+
+	// On vérifie si la session est toujours valide
+	$temps = time() - $_SESSION['start_time'];
+
+	if($temps > 60*60){ // déconnexion au bout d'une heure
+		if(isset($_SESSION['id'])){
+			$id = $_SESSION['id'];
+			session_destroy();
+			header('Location: /?logout=expired$id='.$id);
+			exit();
+		}
+		session_destroy();
+		header('Location: /');
+		exit();
+	}
+
+	// sinon on inclut les informations du compte
+	include('content/account.php');
 }
 
 if($_GET['page'] == 'index'){

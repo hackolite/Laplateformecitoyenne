@@ -79,7 +79,7 @@ function search($word, $lang=null){
 $l['lang'] = language($l['list_lang'], $l['get_lang']);
 
 
-if(!isset($_GET['page'])){
+if(!isset($_GET['page'])){ // si page non définie, c l'accueil
 	$_GET['page'] = 'index';
 }
 
@@ -125,6 +125,22 @@ if(!isset($_GET['page'])){
 	<script src="js/map.js"></script>
 	<?php endif; ?>
 	<script src="js/controller.js"></script>
+
+	<?php
+	if(isset($_GET['logout']) && !empty($_GET['logout'])
+		&& isset($_GET['id']) && !empty($_GET['id'])):
+		// permet d'afficher le message de déconnexion, afin de le transmettre à Python
+	?>
+
+	<script>
+		var logout = ['<?php echo $_GET['logout']; ?>', '<?php echo $_GET['id']; ?>'];
+	</script>
+
+	<?php
+	endif;
+	?>
+
+
 </head>
 <body>
 

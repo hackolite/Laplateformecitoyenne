@@ -62,8 +62,8 @@ if(!isset($_GET['action'])){
 		<div class="form right hidden"></div>
 
 		<div class='bottom'>
-			<div class="btt_submit fill <?php echo $color; ?> off next" data-click='next'>
-				<?php echo search('return'); ?>
+			<div class="btt_submit fill red off next" data-click='<?php echo $_GET['action']; ?>'>
+				<?php echo search('annuler'); ?>
 			</div>
 			<div class="btt_submit empty <?php echo $color; ?> off submit" data-click='submit' data-form='<?php echo $_GET['action']; ?>'>
 				<?php echo search('valider'); ?>

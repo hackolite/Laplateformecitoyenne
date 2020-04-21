@@ -1,6 +1,3 @@
 <?php
 
-if(preg_match("/^(.+)\.(.+)$/", 'fichier.png')){
-	echo "Valide";
-}
-
+echo time();

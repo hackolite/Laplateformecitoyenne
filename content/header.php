@@ -52,7 +52,7 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 				// on affiche le compte utilisateur
 				if(isset($_SESSION['session']) && $_SESSION['session'] == 'true'):
 			?>
-			<li class="btt_submit fill signin red" data-click="account"><?php echo search("connecté"); ?></li>
+			<li class="btt_submit fill account red" data-click="account"><?php echo search("mon compte"); ?></li>
 			<?php
 				// on affiche les boutons inscriptions et connexions si aucun compte n'est logger
 				else:
@@ -72,3 +72,9 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 </header>
 
 <div class="white_space"></div>
+
+<div id="_box" class="off red">
+	<div class="close_btt" data-click='box'>+</div>
+	<p class='mssg'>Une erreur s'est produite lors de la tentative de connexion</p>
+	
+</div>

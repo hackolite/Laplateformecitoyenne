@@ -53,6 +53,45 @@ a:active, a:hover{
 	color: #d52cff;
 }
 
+
+#_box{
+	position: fixed;
+	top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    min-height: 60px;
+    max-height: 350px;
+    z-index: 1000;
+    box-shadow: 0 0 10px #929292;
+    border-radius: 3px;
+    transition: all 800ms ease;
+}
+#_box.on{
+	top: 82px;
+}
+#_box.off{
+	top: -50%;
+}
+
+#_box p.mssg{
+    color: white;
+    font-weight: 300;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 25px 4px 52px;
+    cursor: default;
+}
+
+#_box.red{
+	background: #ed1f0aeb;
+	box-shadow: 0 0 10px #ce0000;
+}
+#_box.blue{
+	background: #0a84edeb;
+	box-shadow: 0 0 10px #1d8dee;
+}
+
 /* 
 	###### HEADER #######
 */
@@ -65,7 +104,7 @@ header {
     background: #fff;
   	box-shadow: 0 2px 6px 3px rgba(115,115,115,0.12);
     height: 70px;
-    z-index: 1000;
+    z-index: 2000;
 }
 
 #logo img{
@@ -375,7 +414,7 @@ a.btt{
 }
 
 #search input{
-	width: 180px;
+	width: 190px;
 	box-sizing: border-box;
 	outline: none;
 	padding: 2px 20px;
@@ -389,7 +428,7 @@ a.btt{
 
 #search input[name='pays']{
 	border-right: 1px solid #cecece;
-	margin-left: 30px;
+	margin-left: 20px;
 }
 #search .img{
 	background-size: contain;
@@ -456,7 +495,7 @@ nav.off_info #info{
 }
 
 /*
-	##### RECEIVE ####
+	##### FORMULAIRE ####
 */
 
 .formulaire {
@@ -629,15 +668,18 @@ nav.off_info #info{
 	font-size: 36.99px;
 	font-weight: bold;
 	position: fixed;
-	top: 70px;
 	cursor: pointer;
 	transition: all 200ms ease;
-	z-index: 1000;
+	z-index: 999;
 	margin-left: 15px;
 	text-shadow: 0px 0px 0px #eebb00;
 }
 .close_btt:hover{
 	text-shadow: 0px 0px 6px #eebb00;
+}
+
+.formulaire .close_btt{
+	top: 70px;
 }
 
 .formulaire form > div{
@@ -668,12 +710,25 @@ nav.off_info #info{
 	margin-bottom: 36px;
 	font-weight: normal;
 	font-size: 17px;
+	box-sizing: border-box;
 	transition: all 200ms ease;
+}
+
+.formulaire input.empty{
+	border: 1px solid #ff6c6c;
+    box-shadow: inset 0 0 2px #ff0000de;
+    color: black;
+    border-radius: 4px;
 }
 
 .formulaire form input:focus{
 	border-radius: 2px;
 	width: 78%;
+}
+
+.formulaire form input:disabled {
+    cursor: no-drop;
+    background: #e0e0e0;
 }
 
 .formulaire .btt_submit.next{
@@ -712,14 +767,15 @@ nav.off_info #info{
 
 .checkbox::before{
 	content: '';
-	width: 30px;
-	height: 30px;
+	width: 22px;
+	height: 22px;
 	background: #fff;
 	display: block;
 	border-radius: 50%;
 	position: relative;
 	transition: all 300ms ease;
-	top: 1px;
+	top: 5px;
+	opacity: 0.8;
 	/*box-shadow: 0px 0px 7px #464646;*/
 }
 .checkbox.on{
@@ -727,17 +783,26 @@ nav.off_info #info{
 }
 .checkbox.on::before{
 	left: 38px;
+	animation: 300ms linear checkboxSwitch;
 }
 .checkbox.off{
 	background: #ee0042;
 }
 .checkbox.off::before{
-	left: 2px;
+	left: 4px;
+	animation: 300ms linear checkboxSwitch;
 }
 
+.checkbox:hover::before{
+	width: 26px;
+	height: 26px;
+	top: 3px;
+	opacity: 1;
+}
 
-.checkbox input{
+.checkbox input[type='checkbox']{
 	opacity: 0;
+	display: none;
 }
 
 
@@ -754,8 +819,27 @@ nav.off_info #info{
 	margin-top: 20px;
 }
 
+.formulaire img.account{
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    display: block;
+}
 
+.formulaire .info input{
+	margin-bottom: 10px;
+}
 
+.formulaire .info label {
+	display: block;
+    text-align: left;
+    position: relative;
+    top: 8px;
+    left: 105px;
+    font-size: 21px;
+    text-transform: capitalize;
+    font-weight: normal;
+}
 
 /*
 #### AUTRES FICHIERS #####

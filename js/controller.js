@@ -58,8 +58,66 @@ f.AJAX = function (e){
 };
 
 
+f.switcher = function(elmt, a, b){
+	try{
+
+		var rg = new RegExp(a);
+		if(rg.test(elmt.className)){
+			elmt.classList.remove(a);
+			elmt.classList.add(b);
+		}else{
+			elmt.classList.remove(b);
+			elmt.classList.add(a);
+		}
+		return true;
+	}catch(err){
+		return false;
+	}
+};
 
 var onReady = function(){
+
+f.box = function(text, type='red'){
+	// par défault, c'est le box d'erreur
+	const box = f.query('#_box');
+
+	if(!/on/.test(box.className)){
+		// si on non présent on le rajoute
+		box.classList.add("on");
+		box.classList.remove("off");
+	}
+	const rg = new RegExp(type);
+	if(!rg.test(box.className)){
+		box.classList.add(type);
+
+		if(type == 'red' || type == 'green'){
+			box.classList.remove("blue");
+		}
+		if(type == 'red' || type == 'blue'){
+			box.classList.remove("green");
+		}
+		if(type == 'green' || type == 'blue'){
+			box.classList.remove("red");
+		}
+	}
+
+	f.switcher(box, 'on', 'on');
+
+	box.querySelector('p.mssg').innerHTML = text;
+
+};
+
+f.trycatch = function(callback, callbackErr=null){
+
+	try{
+		callback();
+	}catch(err){
+		if(callbackErr != null){
+			callbackErr(err);
+		}
+	}
+
+};
 
 /*
 ##### VARIABLE ####
@@ -127,16 +185,23 @@ f.page.load.action = function(e, action){
 			// on cache toutes les autres fenêtres non cachées
 			page[i].classList.add('hidden');
 			page[i].classList.remove('shown');
+			page[i].querySelector('form').reset(); 
+			// on supprime les données saisies pour sécuriser
+
 			let _btt = f.query('header .' + page[i].id);
 			if(_btt != null){
 				// on s'assure qu'il y a la présence d'un bouton dans l'en-tête qui a été mise en surbrillance ou non
 				_btt.classList.add('off');
 				_btt.classList.remove('on');
 			}
+
+
 		}
 
 
 		// peut importe les cas, on mettra la première page de chaque formulaire
+
+
 		let left = page[i].querySelector('.form.left');
 		let right = page[i].querySelector('.form.right');
 
@@ -162,7 +227,11 @@ f.page.load.action = function(e, action){
 
 };
 
-f.page.load.recevoir = f.page.load.donner = f.page.load.signup = f.page.load.signin = function(e){
+f.page.load.recevoir 
+= f.page.load.donner 
+= f.page.load.signup 
+= f.page.load.signin 
+= f.page.load.account = function(e){
 	// on assigne les fonctions recevoir et donner à la même fonction
 	f.page.load.action(e, e.target.getAttribute('data-click'));
 };
@@ -215,136 +284,177 @@ f.page.load.next = function(e){
 
 f.page.load.submit = function(e){
 
-// pour valider les formulaires
-try{
-	const form = e.target.getAttribute('data-form');
+	// pour valider les formulaires
+	try{
+		const form = e.target.getAttribute('data-form');
 
-	if(/sign/.test(form)){
+		if(/sign/.test(form)){
 
-		// si formulaire de log
-		let url = "";
-		if(form == "signup"){
-			url="laplateformecitoyenne.com/login";
+			// si formulaire de log
+			let url = "";
+			if(form == "signup"){
+				url="/login";
+			}
+			else if(form == "signin"){
+				url="/register";
+			}else{
+				return;
+			}
+
+			f.page.form.log(e, url, form);
 		}
-		else if(form == "signin"){
-			url="http://laplateformecitoyenne.com/register";
-		}
 
-		f.page.form.log(e, url);
 	}
 
-}
-
-catch(err){
-	alert("Oops...\nNous sommes actuellement en phase de test, cette fonctionnalité n'est malheuresement pas encore disponible 😥"
-	+"\nNous vous invitons à revenir quand nous serons prêt ! Merci de votre soutien !"
-	+"\n\nOops...\nWe are currently in testing phase, this fonctionnality are unfortunately not available 😥"
-	+"\nWe invite you to come back when we are ready ! Thank you for your support !");
-}
+	catch(err){
+		f.box(err);
+	}
 
 
 };
 
 f.page.form = {};
-f.page.form.log = function(e, url){
+f.page.form.log = function(e, url, form){
 	// listage de tous les champs du formulaire afin de les passer en paramètres
 	let inputs = f.query('#' + e.target.getAttribute('data-form') + ' input', true);
 
 	// données à envoyer au serveur
 	let settings = ''; 
-
+	let valider = true;
 	for(var i = 0; i < inputs.length; i++){
 
 		if(inputs[i].name == 'cgu'){
 			if(inputs[i].checked != true){
 				// on bloque si une checkbox n'est pas check
-				alert("Veuillez accepter les conditions générales d'utilisation");
+				f.box("Veuillez accepter les conditions générales d'utilisation");
 				return
 			}
 		}
-
-		if(inputs[i].value == ""){
-			alert("Champs vide(s) détecté(s) !");
-			return;
+		
+		if(/text|email|password/.test(inputs[i].type)){
+			// si champs de complétition
+		 	if(inputs[i].value == ""){
+		 		// si vide erreur
+				inputs[i].classList.add('empty');
+				valider = false;
+			}else if(/empty/.test(inputs[i].className)){
+				// si champs erreur, mais correct cette fois-ci
+				inputs[i].classList.remove('empty');
+			}
 		}
 
 		let prefixe = '';
-			if(i != 0){
-				prefixe = '&';
-			}
-			settings += prefixe +  inputs[i].name + "=" + inputs[i].value;
+		if(i != 0){
+			prefixe = '&';
+		}
+		settings += prefixe +  inputs[i].name + "=" + inputs[i].value;
 	}
 
-		f.AJAX({
-			location: url,
-			settings: settings,
-			type: 'POST',
-			ready: function(rep){
-				// quand le serveur emmet une réponse
+	if(valider == false){ return; } 
+	// on attend que tous les champs soient analysés avant de stopper
 
-				if(String(rep) == "200"){
-					alert("Bravo connexion réussi !");
-				}else{
-					alert("Données renvoyés par le serveur:\n" + rep);
-				}
 
-			},
-			error: function(err){
-				alert("Status :" + err);
+	// #TEST à SUPPRIMER
+	/*var rep = {
+		"id": "jrg42erg",
+		"username": "Cécile",
+		"email": "cecile@gmail.com",
+		"postal": "75001",
+		"statuscode": "200"
+	};
+	f.page.form[form](rep);
+	return;*/
+	f.AJAX({
+		location: url,
+		settings: settings,
+		type: 'POST',
+		ready: function(rep){
+			try{
+				// on appelle la fonction associer qui va traiter les données reçu par le serveur
+				rep = JSON.parse(rep);
+				f.page.form[form](rep);
+			}catch(err){
+				f.box("Erreur inattendue lors de la requête vers le serveur");
+				console.error(err);
 			}
-		});
+		},
+		error: function(err){
+			f.box("Une erreur s'est produite [status:" + err + "]");
+		}
+	});
 };
+
+f.page.form.signin = function(rep){
+	// quand le serveur a retourné une réponse
+
+	let settings = "";
+
+	// on décortique les paramètres
+	for(var param in rep){
+		if(param != "statuscode"){
+			// on ne prend pas le status code pour la connexion
+			settings += '&' + param + "=" + rep[param];
+		}
+	}
+	settings = settings.substr(1, settings.length); // le premier & n'est pas inclue
+
+	if(rep.statuscode == 200){
+		// si statuscode 200, on crée une nouvelle session
+		f.AJAX({
+			location: '/serveur/connect.php',
+			type: 'POST',
+			settings: settings,
+			ready: function(s){
+				if(s == 'connect'){
+					// on réactualise la page
+
+					// on supprime les paramatre GET lié à une déconnexion
+					// vu que l'on va se connecter et pas se déco sur phyton
+					let url = document.location.href;
+					url = url.replace(/(&|\?)?logout=?(.+)?&?/, '');
+					url = url.replace(/(&|\?)?id=?(.+)?&?/, '');
+					document.location.href = url;
+				}else{
+					f.box("Erreur lors de la connexion: " + s);
+				}
+			}
+
+		});
+	}else{
+		f.box("Aucun compte n'est associé aux informations saisies");
+	}
+
+};
+
+f.page.form.signup = function(rep){
+	f.box('Fonction non disponible');
+};
+
+
+f.page.load.box = function(e){
+	// afficher/cacher le message de box
+	f.switcher(e.target.parentNode, 'on', 'off');
+};
+
 
 f.page.load.map_info = function(e){
 	// message d'info afficher sous la barre de recherche sur la map
 
 	let nav = e.target.parentNode.parentNode;
-	let p = [];
-
-	if(/off/.test(nav.className)){
-		// si message d'info cacher, on l'affiche
-		p = ['on', 'off'];
-	}else{
-		p = ['off', 'on'];
-	}
-
-	nav.classList.add(p[0] + "_info");
-	nav.classList.remove(p[1] + "_info");
-
+	// si message d'info cacher, on l'affiche
+	f.switcher(nav, 'on_info', 'off_info');
 };
 
 
 f.page.load.checkbox = function(e){
-
 	var label = e.target.parentNode;
-	var p = [];
-
-
-	if(/off/.test(label.className)){
-		p = ['on', 'off'];
-	}else{
-		p = ['off', 'on'];
-	}
-
-		console.log(p);
-
-	label.classList.add(p[0]);
-	label.classList.remove(p[1]);
-
+	f.switcher(label, 'on', 'off');
 };
 
 
 o.carte.box.checker = function(e){
-	if(/on/.test(e.target.className)){
-		var v = ['on','off'];
-		// si allumer, on l'éteint
-	}else{
-		var v = ['off','on'];
-		// on affiche les points correpondant s de la carte
-	}
 
-	e.target.classList.remove(v[0]);
-	e.target.classList.add(v[1]);
+	f.switcher(e.target, 'on', 'off');
 
 	try{
 		let type = [];
@@ -368,13 +478,13 @@ o.carte.box.checker = function(e){
 /*
 #### EVENT CALL ASSIGNEMENT ###
 */
-try{
-
+f.trycatch(function(){
 	o.carte.box.maker.addEventListener('click', o.carte.box.checker);
 	o.carte.box.medical.addEventListener('click', o.carte.box.checker);
-}catch(err){
+}, function(err){
 	console.warn(err);
-}
+});
+
 
 document.addEventListener('click', function(e){
 
@@ -389,5 +499,22 @@ document.addEventListener('click', function(e){
 
 });
 
+// on déconnecte la session sur python et on affiche un message de confirmation
+f.trycatch(function(){
+	if(logout[0] == 'auto'){
+		f.box('Vous vous êtes déconnecté avec succés', 'blue');
+	}else if(logout[0] == 'expired'){
+		f.box('Votre session à expirée, veuillez vous reconnecter');
+	}
+
+	f.AJAX({
+		location: '/logout',
+		type: 'POST',
+		settings: 'id=' + logout[1],
+		ready: function(){},
+		error: function(){}
+	})
+
+});
 
 };
