@@ -304,6 +304,10 @@ f.page.load.submit = function(e){
 			f.page.form.log(e, url, form);
 		}
 
+		if(/recevoir|donner/.test(form)){
+			f.page.form.carte(e, form);
+		}
+
 	}
 
 	catch(err){
@@ -428,6 +432,13 @@ f.page.form.signin = function(rep){
 
 f.page.form.signup = function(rep){
 	f.box('Fonction non disponible');
+};
+
+f.page.form.carte = function(e, form){
+
+	let inputs = f.query('#' + form + ' .form input');
+	console.log(inputs);
+
 };
 
 

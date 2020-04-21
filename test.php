@@ -1,3 +1,3 @@
 <?php
 
-echo time();
+echo empty($_GET['test']);

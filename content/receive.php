@@ -74,14 +74,22 @@ for($i = 0; $i < sizeof($html); $i++):
 endfor;
 ?>
 			</div>
-			<div class='bottom'>
+			<!--<div class='bottom'>
 				<div class="btt_submit fill  <?php echo $color; ?> off next" data-click='next'>
 					<?php echo search('next'); ?>
+				</div>
+			</div>-->
+			<div class='bottom'>
+				<div class="btt_submit fill red off next" data-click='<?php echo $_GET['action']; ?>'>
+					<?php echo search('annuler'); ?>
+				</div>
+				<div class="btt_submit empty <?php echo $color; ?> off submit" data-click='submit' data-form='<?php echo $_GET['action']; ?>'>
+					<?php echo search('valider'); ?>
 				</div>
 			</div>
 		</div>
 		<div class="form right hidden">
-			<input type="text" name="name" placeholder="<?php echo search("nom");?>">
+			<!--<input type="text" name="name" placeholder="<?php echo search("nom");?>">
 			<input type="text" name="town" placeholder="<?php echo search("ville");?>">
 			<input type="email" name="email" placeholder="<?php echo search("email");?>">
 
@@ -90,17 +98,8 @@ endfor;
 			</label>
 			<p>
 				<?php echo search("En(.+)platforme.");?>
-			</p>
+			</p>-->
 
-
-			<div class='bottom'>
-				<div class="btt_submit fill <?php echo $color; ?> off next" data-click='next'>
-					<?php echo search('return'); ?>
-				</div>
-				<div class="btt_submit empty <?php echo $color; ?> off submit" data-click='submit' data-form='<?php echo $_GET['action']; ?>'>
-					<?php echo search('valider'); ?>
-				</div>
-			</div>
 
 		</div>
 		
