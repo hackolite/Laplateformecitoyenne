@@ -12,11 +12,41 @@ $l = [];
 $l['list_lang'] = ['fr', 'en']; // liste des langues dans l'ordre respectif
 
 // détermination de la langue
+
+if(isset($_COOKIE['lang']) || !empty($_COOKIE['lang'])){
+	// si un cookie existe	
+
+	// on vérifie que le langage existe
+	$existing_lang = false;
+	for ($i=0; $i < sizeof($l['list_lang']); $i++) { 
+		if($l['list_lang'][$i] == $_COOKIE['lang']){
+			$existing_lang = true; // il existe
+		}
+	}
+
+	if($existing_lang == true){
+		$l["get_lang"] = $_COOKIE['lang'];
+	}else{
+		// si cookie à valeur fausse, on va vider le cookie afin de le remplacer après
+		$l["get_lang"] = $l['list_lang'][0];
+		$_COOKIE['lang'] = '';
+	}
+
+}
+
 if(!isset($_GET['lang'])){
-	// si lang non précisé, on le met en fr par défaut
-	$l["get_lang"] = 'fr';
+	if(empty($_COOKIE['lang'])){
+		// si lang non précisé et non précisé dans cookie, on le met en fr par défaut
+		$l["get_lang"] = $l['list_lang'][0];
+	}
+
 }else{
 	$l['get_lang'] = $_GET['lang'];
+}
+
+if(!isset($_COOKIE['lang']) || empty($_COOKIE['lang']) || $_COOKIE['lang'] != $l['get_lang']){
+	// si cookie non existant ou langue non identique, on le crée/modifie
+	setcookie('lang', $l["get_lang"], time() + 365*24*3600);
 }
 
 
