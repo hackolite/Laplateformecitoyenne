@@ -18,7 +18,7 @@ else:
 	<form method="POST">
 		<div class="left form visible">
 			<img class='account' src='img/account.png'> 
-			<div class="info">
+			<div class="info" id="<?php echo $_SESSION['id']; ?>">
 
 				<label><?php echo search('nom'); ?>:</label>
 				<input type="text" disabled readonly value='<?php echo $_SESSION["username"]; ?>'>
@@ -33,7 +33,6 @@ else:
 				<input type="password" value="monmotdepasse" disabled>
 				
 			</div>
-
 		</div>
 		<div class="form right hidden"></div>
 

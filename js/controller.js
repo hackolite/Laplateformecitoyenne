@@ -305,13 +305,13 @@ f.page.load.submit = function(e){
 		}
 
 		if(/recevoir|donner/.test(form)){
-			f.page.form.carte(e, form);
+			let url = '/'+form;
+			f.page.form.carte(e, url, form);
 		}
-
 	}
 
 	catch(err){
-		f.box(err);
+		f.box("[FORM]: " + err);
 	}
 
 
@@ -365,9 +365,9 @@ f.page.form.log = function(e, url, form){
 		"email": "cecile@gmail.com",
 		"postal": "75001",
 		"statuscode": "200"
-	};
+	};*/
 	f.page.form[form](rep);
-	return;*/
+	return;
 	f.AJAX({
 		location: url,
 		settings: settings,
@@ -434,10 +434,51 @@ f.page.form.signup = function(rep){
 	f.box('Fonction non disponible');
 };
 
-f.page.form.carte = function(e, form){
+f.page.form.carte = function(e, url, form){
 
-	let inputs = f.query('#' + form + ' .form input');
-	console.log(inputs);
+	let inputs = f.query('#' + form + ' input', true);
+	// on récup l'identifiant du compte
+	let settings = "";
+	let valider = true;
+
+	f.trycatch(function(){
+		settings += "id=" + f.query("#account .info").id;
+		settings += "&form=" + form;
+
+		for(var i = 0; i < inputs.length; i++){
+
+			if(/^([0-9]+)$/.test(inputs[i].value)){
+				// on s'assure qu'il n'y a que des nombres
+				inputs[i].classList.remove('empty');
+				settings += "&" + inputs[i].name + "=" + inputs[i].value;
+				valider = false;
+			}else{
+				inputs[i].classList.add('empty');
+			}
+
+		}
+
+		if(valider == true){
+			console.log("hh");
+			f.AJAX({
+				location: url,
+				settings: settings,
+				type: 'POST',
+				ready: function(rep){
+					f.box("Form validation message serveur:\n"+rep, 'blue');
+				},
+				error: function(err){
+					f.box("Form validation erreur: \n" + err);
+				}
+			});
+
+		}
+
+	}, function(err){
+		// si id non existant, c'est qu'il n'y a pas le form d'accoubt, donc non connecté
+		f.box("Vous devez vous connecter à un compte avant de continuer.");
+	});
+		
 
 };
 
