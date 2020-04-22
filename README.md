@@ -1,28 +1,121 @@
-Introduction to Flask
-===========
+# Flask-User starter app v1.0
 
-Flask is a lightweight, micro web development framework for Python. Compared to the higher-level frameworks, it’s much more flexible and, best of all, it doesn’t get in your way as you’re building out you’re web site. You can add complexity as your application grows. It’s great for beginners who want to better understand the shortcuts that larger, high-level web frameworks employ.
+This code base serves as starting point for writing your next Flask application.
 
-What’s more, for those learning Python web development, Flask provides a perfect transition as you move from the basics of CGI-programming to modern web development. You can learn on the go by adding more complicated components as you gain the skills. You can even start out by writing everything in a single .py file, which is great for simple static sites - but once you start scaling you’ll want to split the scripts up and employ more of a MVC-style of development.
+This branch is for Flask-User v1.0.
 
-Contents
---------
+For Flask-User v0.6, see [the Flask-User-Starter-App v0.6 branch](https://github.com/lingthio/Flask-User-starter-app/tree/v0.6).
 
-1. Part 1 - Setting Up a Static Site: [Tutorial](http://www.realpython.com/?p=578) / 
-[Video](http://www.youtube.com/watch?v=VsuArvWwuDI)
-2. Part 2 - Creating a Login Page: [Tutorial](http://www.realpython.com/?p=605) /
-[Video](http://www.youtube.com/watch?v=Z7fyAxdL7Uc)
-3. Part 3 - Sessions, Login_required Decorator, Debugging: [Tutorial](http://www.realpython.com/?p=608) /
-[Video](http://www.youtube.com/watch?v=WCpNvteLCDI)
-4. Part 4 - Databases: [Tutorial](http://www.realpython.com/?p=610/) /
-[Video](http://www.youtube.com/watch?v=BkdVq9ag7aw)
-5. Part 5 - Deploying to PythonAnywhere [Tutorial](http://www.realpython.com/?p=613) /
-[Video](http://www.youtube.com/watch?v=M4sxSoRZLtI)
-6. Part 6 - Task Management Application (FlaskTaskr): [Tutorial](http://www.realpython.com/?p=615) /
-[Video](http://youtu.be/Z86QxnU9BMM)
+## Code characteristics
 
-To-do
------
+* Tested on Python 2.6, 2.7, 3.3, 3.4, 3.5 and 3.6
+* Well organized directories with lots of comments
+    * app
+        * commands
+        * models
+        * static
+        * templates
+        * views
+    * tests
+* Includes test framework (`py.test` and `tox`)
+* Includes database migration framework (`alembic`)
+* Sends error emails to admins for unhandled exceptions
 
-- Better organize code
-- Add new tutorials
+
+## Setting up a development environment
+
+We assume that you have `git` and `virtualenv` and `virtualenvwrapper` installed.
+
+    # Clone the code repository into ~/dev/my_app
+    mkdir -p ~/dev
+    cd ~/dev
+    git clone https://github.com/lingthio/Flask-User-starter-app.git my_app
+
+    # Create the 'my_app' virtual environment
+    mkvirtualenv -p PATH/TO/PYTHON my_app
+
+    # Install required Python packages
+    cd ~/dev/my_app
+    workon my_app
+    pip install -r requirements.txt
+
+
+# Configuring SMTP
+
+Copy the `local_settings_example.py` file to `local_settings.py`.
+
+    cp app/local_settings_example.py app/local_settings.py
+
+Edit the `local_settings.py` file.
+
+Specifically set all the MAIL_... settings to match your SMTP settings
+
+Note that Google's SMTP server requires the configuration of "less secure apps".
+See https://support.google.com/accounts/answer/6010255?hl=en
+
+Note that Yahoo's SMTP server requires the configuration of "Allow apps that use less secure sign in".
+See https://help.yahoo.com/kb/SLN27791.html
+
+
+## Initializing the Database
+
+    # Create DB tables and populate the roles and users tables
+    python manage.py init_db
+
+    # Or if you have Fabric installed:
+    fab init_db
+
+
+## Running the app
+
+    # Start the Flask development web server
+    python manage.py runserver
+
+    # Or if you have Fabric installed:
+    fab runserver
+
+Point your web browser to http://localhost:5000/
+
+You can make use of the following users:
+- email `user@example.com` with password `Password1`.
+- email `admin@example.com` with password `Password1`.
+
+
+## Running the automated tests
+
+    # Start the Flask development web server
+    py.test tests/
+
+    # Or if you have Fabric installed:
+    fab test
+
+
+## Trouble shooting
+
+If you make changes in the Models and run into DB schema issues, delete the sqlite DB file `app.sqlite`.
+
+
+## See also
+
+* [FlaskDash](https://github.com/twintechlabs/flaskdash) is a starter app for Flask
+  with [Flask-User](https://readthedocs.org/projects/flask-user/)
+  and [CoreUI](https://coreui.io/) (A Bootstrap Admin Template).
+
+## Acknowledgements
+
+With thanks to the following Flask extensions:
+
+* [Alembic](http://alembic.zzzcomputing.com/)
+* [Flask](http://flask.pocoo.org/)
+* [Flask-Login](https://flask-login.readthedocs.io/)
+* [Flask-Migrate](https://flask-migrate.readthedocs.io/)
+* [Flask-Script](https://flask-script.readthedocs.io/)
+* [Flask-User](http://flask-user.readthedocs.io/en/v0.6/)
+
+<!-- Please consider leaving this line. Thank you -->
+[Flask-User-starter-app](https://github.com/lingthio/Flask-User-starter-app) was used as a starting point for this code repository.
+
+
+## Authors
+
+- Ling Thio -- ling.thio AT gmail DOT com
