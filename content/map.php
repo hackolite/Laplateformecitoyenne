@@ -36,44 +36,53 @@ function eraseMarker()
 
 
 
-	function getMarkers(type=[])
-		{
-			eraseMarker();
-			let url= "http://0.0.0.0:5000/user_need";
+function getMarkers(type=[])
+	{
+		eraseMarker();
+		let url= "http://0.0.0.0:5000/user_need";
 
-			if (type.length!=0) {
+		if (type.length!=0) {
 
-				if(type.length==1) {
-					url += "?type=" + type[0];
-				}
+			if(type.length==1) {
+				url += "?type=" + type[0];
+			}
 
-			    var xmlHttp = new XMLHttpRequest();
-			    xmlHttp.open( "GET", url, false ); // false for synchronous request
-			    xmlHttp.send( null );
-			    console.log(xmlHttp.responseText);
-					var points = JSON.parse(xmlHttp.responseText);
+		    var xmlHttp = new XMLHttpRequest();
+		    xmlHttp.open( "GET", url, false ); // false for synchronous request
+		    xmlHttp.send( null );
+		    console.log(xmlHttp.responseText);
+				var points = JSON.parse(xmlHttp.responseText);
 
-					points.json_list.forEach((point, i) => {
-							//default color
-							console.log(point.type);
-						  var color = "blue";
-						  if (point.type=="medical") {
+				points.json_list.forEach((point, i) => {
+						//default color
+						if (point.latitude!=undefined && point.longitude !=undefined)
+						{
+							console.log(point);
+							var color = "blue";
+							if (point.type=="medical") {
 								console.log("medical");
 								var coloredMarker = L.AwesomeMarkers.icon({
 									icon: 'medkit',
 									markerColor: "green",
 									prefix: 'fa'
 								});
-						  }
-						  else if (point.type=="maker") {
+							}
+							else if (point.type=="maker") {
 								console.log("maker");
 								var coloredMarker = L.AwesomeMarkers.icon({
 									icon: 'cogs',
 									markerColor: "blue",
 									prefix: 'fa'
 								});
-						  }
-
+							}
+							else {
+								console.log("other");
+								var coloredMarker = L.AwesomeMarkers.icon({
+									icon: 'cogs',
+									markerColor: "red",
+									prefix: 'fa'
+								});
+							}
 
 
 							console.log(coloredMarker);
@@ -100,32 +109,37 @@ function eraseMarker()
 							}
 
 
-						  //create the popup
-						  var popup = L.popup()
-						      .setContent(desc)
+							//create the popup
+							var popup = L.popup()
+									.setContent(desc)
 
-						  //create the marker
-						  var marker = L.marker([point.latitude,point.longitude], {
-						    icon: coloredMarker
-						  })
+							//create the marker
+							console.log([point.latitude,point.longitude])
+							var marker = L.marker([point.latitude,point.longitude], {
+								icon: coloredMarker
+							})
 
 							markerList.push(marker);
 
-						  marker.bindPopup(popup);
+							marker.bindPopup(popup);
 
 
-						  //open popup when mouse over the marker
-						  marker.on('mouseover', function (e) { this.openPopup(); });
-						  //close popup when mouse is not over the marker
-						  marker.on('mouseout', function (e) { this.closePopup(); });
+							//open popup when mouse over the marker
+							marker.on('mouseover', function (e) { this.openPopup(); });
+							//close popup when mouse is not over the marker
+							marker.on('mouseout', function (e) { this.closePopup(); });
 
-						  //add the marker on the map
-						  marker.addTo(map)
-							});
-					}
+							//add the marker on the map
+							marker.addTo(map)
+
+
+						}
+
+					});
 				}
+			}
 
-	getMarkers(["medical","maker"]);
+getMarkers(["medical","maker"]);
 
 
 	</script>
