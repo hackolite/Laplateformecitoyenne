@@ -21,5 +21,5 @@ class Config:
     COMPRESSOR_DEBUG = environ.get('COMPRESSOR_DEBUG')
 
     # Flask-SQLAlchemy
-    SQLALCHEMY_DATABASE_URI = 'sqlite://///home/lamaaz/Laplateformecitoyenne/flasklogin-tutorial/app.sqlite'
+    SQLALCHEMY_DATABASE_URI = 'sqlite://////Users/intk/Documents/Private/Laplateformecitoyenne/flasklogin-tutorial/app.sqlite'
     SQLALCHEMY_TRACK_MODIFICATIONS = environ.get('SQLALCHEMY_TRACK_MODIFICATIONS')

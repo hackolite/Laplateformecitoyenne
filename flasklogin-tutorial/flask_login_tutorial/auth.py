@@ -37,7 +37,7 @@ def signup():
         existing_user = User.query.filter_by(email=email).first()  # Check if user exists
         API_KEY = "pk.eyJ1IjoiaGFja29saXRlIiwiYSI6ImNqaHQ3NmV4cDA3YTgzdm9uemwwdGQ5eTgifQ.wzyI9hf1DxLdK6jfwrUmjQ"
         geolocator = MapBox(api_key=API_KEY)
-        
+
         location = geolocator.geocode(postal,country="FR")
         latitude = location.latitude + random.random()/10000
         longitude = location.latitude + random.random()/10000
@@ -71,9 +71,9 @@ def login():
             if user and user.check_password(password=password):
                 login_user(user)
             else:
-                
+
                return json.dumps({"statuscode" : 200, "username" : "something is wrong "})
-             
+
     return json.dumps({"statuscode" : 200, "id" : user.id, "postal":user.postal, "email":user.email, "username" : user.first_name})
 
 
@@ -85,7 +85,7 @@ def get_user():
     # /user_need?type=maker return all maker
     # /user_need?type=medical return all hospital etc..
     # /user_need return all users
-    print(request.form)
+
     type = request.args.get("type") or None;
 
 
@@ -117,7 +117,7 @@ def update_user_need():
 
     print(type,town,fabricMask,surgicalMask,constructionMask,glasses,blouse,visor)
 
-    
+
     user = User.query.filter_by(email=current_user.email).first()
 
 
