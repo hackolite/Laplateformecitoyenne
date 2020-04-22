@@ -1,7 +1,11 @@
 <?php
 session_start();
+if(isset($_SESSION['login'])){
+	preg_match("/admin|lpc/", $_SESSION['login'], $valid);
+}
 
-if(!isset($_SESSION['login']) || $_SESSION['login'] != 'admin'):
+if(!isset($_SESSION['login']) || !$valid):
+
 ?>
 
 <form method="POST" action="login.php" require>

@@ -10,3 +10,4 @@ $_SESSION["email"]= "cecile@gmail.com";
 $_SESSION["postal"]= "75001";
 $_SESSION["session"]= "true";
 $_SESSION["start_time"] = time();
+

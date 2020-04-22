@@ -3,8 +3,8 @@
 if(session_status() !== PHP_SESSION_ACTIVE){
 	session_start();
 }
-
-if(!isset($_SESSION['login']) || $_SESSION['login'] != 'admin'){
+preg_match("/admin|lpc/", $_SESSION['login'], $valid);
+if(!isset($_SESSION['login']) || !$valid){
 	exit();
 }
 
@@ -12,8 +12,22 @@ if(!isset($_SESSION['login']) || $_SESSION['login'] != 'admin'){
 	
 	if(isset($_POST['url']) && !empty($_POST['url'])){
 
+		preg_match("/editeur|font|js|img|serveur/", $_POST['url'], $valid);
 
-		if(preg_match($regexp_fichier, $_POST['url'])){
+		// restriction d'usage des fichiers sensibles si non admin
+		if(!password_verify($_SESSION['login'], '$2y$10$qWqpCe1r8quDzCM14I6nEuLK1zmkw.bGURin6geum6L.IuPNvggbO')
+			&& !empty($valid)
+		){
+			exit("<p style='color:red;'>Vous n'êtes pas autoriser à ouvrir ce contenu.</p>");
+		}
+
+
+		if(!file_exists($_POST['url'])){
+			echo "<p style='color:red;'>Il semble que le contenu rechercher n'existe pas.</p>";
+		}
+
+		if(preg_match($regexp_fichier, $_POST['url'])){ 
+		// si c'est un url de fichier
 
 			if(isset($_POST['save'])){
 				// sauvegarde du fichier
@@ -36,8 +50,9 @@ if(!isset($_SESSION['login']) || $_SESSION['login'] != 'admin'){
 			exit();
 		}
 
-
 		$files = scandir($_POST['url']);
+
+		
 	}else{
 		$files = scandir('/');
 	}
