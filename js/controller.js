@@ -365,9 +365,9 @@ f.page.form.log = function(e, url, form){
 		"email": "cecile@gmail.com",
 		"postal": "75001",
 		"statuscode": "200"
-	};*/
+	};
 	f.page.form[form](rep);
-	return;
+	return;*/
 	f.AJAX({
 		location: url,
 		settings: settings,
