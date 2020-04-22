@@ -451,9 +451,11 @@ f.page.form.carte = function(e, url, form){
 				// on s'assure qu'il n'y a que des nombres
 				inputs[i].classList.remove('empty');
 				settings += "&" + inputs[i].name + "=" + inputs[i].value;
-				valider = false;
 			}else{
+				// sinon on le met en surbrillance
 				inputs[i].classList.add('empty');
+				// et on annule l'envoie de données
+				valider = false;
 			}
 
 		}
