@@ -9,8 +9,10 @@ from .import login_manager
 from flask_cors import CORS, cross_origin
 import json
 from flask import request, url_for,jsonify
-from geopy.geocoders import MapBox
+from geopy.geocoders import BANFrance
 import random
+from sqlalchemy import or_
+
 
 
 # Blueprint Configuration
@@ -36,12 +38,16 @@ def signup():
         password = request.form['mdp']
         existing_user = User.query.filter_by(email=email).first()  # Check if user exists
         API_KEY = "pk.eyJ1IjoiaGFja29saXRlIiwiYSI6ImNqaHQ3NmV4cDA3YTgzdm9uemwwdGQ5eTgifQ.wzyI9hf1DxLdK6jfwrUmjQ"
-        geolocator = MapBox(api_key=API_KEY)
+        geolocator = BANFrance()
 
-        location = geolocator.geocode(postal,country="FR")
+        location = geolocator.geocode(postal)
+        print(location)
+        
+        print(location.latitude)
+        print(location.longitude) 
         latitude = location.latitude + random.random()/10000
-        longitude = location.latitude + random.random()/10000
-
+        longitude = location.longitude + random.random()/10000
+          
 
         if existing_user is None:
                 user = User(first_name=name, email=email, postal=postal, latitude=latitude, longitude=longitude, type="maker")
@@ -85,17 +91,19 @@ def get_user():
     # /user_need?type=maker return all maker
     # /user_need?type=medical return all hospital etc..
     # /user_need return all users
-
-    type = request.args.get("type") or None;
-
-
-    if type != None:
-        users = User.query.filter_by(type=type).all()
-        return jsonify(json_list=[i.serialize for i in users])
-    else:
-        users = User.query.all()
+    lc_type = request.args.get("type") or None;
+    if (lc_type == "medical" or lc_type == "maker"):
+        users = User.query.filter_by(type=lc_type).all()
         return jsonify(json_list=[i.serialize for i in users])
 
+    users1 = User.query.filter_by(type="medical").all() 
+    users2 = User.query.filter_by(type="maker").all()
+    res = [i.serialize for i in users1]
+    res2 = [i.serialize for i in users2]
+    res.extend(res2)
+    res3 = jsonify(json_list=res)	
+    return res3
+         
 
 
 
@@ -104,10 +112,6 @@ def get_user():
 def update_user_need():
     """Creer un point a un endroit designé par un nom de ville. Ce point est associé a un email.
     Si l'utilisateur a deja un point cela va l'update, sinon cela va creer un nouveau point"""
-    name = request.form.get('name') or "None"
-    email = request.form.get('email') or "None"
-    type = request.form.get('type') or "None"
-    town = request.form.get('town') or "Paris"
     fabricMask = request.form.get('fabricMask') or 0
     surgicalMask = request.form.get('surgicalMask') or 0
     constructionMask = request.form.get('constructionMask') or 0
@@ -115,10 +119,10 @@ def update_user_need():
     blouse = request.form.get('blouse') or 0
     visor = request.form.get('visor') or 0
 
-    print(type,town,fabricMask,surgicalMask,constructionMask,glasses,blouse,visor)
+    #print(email, type,fabricMask,surgicalMask,constructionMask,glasses,blouse,visor)
 
-
-    user = User.query.filter_by(email=current_user.email).first()
+    print(request.form)
+    user = User.query.filter_by(id=request.form["id"]).first()
 
 
     # Ajout d'un legere difference de coordonnée pour ne pas superposer les points
@@ -129,40 +133,25 @@ def update_user_need():
 
 
     # WARNING: !!!!!!!!!!!!!
+    if request.form["form"] == "recevoir":
+        lc_type="medical"
+    else:
+        lc_type= "maker"
 
-
-    if user:
-        print("User found")
-        user.name=name
-        user.email=email
-        user.type=type
-        user.latitude=location.latitude
-        user.longitude=location.longitude
-        user.fabricMask=fabricMask
-        user.surgicalMask=surgicalMask
-        user.constructionMask=constructionMask
-        user.glasses=glasses
-        user.blouse=blouse
-        user.visor=visor
-        db.session.commit()
-        return redirect(url_for('main.home_page'))
-
-    else :
-        user = User(name=name,email=email,type=type,latitude=location.latitude,longitude=location.longitude,fabricMask=fabricMask,surgicalMask=surgicalMask,constructionMask=constructionMask,glasses=glasses,blouse=blouse,visor=visor)
-        db.session.add(user)
-        db.session.commit()
+    print(user.id)
+    print("User found")
+    user.type=lc_type
+    user.fabricMask=fabricMask
+    user.surgicalMask=surgicalMask
+    user.constructionMask=constructionMask
+    user.glasses=glasses
+    user.blouse=blouse
+    user.visor=visor
+    db.session.commit()
+    return {"statuscode":200}
 
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    """Check if user is logged-in on every page load."""
-    if user_id is not None:
-        return User.query.get(user_id)
-    return None
-
-
-@login_manager.unauthorized_handler
 def unauthorized():
     """Redirect unauthorized users to Login page."""
     flash('You must be logged in to view that page.')
