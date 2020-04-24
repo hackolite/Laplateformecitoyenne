@@ -47,6 +47,7 @@ else:
 				<input type="submit" value="" onclick="load(); return false;" class='nav_btt'>
 			</label>
 		</form>
+		<a href='#' onclick='editImg();'><img alt='Image' src='img.png'> </a>
 		<a href='#' onclick='save();'><img alt='Save' src='save.png'> </a>
 		<a href='#' onclick='dissocier();'><img alt='dissocier' src='dissocier.png'> </a>
 		<a href='login.php?logout=o'><img alt='Déconnexion' src='disconnect.png'> </a>
@@ -63,6 +64,18 @@ else:
 	<div id="editeur" class='associer'>
 		<div id="code"></div>
 		<textarea id="edition"></textarea>
+	</div>
+
+	<div id="editeurImg" class="off">
+		<form method="POST" action="file.php" enctype="multipart/form-data">
+			<img src="" alt="Image Sélectionnée" id="img">
+			<label>
+				<span>Glisser-Déposer</span>
+				<input type="hidden" name="url" value="">
+				<input type="file" name="img" accept="image/png, image/jpeg, image/bmp, image/gif">
+			</label>
+			
+		</form>
 	</div>
 
 <script>
@@ -120,16 +133,25 @@ function AJAX (e){
 var edition = q('#edition');
 var code = q('#code');
 
-var regexp_file = /^(.+)\.(.+)$/;
+const regexp_file = /^(.+)\.(.+)$/;
+const regexp_img = /(.+)\.(png|gif|jpg|jpeg|bmp)$/;
 var progress = q('.progress');
 
 edition.addEventListener('keypress', editCode);
 edition.addEventListener('keyup', editCode);
 edition.addEventListener('change', editCode);
+q('#editeurImg [type="file"]').addEventListener('change', fileChange);
 
 function load(){
 	let v = q('#url').value;
 	let c = q('#container');
+
+	// on affiche une fenetre dédier au changement d'image
+	if(regexp_img.test(v)){
+		editImg();
+		return;
+	}
+
 	AJAX({
 		location: 'file.php',
 		type: 'POST',
@@ -193,6 +215,13 @@ function save(){
 		return;
 	}
 
+	if(regexp_img.test(v)){
+		// si c'est une image, on valide le form
+		q('#editeurImg input[name="url"]').value = q('#url').value;
+		q('#editeurImg form').submit();
+		return;
+	}
+
 	AJAX({
 		location: 'file.php',
 		type: 'POST',
@@ -224,6 +253,41 @@ function dissocier(){
 function resizeEdit(){
 	edition.style.width = getComputedStyle(q('#code'), null).width;
 	edition.style.height = getComputedStyle(q('#code'), null).height;
+}
+
+function fileChange(e){
+
+	// affichage du fichier sélectionné
+
+	if(e.target.value !=""){
+		q('#editeurImg span').innerHTML = e.target.value;
+	}
+	else{
+		q('#editeurImg span').innerHTML="Glisser-Déposer";
+	}
+}
+
+function editImg(){
+
+	// affiche/cache la fentre d'image
+
+	var c = q('#editeurImg');
+	var img = q('#img');
+	let v = q('#url').value;
+
+	if(/on/.test(c.className)){
+		// si fermecture du container
+		c.classList.add('off');
+		c.classList.remove('on');
+		return;
+	}
+
+	c.classList.add('on');
+	c.classList.remove('off');
+
+	img.src=v;
+
+
 }
 
 </script>

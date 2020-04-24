@@ -27,6 +27,7 @@
 
 body{
 	margin: 0;
+	line-height: 1.5;
 }
 
 #page > div{
@@ -40,7 +41,8 @@ body{
 
 
 p{
-	margin-top: 12px!important;
+	margin-top: 10px!important;
+	line-height: normal!important;
 }
 
 a{
@@ -113,7 +115,7 @@ header {
     position: absolute;
     top: 7px;
     left: 16px;
-    transition: transform 1s ease;
+    transition: transform 1.5s ease;
     transform: rotate(0deg);
     border-radius: 50%;
 }
@@ -135,11 +137,17 @@ header {
 	color: #272727;
 	transition: all 300ms ease-out;
 }
-
+/*
 #logo:hover .title{
-	color: #005DEE;
+	animation: 5s linear infinite title;
 }
 
+@keyframes title{
+	from{color: #272727;}
+	33%{color: #005DEE;}
+	66%{color: #00D08F;}
+	to{color: #272727;}
+}*/
 
 /*
 #logo span:hover{
@@ -150,9 +158,9 @@ header {
 */
 
 #lang{
-	position: absolute;
-    left: 350px;
-    top: 11px;
+	position: fixed;
+    left: 356px;
+    top: 23px;
     margin-bottom: 0px;
 }
 

@@ -22,9 +22,19 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 	<div id="logo">
 		<a href="/?lang=<?php echo $l['list_lang'][$l['lang']];?>">
 			<img src="img/small_logo.png" >
-			<span class='title'>La Plateforme Citoyenne</span>
+			<div id="title">
+				<div class="first s-container share">
+					<h1><span>l</span><span>a</span><span></span> <span>p</span></h1>
+				</div>
+				<div class="second s-container share">
+					<h1><span>l</span><span>a</span><span>t</span><span>e</span><span>f</span><span>o</span><span>r</span><span>m</span><span>e</span></h1>
+				</div>
+				<div class=" third s-container share">
+					<h1><span></span> <span>c</span><span>i</span><span>t</span><span>o</span><span>y</span><span>e</span><span>n</span><span>n</span><span>e</span></h1>
+				</div>
+			</div>
 		</a>
-		<p id="lang">
+		<div id="lang">
 			<a href="<?php 
 
 			if(strlen($url_param) > 0){
@@ -43,7 +53,7 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 			}
 			
 			?>lang=en">EN</a>
-		</p>
+		</div>
 	</div>
 	<div id="bouton">
 		<ul>

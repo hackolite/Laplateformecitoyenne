@@ -8,11 +8,38 @@ if(!isset($_SESSION['login']) || !$valid){
 	exit();
 }
 
+
+function img(){
+ // sauvegarde d'image
+	// Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
+	if (isset($_FILES['img']) AND $_FILES['img']['error'] == 0){
+	    // Testons si le fichier n'est pas trop gros
+	    if ($_FILES['img']['size'] <= 10000000){
+	        // Testons si l'extension est autorisée
+	        $infosfichier = pathinfo($_FILES['img']['name']);
+	        $extension_upload = $infosfichier['extension'];
+	        $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png', 'bmp');
+	        if (in_array($extension_upload, $extensions_autorisees)){
+	                // On peut valider le fichier et le stocker définitivement
+	                move_uploaded_file($_FILES['img']['tmp_name'], $_POST['url']);
+	                echo "\nL'enregistrement a bien été effectué !";
+	        }else{
+	        	echo "\nFichier non conforme";
+	        }
+	        echo "\n Redirection dans 4s...";
+	        header('Refresh: 4; URL=index.php');
+	    }
+	}
+
+}
+
+
 	$regexp_fichier = "/^(.+)\.(.+)$/";
+	$regexp_img = "/(.+)\.(png|gif|jpg|jpeg|bmp)$/";
 	
 	if(isset($_POST['url']) && !empty($_POST['url'])){
 
-		preg_match("/editeur|font|js|img|serveur/", $_POST['url'], $valid);
+		preg_match("/editeur|font|js|serveur/", $_POST['url'], $valid);
 
 		// restriction d'usage des fichiers sensibles si non admin
 		if(!password_verify($_SESSION['login'], '$2y$10$qWqpCe1r8quDzCM14I6nEuLK1zmkw.bGURin6geum6L.IuPNvggbO')
@@ -28,6 +55,12 @@ if(!isset($_SESSION['login']) || !$valid){
 
 		if(preg_match($regexp_fichier, $_POST['url'])){ 
 		// si c'est un url de fichier
+
+			// si c'est une image
+			if(preg_match($regexp_img, $_POST['url'])){
+				img();
+				exit();
+			}
 
 			if(isset($_POST['save'])){
 				// sauvegarde du fichier
@@ -70,9 +103,16 @@ if(!isset($_SESSION['login']) || !$valid){
 	<?php
 		else:
 			$suffixe = '';
+			// si image
+			if(preg_match("/(.+)\.(png|gif|jpg|jpeg|bmp)$/", $files[$i])):
+	?>
+		<div class='form_file img'>
+	<?php 
+			else:
 	?>
 		<div class='form_file file'>
 	<?php 
+			endif;
 		endif;
 	?>
 		<span class="png"></span>

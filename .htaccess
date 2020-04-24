@@ -1,2 +1,14 @@
+#On empêche le listage de répertoire
+Options -Indexes
+Options +FollowSymLinks
 
 RewriteEngine On
+
+RewriteRule ^en /?lang=en [R,L]
+RewriteRule ^fr /?lang=fr [R,L]
+
+ErrorDocument 400 /error?v=400
+ErrorDocument 401 /error?v=401
+ErrorDocument 403 /error?v=403
+ErrorDocument 404 /error?v=404
+ErrorDocument 500 /error?v=500

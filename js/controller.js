@@ -330,7 +330,7 @@ f.page.form.log = function(e, url, form){
 		if(inputs[i].name == 'cgu'){
 			if(inputs[i].checked != true){
 				// on bloque si une checkbox n'est pas check
-				f.box("Veuillez accepter les conditions générales d'utilisation");
+				f.box(mssg.cgu);
 				return
 			}
 		}
@@ -357,17 +357,6 @@ f.page.form.log = function(e, url, form){
 	if(valider == false){ return; } 
 	// on attend que tous les champs soient analysés avant de stopper
 
-
-	// #TEST à SUPPRIMER
-	/*var rep = {
-		"id": "jrg42erg",
-		"username": "Cécile",
-		"email": "cecile@gmail.com",
-		"postal": "75001",
-		"statuscode": "200"
-	};
-	f.page.form[form](rep);
-	return;*/
 	f.AJAX({
 		location: url,
 		settings: settings,
@@ -378,12 +367,12 @@ f.page.form.log = function(e, url, form){
 				rep = JSON.parse(rep);
 				f.page.form[form](rep);
 			}catch(err){
-				f.box("Erreur inattendue lors de la requête vers le serveur");
+				f.box(mssg.serveur.error);
 				console.error(err);
 			}
 		},
 		error: function(err){
-			f.box("Une erreur s'est produite [status:" + err + "]");
+			f.box(mssg.account.error + ": " + err);
 		}
 	});
 };
@@ -419,19 +408,19 @@ f.page.form.signin = function(rep){
 					url = url.replace(/(&|\?)?id=?(.+)?&?/, '');
 					document.location.href = url;
 				}else{
-					f.box("Erreur lors de la connexion: " + s);
+					f.box(mssg.account.error + ": " + s);
 				}
 			}
 
 		});
 	}else{
-		f.box("Aucun compte n'est associé aux informations saisies");
+		f.box(mssg.account.noexist);
 	}
 
 };
 
 f.page.form.signup = function(rep){
-	f.box('Fonction non disponible');
+	f.box(mssg.indisponible);
 };
 
 f.page.form.carte = function(e, url, form){
@@ -467,18 +456,29 @@ f.page.form.carte = function(e, url, form){
 				settings: settings,
 				type: 'POST',
 				ready: function(rep){
-					f.box("Form validation message serveur:\n"+rep, 'blue');
+
+					f.trycatch(()=>{
+						rep = JSON.parse(rep);
+						if(rep.statuscode == 200){
+							f.box(mssg.form.valid, 'blue');
+						}
+					}, (err)=>{
+						// soit serveur envoie de mauvaise données, soit probleme de compte
+						f.box(mssg.serveur.error);
+						console.error(err);
+					});
+					
 				},
 				error: function(err){
-					f.box("Form validation erreur: \n" + err);
+					f.box(mssg.form.error + " \n" + err);
 				}
 			});
 
 		}
 
 	}, function(err){
-		// si id non existant, c'est qu'il n'y a pas le form d'accoubt, donc non connecté
-		f.box("Vous devez vous connecter à un compte avant de continuer.");
+		// si id non existant, c'est qu'il n'y a pas le form d'account, donc non connecté
+		f.box(mssg.compterequit);
 	});
 		
 
@@ -553,12 +553,29 @@ document.addEventListener('click', function(e){
 
 });
 
+
+f.trycatch(function(){
+	// animation logo
+	const title = f.query('#title');
+
+	setTimeout(()=>{
+		title.classList.add('on');
+
+		setTimeout(()=>{
+			f.switcher(title, 'on', 'off');
+		}, 4500);
+	}, 2500);
+
+
+
+});
+
 // on déconnecte la session sur python et on affiche un message de confirmation
 f.trycatch(function(){
 	if(logout[0] == 'auto'){
-		f.box('Vous vous êtes déconnecté avec succés', 'blue');
+		f.box(mssg.logout.auto, 'blue');
 	}else if(logout[0] == 'expired'){
-		f.box('Votre session à expirée, veuillez vous reconnecter');
+		f.box(mssg.logout.expired);
 	}
 
 	f.AJAX({
