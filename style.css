@@ -516,7 +516,6 @@ nav.off_info #info{
     position: fixed;
     box-sizing: border-box;
     z-index: 500;
-    border-radius: 8px;
     padding-bottom: 150px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -535,6 +534,19 @@ nav.off_info #info{
 	width: 92%;
 	overflow-x: hidden;
 
+}
+
+.formulaire.black{
+	border-left: 8px solid #2e2e2e;
+}
+.formulaire.green{
+	border-left: 8px solid #00D08F;
+}
+.formulaire.blue{
+	border-left: 8px solid #005DEE;
+}
+.formulaire.red{
+	border-left: 8px solid #ee0042;
 }
 
 .formulaire .title{

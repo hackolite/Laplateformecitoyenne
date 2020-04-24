@@ -2,9 +2,13 @@
 if(!isset($_GET['action'])){
 	exit();
 }	
-
+if($_GET['action'] == 'signup'){
+	$color = 'green';
+}else if($_GET['action'] == 'signin'){
+	$color = 'black';
+}
 ?>
-<div id="<?php echo $_GET['action']; ?>" class='formulaire hidden'>
+<div id="<?php echo $_GET['action']; ?>" class='formulaire hidden <?php echo $color; ?>'>
 	<div class='close_btt' title="<?php echo search('fermer'); ?>" data-click="<?php echo $_GET['action'];?>">+</div>
 	<form method="POST">
 
@@ -13,11 +17,9 @@ if(!isset($_GET['action'])){
 			<span class="text"><?php 
 			// affichage du titre
 				if($_GET['action'] == 'signup'){
-					$color = 'green';
 					echo search("sign up"); 
 				}else if($_GET['action'] == 'signin'){
-					$color = 'black';
-					echo search("sign in"); 
+					echo search("sign in");
 				}
 
 			?></span>
@@ -57,6 +59,7 @@ if(!isset($_GET['action'])){
 			?>
 
 			</div>
+			<div class="white_space"></div>
 		</div>
 
 		<div class="form right hidden"></div>

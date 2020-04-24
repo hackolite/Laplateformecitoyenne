@@ -13,7 +13,7 @@ else:
 
 ?>
 
-<div id="account" class="formulaire hidden">
+<div id="account" class="formulaire hidden red">
 	<div class='close_btt' title="<?php echo search('fermer'); ?>" data-click="account">+</div>
 	<form method="POST">
 		<div class="left form visible">

@@ -2,9 +2,13 @@
 if(!isset($_GET['action'])){
 	exit();
 }	
-
+if($_GET['action'] == 'recevoir'){
+	$color = 'green';
+}else if($_GET['action'] == 'donner'){
+	$color = 'blue';
+}
 ?>
-<div id="<?php echo $_GET['action']; ?>" class='formulaire hidden'>
+<div id="<?php echo $_GET['action']; ?>" class='formulaire hidden <?php echo $color;?>'>
 	<div class='close_btt' title="<?php echo search('fermer'); ?>" data-click="<?php echo $_GET['action'];?>">+</div>
 	<form method="POST">
 
@@ -13,11 +17,9 @@ if(!isset($_GET['action'])){
 			<span class="text"><?php 
 			// affichage du titre
 				if($_GET['action'] == 'recevoir'){
-					$color = 'green';
 					$quantite = search('besoin');
 					echo search("medical staff"); 
 				}else if($_GET['action'] == 'donner'){
-					$color = 'blue';
 					$quantite = search('production');
 					echo search("les makers"); 
 				}
@@ -87,6 +89,7 @@ endfor;
 					<?php echo search('valider'); ?>
 				</div>
 			</div>
+			<div class="white_space"></div>
 		</div>
 		<div class="form right hidden">
 			<!--<input type="text" name="name" placeholder="<?php echo search("nom");?>">
