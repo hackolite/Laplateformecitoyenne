@@ -21,7 +21,7 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 <header>
 	<div id="logo">
 		<a href="/?lang=<?php echo $l['list_lang'][$l['lang']];?>">
-			<img src="img/small_logo.png" >
+			<img src="img/_logo.png" >
 			<div id="title">
 				<div class="first s-container share">
 					<h1><span>l</span><span>a</span><span></span> <span>p</span></h1>

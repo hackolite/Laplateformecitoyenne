@@ -14,6 +14,7 @@ require('serveur/lang.php');
 <html>
 <head>
 	<title>Error - La Plateforme Citoyenne</title>
+  <link rel="icon" type="image/png" href="img/minia_logo.png" />
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -94,7 +95,7 @@ span {
 	    <div class="container">
 	        <div class="row justify-content-center">
 	            <div class="col-md-12 text-center">
-	            	<img src="/img/small_logo.png" alt="Logo">
+	            	<img src="/img/_logo.png" alt="Logo" width="50%">
 	                <span class="display-1 d-block main">
 	                	<span class="main" style="font-size: 40px;">
 		                	<span>E</span>

@@ -110,11 +110,11 @@ header {
 }
 
 #logo img{
-    width: 60px;
-    height: 60px;
+	width: 70px;
+    height: 70px;
     position: absolute;
-    top: 7px;
-    left: 16px;
+    top: 2px;
+    left: 8px;
     transition: transform 1.5s ease;
     transform: rotate(0deg);
     border-radius: 50%;

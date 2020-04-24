@@ -1,5 +1,5 @@
 
-<iframe width="560" height="400" src="https://www.youtube-nocookie.com/embed/G60CMbsA1_k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class='center'></iframe>
+<iframe width="560" height="400" src="https://www.youtube-nocookie.com/embed/DD4hE9QXlo8?autoplay=1&rel=0&showinfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class='center'></iframe>
 
 <div class='description paragraphe center'>
 <h4>La Plateforme citoyenne - <?php echo search("contact informations"); ?></h4>

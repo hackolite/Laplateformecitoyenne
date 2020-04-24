@@ -57,7 +57,7 @@
 	transform: rotate(-25deg);
 }
 #logo.on #title span:nth-child(1),
-#logo:hover #title span:nth-child(1) {
+#logo #title span:nth-child(1) {
 	transition-delay: 110ms;
 }
 #logo.on #title span:nth-child(2):after,
@@ -66,7 +66,7 @@
 	transform: rotate(-20deg);
 }
 #logo.on #title span:nth-child(2),
-#logo:hover #title span:nth-child(2) {
+#logo #title span:nth-child(2) {
 	transition-delay: 220ms;
 }
 #logo.on #title span:nth-child(3):after,
@@ -75,7 +75,7 @@
 	transform: rotate(-15deg);
 }
 #logo.on #title span:nth-child(3),
-#logo:hover #title span:nth-child(3) {
+#logo #title span:nth-child(3) {
 	transition-delay: 330ms;
 }
 #logo.on #title span:nth-child(4):after,
@@ -84,7 +84,7 @@
 	transform: rotate(-10deg);
 }
 #logo.on #title span:nth-child(4),
-#logo:hover #title span:nth-child(4) {
+#logo #title span:nth-child(4) {
 	transition-delay: 440ms;
 }
 #logo.on #title span:nth-child(5):after,
@@ -93,7 +93,7 @@
 	transform: rotate(-5deg);
 }
 #logo.on #title span:nth-child(5),
-#logo:hover #title span:nth-child(5) {
+#logo #title span:nth-child(5) {
 	transition-delay: 550ms;
 }
 #logo.on #title span:nth-child(6):after,
@@ -102,7 +102,7 @@
 	transform: rotate(0deg);
 }
 #logo.on #title span:nth-child(6),
-#logo:hover #title span:nth-child(6) {
+#logo #title span:nth-child(6) {
 	transition-delay: 660ms;
 }
 #logo.on #title span:nth-child(7):after,
@@ -111,7 +111,7 @@
 	transform: rotate(5deg);
 }
 #logo.on #title span:nth-child(7),
-#logo:hover #title span:nth-child(7) {
+#logo #title span:nth-child(7) {
 	transition-delay: 770ms;
 }
 #logo.on #title span:nth-child(8):after,
@@ -120,7 +120,7 @@
 	transform: rotate(10deg);
 }
 #logo.on #title span:nth-child(8),
-#logo:hover #title span:nth-child(8) {
+#logo #title span:nth-child(8) {
 	transition-delay: 880ms;
 }
 #logo.on #title span:nth-child(9):after,
@@ -129,7 +129,7 @@
 	transform: rotate(15deg);
 }
 #logo.on #title span:nth-child(9),
-#logo:hover #title span:nth-child(9) {
+#logo #title span:nth-child(9) {
 	transition-delay: 990ms;
 }
 
@@ -139,6 +139,6 @@
 	transform: rotate(20deg);
 }
 #logo:hover #title span:nth-child(10),
-#logo:hover #title span:nth-child(10) {
+#logo #title span:nth-child(10) {
 	transition-delay: 1100ms;
 }
