@@ -22,6 +22,7 @@ def create_app():
     with app.app_context():
         from . import routes
         from . import auth
+        from . import chat
 
         # Register Blueprints
         app.register_blueprint(routes.main_bp)

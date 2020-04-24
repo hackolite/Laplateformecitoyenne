@@ -13,13 +13,30 @@ from geopy.geocoders import BANFrance
 import random
 from sqlalchemy import or_
 
-
-
 # Blueprint Configuration
 auth_bp = Blueprint('auth_bp', __name__,
                     template_folder='templates',
                     static_folder='static')
 compile_auth_assets(app)
+
+
+@auth_bp.route('/start_chat', methods=['POST'])
+@cross_origin(origin='http://127.0.0.1/',headers=['Content- Type','Authorization'])  #allow CORS request form the origin
+def start_chat():
+    senderId = request.form.get('senderId') or 0
+    receiverId = request.form.get('receiverId') or 0
+
+    print("Starting conversation between id ",senderId,"and id ",receiverId)
+    sending_user = User.query.filter_by(id=senderId).first()
+    receiving_user = User.query.filter_by(id=receiverId).first()
+
+    if (sending_user and receiving_user):
+        print("Starting conversation between ",sending_user.first_name,"and ",receiving_user.first_name)
+        return json.dumps({"statuscode" : 200, "desc" : "starting conversation"})
+
+    else :
+        return json.dumps({"statuscode" : 500, "error" : "Couldn't find the two users"})
+
 
 
 @auth_bp.route('/signup', methods=['POST'])
@@ -42,21 +59,25 @@ def signup():
 
         location = geolocator.geocode(postal)
         print(location)
-        
+
         print(location.latitude)
-        print(location.longitude) 
+        print(location.longitude)
         latitude = location.latitude + random.random()/10000
         longitude = location.longitude + random.random()/10000
-          
+
 
         if existing_user is None:
+                print("Create user")
+
                 user = User(first_name=name, email=email, postal=postal, latitude=latitude, longitude=longitude, type="maker")
                 user.set_password(password)
                 db.session.add(user)
                 db.session.commit()  # Create new user
                 return json.dumps({"statuscode" : 200, "id" : 1, "postal":postal, "email":email, "username" : name})
         else :
-            return {"statuscode": 200, "username":"recorded"}
+            print("User already exist")
+
+            return json.dumps({"statuscode": 200, "username":"recorded"})
 
 
 @auth_bp.route('/signin', methods=['POST'])
@@ -96,19 +117,20 @@ def get_user():
         users = User.query.filter_by(type=lc_type).all()
         return jsonify(json_list=[i.serialize for i in users])
 
-    users1 = User.query.filter_by(type="medical").all() 
+    users1 = User.query.filter_by(type="medical").all()
     users2 = User.query.filter_by(type="maker").all()
     res = [i.serialize for i in users1]
     res2 = [i.serialize for i in users2]
     res.extend(res2)
-    res3 = jsonify(json_list=res)	
+    res3 = jsonify(json_list=res)
     return res3
-         
+
 
 
 
 
 @auth_bp.route('/update_user_need',methods=["POST"])
+@cross_origin(origin='http://192.168.64.2/',headers=['Content- Type','Authorization'])  #allow CORS request form the origin
 def update_user_need():
     """Creer un point a un endroit designé par un nom de ville. Ce point est associé a un email.
     Si l'utilisateur a deja un point cela va l'update, sinon cela va creer un nouveau point"""
