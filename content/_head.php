@@ -26,7 +26,7 @@ if(!isset($_GET['page'])){ // si page non définie, c l'accueil
 		$page_text = str_replace("à", "a", search($_GET['page']));
 		echo ucfirst($page_text); 
 
-	?> | La Platforme Citoyenne</title>
+	?> - La Plateforme Citoyenne</title>
 	<link rel="stylesheet" type="text/css" href="effect.css" importance='high'>
 	<link rel="stylesheet" type="text/css" href="style.css" importance='high'>
 	
