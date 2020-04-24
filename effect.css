@@ -42,103 +42,103 @@
 }
 
 
-#title.on span:after,
-#title:hover span:after{
+#logo.on #title span:after,
+#logo:hover #title span:after{
 	background: hsl(0, 80%, 64%);
 	width: 100%;
 }
-#title.on span,
-#title:hover span{
+#logo.on #title span,
+#logo:hover #title span{
 	color: #fff;
 }
-#title.on span:nth-child(1):after,
-#title:hover span:nth-child(1):after {
+#logo.on #title span:nth-child(1):after,
+#logo:hover #title span:nth-child(1):after {
 	transition-delay: 100ms;
 	transform: rotate(-25deg);
 }
-#title.on span:nth-child(1),
-#title:hover span:nth-child(1) {
+#logo.on #title span:nth-child(1),
+#logo:hover #title span:nth-child(1) {
 	transition-delay: 110ms;
 }
-#title.on span:nth-child(2):after,
-#title:hover span:nth-child(2):after {
+#logo.on #title span:nth-child(2):after,
+#logo:hover #title span:nth-child(2):after {
 	transition-delay: 200ms;
 	transform: rotate(-20deg);
 }
-#title.on span:nth-child(2),
-#title:hover span:nth-child(2) {
+#logo.on #title span:nth-child(2),
+#logo:hover #title span:nth-child(2) {
 	transition-delay: 220ms;
 }
-#title.on span:nth-child(3):after,
-#title:hover span:nth-child(3):after {
+#logo.on #title span:nth-child(3):after,
+#logo:hover #title span:nth-child(3):after {
 	transition-delay: 300ms;
 	transform: rotate(-15deg);
 }
-#title.on span:nth-child(3),
-#title:hover span:nth-child(3) {
+#logo.on #title span:nth-child(3),
+#logo:hover #title span:nth-child(3) {
 	transition-delay: 330ms;
 }
-#title.on span:nth-child(4):after,
-#title:hover span:nth-child(4):after {
+#logo.on #title span:nth-child(4):after,
+#logo:hover #title span:nth-child(4):after {
 	transition-delay: 400ms;
 	transform: rotate(-10deg);
 }
-#title.on span:nth-child(4),
-#title:hover span:nth-child(4) {
+#logo.on #title span:nth-child(4),
+#logo:hover #title span:nth-child(4) {
 	transition-delay: 440ms;
 }
-#title.on span:nth-child(5):after,
-#title:hover span:nth-child(5):after {
+#logo.on #title span:nth-child(5):after,
+#logo:hover #title span:nth-child(5):after {
 	transition-delay: 500ms;
 	transform: rotate(-5deg);
 }
-#title.on span:nth-child(5),
-#title:hover span:nth-child(5) {
+#logo.on #title span:nth-child(5),
+#logo:hover #title span:nth-child(5) {
 	transition-delay: 550ms;
 }
-#title.on span:nth-child(6):after,
-#title:hover span:nth-child(6):after {
+#logo.on #title span:nth-child(6):after,
+#logo:hover #title span:nth-child(6):after {
 	transition-delay: 600ms;
 	transform: rotate(0deg);
 }
-#title.on span:nth-child(6),
-#title:hover span:nth-child(6) {
+#logo.on #title span:nth-child(6),
+#logo:hover #title span:nth-child(6) {
 	transition-delay: 660ms;
 }
-#title.on span:nth-child(7):after,
-#title:hover span:nth-child(7):after {
+#logo.on #title span:nth-child(7):after,
+#logo:hover #title span:nth-child(7):after {
 	transition-delay: 700ms;
 	transform: rotate(5deg);
 }
-#title.on span:nth-child(7),
-#title:hover span:nth-child(7) {
+#logo.on #title span:nth-child(7),
+#logo:hover #title span:nth-child(7) {
 	transition-delay: 770ms;
 }
-#title.on span:nth-child(8):after,
-#title:hover span:nth-child(8):after {
+#logo.on #title span:nth-child(8):after,
+#logo:hover #title span:nth-child(8):after {
 	transition-delay: 800ms;
 	transform: rotate(10deg);
 }
-#title.on span:nth-child(8),
-#title:hover span:nth-child(8) {
+#logo.on #title span:nth-child(8),
+#logo:hover #title span:nth-child(8) {
 	transition-delay: 880ms;
 }
-#title.on span:nth-child(9):after,
-#title:hover span:nth-child(9):after {
+#logo.on #title span:nth-child(9):after,
+#logo:hover #title span:nth-child(9):after {
 	transition-delay: 900ms;
 	transform: rotate(15deg);
 }
-#title.on span:nth-child(9),
-#title:hover span:nth-child(9) {
+#logo.on #title span:nth-child(9),
+#logo:hover #title span:nth-child(9) {
 	transition-delay: 990ms;
 }
 
-#title.on span:nth-child(10):after,
-#title:hover span:nth-child(10):after {
+#logo.on #title span:nth-child(10):after,
+#logo:hover #title span:nth-child(10):after {
 	transition-delay: 1000ms;
 	transform: rotate(20deg);
 }
-#title:hover span:nth-child(10),
-#title:hover span:nth-child(10) {
+#logo:hover #title span:nth-child(10),
+#logo:hover #title span:nth-child(10) {
 	transition-delay: 1100ms;
 }

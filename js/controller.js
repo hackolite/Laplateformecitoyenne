@@ -556,7 +556,7 @@ document.addEventListener('click', function(e){
 
 f.trycatch(function(){
 	// animation logo
-	const title = f.query('#title');
+	const title = f.query('#logo');
 
 	setTimeout(()=>{
 		title.classList.add('on');
