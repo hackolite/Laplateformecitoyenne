@@ -5,7 +5,8 @@ from flask import current_app as app
 from .assets import compile_auth_assets
 from .forms import LoginForm, SignupForm
 from .models import db, User
-from .import login_manager
+from . import login_manager
+from . import chat
 from flask_cors import CORS, cross_origin
 import json
 from flask import request, url_for,jsonify
@@ -18,24 +19,6 @@ auth_bp = Blueprint('auth_bp', __name__,
                     template_folder='templates',
                     static_folder='static')
 compile_auth_assets(app)
-
-
-@auth_bp.route('/start_chat', methods=['POST'])
-@cross_origin(origin='http://127.0.0.1/',headers=['Content- Type','Authorization'])  #allow CORS request form the origin
-def start_chat():
-    senderId = request.form.get('senderId') or 0
-    receiverId = request.form.get('receiverId') or 0
-
-    print("Starting conversation between id ",senderId,"and id ",receiverId)
-    sending_user = User.query.filter_by(id=senderId).first()
-    receiving_user = User.query.filter_by(id=receiverId).first()
-
-    if (sending_user and receiving_user):
-        print("Starting conversation between ",sending_user.first_name,"and ",receiving_user.first_name)
-        return json.dumps({"statuscode" : 200, "desc" : "starting conversation"})
-
-    else :
-        return json.dumps({"statuscode" : 500, "error" : "Couldn't find the two users"})
 
 
 
@@ -71,9 +54,17 @@ def signup():
 
                 user = User(first_name=name, email=email, postal=postal, latitude=latitude, longitude=longitude, type="maker")
                 user.set_password(password)
-                db.session.add(user)
-                db.session.commit()  # Create new user
-                return json.dumps({"statuscode" : 200, "id" : 1, "postal":postal, "email":email, "username" : name})
+                # Create new user RocketChat
+                rep = chat.createUser(name,email,password)
+                if rep[0]:
+                    user.set_username(rep[1])
+                    db.session.add(user)
+                    db.session.commit()
+                    return json.dumps({"statuscode" : 200, "id" : 1, "postal":postal, "email":email, "username" : name})
+                else :
+                    print("Fail creating rocketchat user")
+                    return json.dumps({"statuscode" : 500, "error" : "Error RocketChat add user"})
+
         else :
             print("User already exist")
 

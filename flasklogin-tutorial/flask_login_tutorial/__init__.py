@@ -27,6 +27,7 @@ def create_app():
         # Register Blueprints
         app.register_blueprint(routes.main_bp)
         app.register_blueprint(auth.auth_bp)
+        app.register_blueprint(chat.chat_bp)
 
         # Create Database Models
         db.create_all()

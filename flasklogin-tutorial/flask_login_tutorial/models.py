@@ -31,7 +31,7 @@ class User(db.Model, UserMixin):
     active = db.Column('is_active', db.Boolean(), nullable=False, server_default='0')
     first_name = db.Column(db.Unicode(50), nullable=False, server_default=u'')
     last_name = db.Column(db.Unicode(50), nullable=False, server_default=u'')
-
+    username_rocketchat = db.Column(db.Unicode(50), nullable=False, server_default=u'')
     # Relationships
     roles = db.relationship('Role', secondary='users_roles',
                             backref=db.backref('users', lazy='dynamic'))
@@ -57,6 +57,7 @@ class User(db.Model, UserMixin):
             'active':self.active,
             'first_name': self.first_name,
             'last_name': self.last_name,
+            'username_rocketchat': self.username_rocketchat,
             'latitude': self.latitude,
             'longitude':self.longitude,
             'type': self.type,
@@ -72,6 +73,10 @@ class User(db.Model, UserMixin):
     def set_password(self, password):
         """Create hashed password."""
         self.password = generate_password_hash(password, method='sha256')
+
+    def set_username(self, username):
+        """Create hashed password."""
+        self.username_rocketchat = username
 
     def check_password(self, password):
         """Check hashed password."""
@@ -135,4 +140,3 @@ class UserNeedForm(FlaskForm):
     visor = IntegerField('Visière',[validators.InputRequired("You have to enter some a number")], render_kw={"placeholder": "Nombre"})
 
     submit = SubmitField('Save')
-
