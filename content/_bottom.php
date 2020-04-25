@@ -3,7 +3,7 @@
 
 <div id="bottom">
 	<div id="btt_bottom" data-click="bottom">&copy LaPlateformeCitoyenne</div>
-	<div>&copy 2020 LaPlateformeCitoyenne - <?php echo search("all(.+)reserved"); ?></div>
+	<div style="margin-bottom: 45px;">&copy 2020 LaPlateformeCitoyenne - <?php echo search("all(.+)reserved"); ?></div>
 	<ul>
 		<h3><?php echo search("policy"); ?></h3>
 		<li><a href="#"><?php echo search("legal mention"); ?></a></li>
