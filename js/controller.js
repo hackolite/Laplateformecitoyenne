@@ -157,6 +157,18 @@ f.clickEvent = function(e, v = null){
 f.page = {};
 f.page.load = {};
 
+
+f.page.load.mdp = (e)=>{
+	// affiche ou cache le champ mot de passe
+	const elmt = e.target.parentNode.querySelector('input[name="mdp"]');
+
+	if(elmt.type == "password"){
+		elmt.type = "text";
+	}else{
+		elmt.type = "password";
+	}
+};
+
 f.page.load.action = function(e, action){
 
 	// affichage de la popup de droite
