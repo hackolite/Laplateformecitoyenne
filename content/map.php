@@ -45,4 +45,4 @@
 	</bottom>
 </div>
 
-<script src="js/map.js"></script>
+<script src="js/map<?php echo $version["map.js"]; ?>.js"></script>

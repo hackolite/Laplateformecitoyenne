@@ -30,6 +30,8 @@ if(!isset($_GET['lang'])){
 	if(empty($_COOKIE['lang'])){
 		// si lang non précisé et non précisé dans cookie, on le met en fr par défaut
 		$l["get_lang"] = $l['list_lang'][0];
+		// dans ce cas là, on prendra automatiquement la langue par défaut
+
 	}
 
 }else{

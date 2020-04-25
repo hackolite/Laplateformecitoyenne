@@ -32,16 +32,17 @@ if($_GET['action'] == 'recevoir'){
 <?php
 
 $pre = "img/materiel/";
+$suf = $version["image_materiel"].".png";
 // liste des champs de saisies à implémenter
 // ordre: text illustratif, image_url, name des input
 $ressources = [
 
-["masque en tissu","mask_tissue.png", "fabricMask"],
-["masque de chirurgie", "mask_chirurgie.png", "surgicalMask"],
-["masque de chantier", "mask_chantier.png", "constructionMask"],
-["lunettes", "glasses.png", "glasses"],
-["blouse", "doctor.png", "blouse"],
-["visor", "visor.png", "visor"]
+["masque en tissu","mask_tissue", "fabricMask"],
+["masque de chirurgie", "mask_chirurgie", "surgicalMask"],
+["masque de chantier", "mask_chantier", "constructionMask"],
+["lunettes", "glasses", "glasses"],
+["blouse", "doctor", "blouse"],
+["visor", "visor", "visor"]
 
 ];
 
@@ -50,7 +51,7 @@ $html = [];
 
 for ($i=0; $i < sizeof($ressources); $i++){
 	// on applique les traductions, les prefix de dossier pour l'url des images et les name
-	array_push($html, [search($ressources[$i][0]), $pre.$ressources[$i][1], $ressources[$i][2] ]);
+	array_push($html, [search($ressources[$i][0]), $pre.$ressources[$i][1].$suf, $ressources[$i][2] ]);
 }
 
 for($i = 0; $i < sizeof($html); $i++):

@@ -1,23 +1,29 @@
+<?php
+	header('content-type: text/css');
+	require "serveur/versioning.php";
+	// nous utilisons php pour appliquer le versioning des images
+?>
+
 @charset 'utf-8';
 
 @font-face{
 	font-family: 'Avenir';
-	src: url("font/avenir_next_regular.ttf");
+	src: url("font/avenir_next_regular<?php echo $version["font_family"];?>.ttf");
 	font-weight: 300;
 }
 @font-face{
 	font-family: 'Avenir';
-	src: url("font/avenir_next_demi.ttf");
+	src: url("font/avenir_next_demi<?php echo $version["font_family"];?>.ttf");
 	font-weight: normal;
 }
 @font-face{
 	font-family: 'Avenir';
-	src: url("font/avenir_next_bold.ttf");
+	src: url("font/avenir_next_bold<?php echo $version["font_family"];?>.ttf");
 	font-weight: bold;
 }
 @font-face{
 	font-family: 'Avenir Condensed';
-	src: url("font/avenir_next__condensed_demi.ttf");
+	src: url("font/avenir_next__condensed_demi<?php echo $version["font_family"];?>.ttf");
 	font-weight: normal;
 }
 
@@ -394,10 +400,10 @@ a.btt{
 
 
 #map .legend li .green{
-	background-image: url('img/puce_vert.png');
+	background-image: url('img/puce_vert<?php echo $version["image_css"];?>.png');
 }
 #map .legend li .blue{
-	background-image: url('img/puce_bleu.png');
+	background-image: url('img/puce_bleu<?php echo $version["image_css"];?>.png');
 }
 
 #map .legend .text{
@@ -450,7 +456,7 @@ a.btt{
 	background-repeat: no-repeat;
 }
 #search .img_search{
-	background-image: url('img/search.png');
+	background-image: url('img/search<?php echo $version["image_css"];?>.png');
 	float: right;
 	right: 12px;
 	top: 5px;
@@ -461,7 +467,7 @@ a.btt{
 	float: left;
 	top: 5px;
 	left: 0px;
-	background-image: url('img/info_blue.png');
+	background-image: url('img/info_blue<?php echo $version["image_css"];?>.png');
 	width: 24px;
 	height: 24px;
 	margin-left: 10px;
@@ -564,16 +570,16 @@ nav.off_info #info{
 }
 
 .formulaire .title .img.donner{
-	background-image: url('img/materiel/donner.png');
+	background-image: url('img/materiel/donner<?php echo $version["image_css"];?>.png');
 }
 .formulaire .title .img.recevoir{
-	background-image: url('img/materiel/recevoir.png');
+	background-image: url('img/materiel/recevoir<?php echo $version["image_css"];?>.png');
 }
 .formulaire .title .img.signin{
-	background-image: url('img/connexion.png');
+	background-image: url('img/connexion<?php echo $version["image_css"];?>.png');
 }
 .formulaire .title .img.signup{
-	background-image: url('img/signup.png');
+	background-image: url('img/signup<?php echo $version["image_css"];?>.png');
 }
 
 .formulaire .title .img{

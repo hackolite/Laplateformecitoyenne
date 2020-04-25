@@ -10,6 +10,8 @@ require('voc/voc.php');
 
 require('serveur/lang.php');
 
+require('serveur/versioning.php');
+
 
 if(!isset($_GET['page'])){ // si page non définie, c l'accueil
 	$_GET['page'] = 'home';
@@ -24,7 +26,19 @@ of one or more of its components(event without the © mention), by any process w
 the express authorization of La Plateforme Citoyenne, is prohibited, and constitutes an infringement 
 punishable by Articles L.335-2 et seq. of the Intellectual Property Code.
 
-More informations
+More informations on the website.
+
+
+
+
+---#----##----###-#----##--###-###-####-###-####-##-##-###--
+---#---####---###-#---####--#--##--###--# #-####-#-#-#-##---
+---###-#--#---#---###-#--#--#--###-#----###-#--#-#---#-###--
+-----###-#--#-####------------------------------------------
+-----#----##---#--------------------------------------------
+-----###--##---#--------------------------------------------
+
+
 
 -->
 <!DOCTYPE html>
@@ -38,10 +52,10 @@ More informations
 		echo ucfirst($page_text); 
 
 	?> - La Plateforme Citoyenne</title>
-	<link rel="stylesheet" type="text/css" href="/effect.css" importance='high'>
-	<link rel="stylesheet" type="text/css" href="/style.css" importance='high'>
+	<link rel="stylesheet" type="text/css" href="/effect<?php echo $version["effect.css"]; ?>.css" importance='high'>
+	<link rel="stylesheet" type="text/css" href="/style<?php echo $version["style.css"]; ?>.css" importance='high'>
 	
-	<link rel="icon" type="image/png" href="img/minia_logo.png" />
+	<link rel="icon" type="image/png" href="img/minia_logo<?php echo $version["logo.png"]; ?>.png" />
 	<?php 
 	if($_GET['page'] == 'home'): 
 		// si page home, on inclut tous les fichiers à index et à la map
@@ -79,8 +93,9 @@ More informations
 	</style>
 
 	<?php endif; ?>
-	<script src="js/controller.js"></script>
+	<script src="js/controller<?php echo $version["controller.js"]; ?>.js"></script>
 	<script>
+
 		// message
 var mssg = {
 	logout: {
@@ -103,21 +118,18 @@ var mssg = {
 	cgu: "<?php echo search("please accept(.+)of us"); ?>"
 
 }
-
-	</script>
 	<?php
 	if(isset($_GET['logout']) && !empty($_GET['logout'])
 		&& isset($_GET['id']) && !empty($_GET['id'])):
 		// permet d'afficher le message de déconnexion, et de le transmettre à Python
 	?>
 
-	<script>
 		var logout = ['<?php echo $_GET['logout']; ?>', '<?php echo $_GET['id']; ?>'];
-	</script>
 
 	<?php
 	endif;
 	?>
+	</script>
 
 
 </head>
