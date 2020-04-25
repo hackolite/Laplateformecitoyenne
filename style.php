@@ -339,32 +339,32 @@ a.btt{
 }
 
 #map .legend {
-	box-sizing: border-box;
-	border-radius: 0 8px 8px 0;
-	background-color: #FFFFFF;
-	position: absolute;
-	bottom: 19px;
-	left: -30px;
-	padding: 20px 8px 20px 65px;
-	min-height: 120px;
-	min-width: 260px;
-	transition: all 200ms ease;
-	cursor: pointer;
-	max-width: 300px;
-	opacity: 0.9;
-	box-shadow: 0px 0px 5px #444444;
+box-sizing: border-box;
+    border-radius: 3px;
+    background-color: #ffffff;
+    position: absolute;
+    bottom: 36px;
+    left: 12px;
+    padding: 13px 10px 15px 62px;
+    min-height: 120px;
+    min-width: 260px;
+    transition: all 600ms ease;
+    cursor: pointer;
+    max-width: 340px;
+    opacity: 0.8;
+    box-shadow: 0px 0px 5px #a2a2a2;
 }
 #map .legend:hover{
-	left: -2px;
 	opacity: 1;
+	box-shadow: 0px 0px 10px #a2a2a2;
+	left: 25px;
 }
 
 #map .legend p{
 	color: #2F2F2F;
-	text-transform: capitalize;
-	font-size: 22px;
-	margin: 0;
-
+    text-transform: capitalize;
+    font-size: 22px;
+    margin: 0 0px 20px -15px;
 }
 
 #map .legend ul{
@@ -372,6 +372,13 @@ a.btt{
 	margin: 0;
 	padding: 0;
 	margin-top: 6px;
+	position: relative;
+	left: -12px;
+	transition: all 800ms ease;
+}
+
+#map .legend:hover ul{
+	left: 18px;
 }
 
 #map .legend .checkbox{
@@ -952,6 +959,7 @@ iframe.center{
     transition: bottom 600ms ease-in-out;
     box-shadow: inset 0 2px 23px #252525;
     overflow-y: auto;
+    z-index: 300;
 }
 #bottom.on{
 	bottom: 0px;
