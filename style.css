@@ -787,7 +787,7 @@ nav.off_info #info{
 	cursor: pointer;
 	transition: all 300ms ease;
 	margin: auto;
-	box-shadow: inset 0px 0px 4px #00000082;
+	/*box-shadow: inset 0px 0px 4px #00000082;*/
 }
 
 .checkbox::before{
