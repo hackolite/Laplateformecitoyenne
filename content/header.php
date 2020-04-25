@@ -3,24 +3,25 @@ $url_param_list = [];
 $url_param = "";
 foreach ($_GET as $name => $value) {
 	if($name != "lang"){
-		array_push($url_param_list, $name . "=" . $value);
+		//array_push($url_param_list, $name . "=" . $value);
+		array_push($url_param_list,$value);
 	}
 }
 
 for($i=0; $i < sizeof($url_param_list); $i++) { 
-	if($i != 0){
+	/*if($i != 0){
 		$url_param = $url_param."&";
 	}else if($i == 0){
 		$url_param = $url_param."?";
-	}
+	}*/
 
-	$url_param = $url_param . $url_param_list[$i];
+	$url_param = /*$url_param*/'/'.$url_param_list[$i];
 }
 
 ?>
 <header>
 	<div id="logo">
-		<a href="/?lang=<?php echo $l['list_lang'][$l['lang']];?>">
+		<a href="/<?php echo $l['list_lang'][$l['lang']];?>">
 			<img src="img/_logo.png" >
 			<div id="title">
 				<div class="first s-container share">
@@ -45,22 +46,23 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 			}
 
 			// lors d'un changement de langue, on garde les autres paramètres GET
-			if(strlen($url_param) > 0){
+			/*if(strlen($url_param) > 0){
 				echo $url_param.'&';
 			}else{
 				echo '?';
-			}
-			
-			?>lang=fr" class="<?php echo $classLang[0]; ?>">FR</a>
+			}*/
+			// avec la réécriture htaccess, on a plus besoin de passer les paramètres GET mais directements dans l'url
+			echo 'fr'.$url_param;
+			?>" class="<?php echo $classLang[0]; ?>">FR</a>
 			<a href="<?php 
 			
-			if(strlen($url_param) > 0){
+			/*if(strlen($url_param) > 0){
 				echo $url_param.'&';
 			}else{
 				echo '?';
-			}
-			
-			?>lang=en" class="<?php echo $classLang[1]; ?>">EN</a>
+			}*/
+			echo 'en'.$url_param;
+			?>" class="<?php echo $classLang[1]; ?>">EN</a>
 		</div>
 	</div>
 	<div id="bouton">
@@ -81,9 +83,9 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 				endif;
 			?>
 			<li class="btt"><a class="btt" href='<?php
-				echo "?page=about&lang=".$l['list_lang'][$l['lang']];?>'><?php echo search("about"); ?></a></li>
+				echo $l['list_lang'][$l['lang']]."/about";?>'><?php echo search("about"); ?></a></li>
 			<li class="btt"><a class="btt" href='<?php
-				echo "?page=team&lang=".$l['list_lang'][$l['lang']];?>'><?php echo search("team"); ?></a></li>
+				echo $l['list_lang'][$l['lang']]."/team";?>'><?php echo search("team"); ?></a></li>
 			<li class="btt"><a class="btt" href=''><?php echo search("files"); ?></a></li>
 		</ul>
 	</div>

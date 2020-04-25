@@ -12,14 +12,25 @@ require('serveur/lang.php');
 
 
 if(!isset($_GET['page'])){ // si page non définie, c l'accueil
-	$_GET['page'] = 'index';
+	$_GET['page'] = 'home';
 }
 
-
 ?>
+<!--
+© 2020 LaPlateformeCitoyenne.com - All rights reserved
+						/!\/!\
+Any reproduction, total or partial, and any representation of the substantial content of this site, 
+of one or more of its components(event without the © mention), by any process whatsoever, without 
+the express authorization of La Plateforme Citoyenne, is prohibited, and constitutes an infringement 
+punishable by Articles L.335-2 et seq. of the Intellectual Property Code.
+
+More informations
+
+-->
 <!DOCTYPE html>
 <html lang="<?php echo $l['get_lang']; ?>">
 <head>
+	<base href="/">
 	<meta charset="utf-8">
 	<meta name="description" content="La plateforme citoyenne est un site internet permettant de visualiser localement les besoins médicaux et les « makers » à partir d' une carte interactive, afin de favoriser les échanges locaux.">
 	<title><?php 
@@ -27,13 +38,13 @@ if(!isset($_GET['page'])){ // si page non définie, c l'accueil
 		echo ucfirst($page_text); 
 
 	?> - La Plateforme Citoyenne</title>
-	<link rel="stylesheet" type="text/css" href="effect.css" importance='high'>
-	<link rel="stylesheet" type="text/css" href="style.css" importance='high'>
+	<link rel="stylesheet" type="text/css" href="/effect.css" importance='high'>
+	<link rel="stylesheet" type="text/css" href="/style.css" importance='high'>
 	
 	<link rel="icon" type="image/png" href="img/minia_logo.png" />
 	<?php 
-	if($_GET['page'] == 'index'): 
-		// si page index, on inclut tous les fichiers à index et à la map
+	if($_GET['page'] == 'home'): 
+		// si page home, on inclut tous les fichiers à index et à la map
 	?>
 	<!-- Bootstrap -->
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">

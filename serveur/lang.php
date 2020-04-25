@@ -38,7 +38,7 @@ if(!isset($_GET['lang'])){
 
 if(!isset($_COOKIE['lang']) || empty($_COOKIE['lang']) || $_COOKIE['lang'] != $l['get_lang']){
 	// si cookie non existant ou langue non identique, on le crée/modifie
-	setcookie('lang', $l["get_lang"], time() + 365*24*3600);
+	setcookie('lang', $l["get_lang"], time() + 365*24*3600, '/'); // cookie accessible partout et toujours au même endroit
 }
 
 

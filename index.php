@@ -20,7 +20,7 @@ if(!isset($_SESSION['session']) || $_SESSION['session'] != 'true'){
 		if(isset($_SESSION['id'])){
 			$id = $_SESSION['id'];
 			session_destroy();
-			header('Location: /?logout=expired$id='.$id);
+			header('Location: /logout/expired/'.$id);
 			exit();
 		}
 		session_destroy();
@@ -32,7 +32,7 @@ if(!isset($_SESSION['session']) || $_SESSION['session'] != 'true'){
 	include('content/account.php');
 }
 
-if($_GET['page'] == 'index'){
+if($_GET['page'] == 'home'){
 	include('content/map.php');
 	$_GET['action'] = 'recevoir';
 	include('content/receive.php');

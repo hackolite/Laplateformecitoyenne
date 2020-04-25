@@ -169,6 +169,12 @@ f.page.load.mdp = (e)=>{
 	}
 };
 
+f.page.load.bottom = (e)=>{
+	// permet d'afficher le bottom de la page
+	
+	f.switcher(f.query('#bottom'), 'on', 'off');
+}
+
 f.page.load.action = function(e, action){
 
 	// affichage de la popup de droite
@@ -416,8 +422,9 @@ f.page.form.signin = function(rep){
 					// on supprime les paramatre GET lié à une déconnexion
 					// vu que l'on va se connecter et pas se déco sur phyton
 					let url = document.location.href;
-					url = url.replace(/(&|\?)?logout=?(.+)?&?/, '');
-					url = url.replace(/(&|\?)?id=?(.+)?&?/, '');
+					/*url = url.replace(/(&|\?)?logout=?(.+)?&?/, '');
+					url = url.replace(/(&|\?)?id=?(.+)?&?/, '');*/
+					url = url.replace(/disconnect\/(.+)\/(.+)/, '');
 					document.location.href = url;
 				}else{
 					f.box(mssg.account.error + ": " + s);
