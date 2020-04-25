@@ -37,13 +37,21 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 		<div id="lang">
 			<a href="<?php 
 
+			// on met en surbrillance la langue sélectionnée
+			if($l['get_lang'] == 'en'){
+				$classLang = ["", "on"];
+			}else{
+				$classLang = ["on", ""];
+			}
+
+			// lors d'un changement de langue, on garde les autres paramètres GET
 			if(strlen($url_param) > 0){
 				echo $url_param.'&';
 			}else{
 				echo '?';
 			}
 			
-			?>lang=fr">FR</a>
+			?>lang=fr" class="<?php echo $classLang[0]; ?>">FR</a>
 			<a href="<?php 
 			
 			if(strlen($url_param) > 0){
@@ -52,7 +60,7 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 				echo '?';
 			}
 			
-			?>lang=en">EN</a>
+			?>lang=en" class="<?php echo $classLang[1]; ?>">EN</a>
 		</div>
 	</div>
 	<div id="bouton">

@@ -166,11 +166,16 @@ header {
 
 #lang a{
 	color: #575757;
+	background-color: transparent;
 	text-decoration: none;
-	border: 1px solid #cccccc;
 	padding: 2px 6px;
 	font-size: 10px;;
 }
+#lang a.on{
+	background-color: #323232;
+    color: white;
+}
+
 
 #bouton{
     position: absolute;
