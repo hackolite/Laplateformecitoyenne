@@ -37,7 +37,7 @@ if($_GET['action'] == 'signup'){
 			<input type="text" name="postal" require placeholder="<?php echo search('code postal');?>">
 			<label class='mdp'>
 			<input type="password" name="mdp" require placeholder="<?php echo search('password'); ?>">
-			<span class='mdp'>Afficher</span>
+			<span class='mdp'><?php echo ucfirst(search('afficher')); ?></span>
 			</label>
 
 			<label class='checkbox off'>
