@@ -439,7 +439,14 @@ f.page.form.signin = function(rep){
 };
 
 f.page.form.signup = function(rep){
-	f.box(mssg.indisponible);
+	f.trycatch(()=>{
+		if(rep.statuscode == "200"){
+
+			f.box("BIENVENUE NOUVEAU MEMBRE 😎 !<br ><br >WELCOME NEW MEMBERS 😁 !", "blue");
+		}else{
+			f.box(mssg.account.error + ":" + rep);
+		}
+	});
 };
 
 f.page.form.carte = function(e, url, form){
