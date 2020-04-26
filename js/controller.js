@@ -422,9 +422,9 @@ f.page.form.signin = function(rep){
 					// on supprime les paramatre GET lié à une déconnexion
 					// vu que l'on va se connecter et pas se déco sur phyton
 					let url = document.location.href;
-					/*url = url.replace(/(&|\?)?logout=?(.+)?&?/, '');
-					url = url.replace(/(&|\?)?id=?(.+)?&?/, '');*/
-					url = url.replace(/disconnect\/(.+)\/(.+)/, '');
+					url = url.replace(/(&|\?)?logout=?(.+)?&?/, '');
+					url = url.replace(/(&|\?)?id=?(.+)?&?/, '');
+					//url = url.replace(/disconnect\/(.+)\/(.+)/, '');
 					document.location.href = url;
 				}else{
 					f.box(mssg.account.error + ": " + s);
@@ -439,7 +439,14 @@ f.page.form.signin = function(rep){
 };
 
 f.page.form.signup = function(rep){
-	f.box(mssg.indisponible);
+	f.trycatch(()=>{
+		if(rep.statuscode == "200"){
+
+			f.box("BIENVENUE NOUVEAU MEMBRE 😎 !<br ><br >WELCOME NEW MEMBERS 😁 !", "blue");
+		}else{
+			f.box(mssg.account.error + ":" + rep);
+		}
+	});
 };
 
 f.page.form.carte = function(e, url, form){

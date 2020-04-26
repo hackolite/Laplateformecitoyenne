@@ -971,7 +971,7 @@ iframe.center{
 
 #bottom * {
     color: #b1b1b1;
-    font-family: monospace;
+    font-family: 'Consolas',monospace;
     font-size: 14px;
     font-weight: bold;
 }

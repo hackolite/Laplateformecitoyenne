@@ -45,7 +45,13 @@ if($_GET['page'] == 'home'){
 }else if($_GET['page'] == 'team'){
 	include('content/team.php');
 }
-
+else{
+?>
+<script>
+	document.location.href="/error.php?v=404";
+</script>
+<?php
+}
 
 include('content/_bottom.php');
 

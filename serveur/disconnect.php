@@ -7,7 +7,7 @@ try {
 
 	session_destroy();
 	//header('Location: /?logout=auto&id='.$id);
-	header('Location: /disconnect/auto/'.$id);
+	header('Location: /?logout=auto&id='.$id);
 	exit();
 
 } catch (Exception $e) {
