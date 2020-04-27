@@ -157,6 +157,10 @@ f.clickEvent = function(e, v = null){
 f.page = {};
 f.page.load = {};
 
+f.page.load.menu = (e)=>{
+	// affichage menu en mode mobile
+	f.switcher(e.target.parentNode, "on", "off");
+};
 
 f.page.load.mdp = (e)=>{
 	// affiche ou cache le champ mot de passe
@@ -576,6 +580,14 @@ document.addEventListener('click', function(e){
 		f.clickEvent(e, attr);
 
 	}
+	if(e.target.id != "menu"){
+		console.log(e.target.id);
+		if(/on/.test(f.query("#bouton").className)){
+			f.switcher(f.query("#bouton"), "on", "off");
+		}
+		
+	}
+	
 
 });
 

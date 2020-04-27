@@ -170,18 +170,21 @@ header {
     margin-bottom: 0px;
 }
 
-#lang a{
+#lang a, #lang_menu a{
 	color: #575757;
 	background-color: transparent;
 	text-decoration: none;
 	padding: 2px 6px;
-	font-size: 10px;;
+	font-size: 10px;
 }
-#lang a.on, #lang a:hover{
+#lang a.on, #lang_menu a.on, #lang a:hover{
 	background-color: #323232;
     color: white;
 }
 
+#lang_menu{
+	display: none;
+}
 
 #bouton{
     position: absolute;
@@ -893,6 +896,7 @@ nav.off_info #info{
 	background: #fff;
 	box-shadow: 0px 0px 5px #424242;
 	padding: 30px 80px;
+    box-sizing: border-box;
 }
 #page div.paragraphe, #page > .center{
 	width: 80%;

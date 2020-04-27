@@ -24,7 +24,7 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 		<a href="/?lang=<?php echo $l['list_lang'][$l['lang']];?>">
 			<img src="img/_logo<?php echo $version["logo.png"]; ?>.png" >
 			<div id="title">
-				<div class="first s-container share">
+				<!--<div class="first s-container share">
 					<h1><span>l</span><span>a</span><span></span> <span>p</span></h1>
 				</div>
 				<div class="second s-container share">
@@ -32,7 +32,8 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 				</div>
 				<div class=" third s-container share">
 					<h1><span></span> <span>c</span><span>i</span><span>t</span><span>o</span><span>y</span><span>e</span><span>n</span><span>n</span><span>e</span></h1>
-				</div>
+				</div>-->
+				La Plateforme Citoyenne
 			</div>
 		</a>
 		<div id="lang">
@@ -66,6 +67,23 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 		</div>
 	</div>
 	<div id="bouton">
+		<div class="btt" data-click="menu" id="menu"></div>
+
+			<div id="lang_menu">
+				<a href="<?php 
+
+				// on met en surbrillance la langue sélectionnée
+				if($l['get_lang'] == 'en'){
+					$classLang = ["", "on"];
+				}else{
+					$classLang = ["on", ""];
+				}
+
+				echo $url_param;
+				?>&lang=fr" class="<?php echo $classLang[0]; ?>">FR</a>
+				<a href="<?php echo $url_param;?>&lang=en" class="<?php echo $classLang[1]; ?>">EN</a>
+		</div>
+
 		<ul>
 			<?php
 

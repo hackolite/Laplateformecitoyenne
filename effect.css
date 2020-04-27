@@ -4,6 +4,11 @@
 	top: 23px;
 	left: 86px;
 	color: #272727;
+	font-family: 'Avenir Condensed'!important;
+	font-size: 25px;
+	font-weight: normal;
+	text-transform: uppercase;
+	margin: 0;
 }
 
 .s-container {
@@ -25,7 +30,6 @@
 	display: inline-block;
 	position: relative;
 	margin-right: 0px;
-	font-family: 'Avenir Condensed'!important;
 }
 
 .s-container span:after {
@@ -41,7 +45,7 @@
 	background: #5a95ed00;
 }
 
-
+/*
 #logo.on #title span:after,
 #logo:hover #title span:after{
 	background: hsl(0, 80%, 64%);
@@ -142,3 +146,4 @@
 #logo #title span:nth-child(10) {
 	transition-delay: 1100ms;
 }
+*/

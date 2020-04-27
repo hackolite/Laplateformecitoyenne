@@ -11,9 +11,8 @@
 	</ul>
 	<ul>
 		<h3><?php echo search("partner"); ?></h3>
-		<li>Biocop</li>
-		<li>Naturalia</li>
-		<li>Lidl</li>
+		<li><a href='https://www.adresse93075.com/' target="_blank">adresse93075</a></li>
+		<li><a href='https://360medics.com/' target="_blank">360 medics</a></li>
 	</ul>
 	<ul>
 		<h3>Contact</h3>

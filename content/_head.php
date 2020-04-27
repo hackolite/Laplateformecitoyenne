@@ -54,7 +54,7 @@ More informations on the website.
 	?> - La Plateforme Citoyenne</title>
 	<link rel="stylesheet" type="text/css" href="/effect<?php echo $version["effect.css"]; ?>.css" importance='high'>
 	<link rel="stylesheet" type="text/css" href="/style<?php echo $version["style.css"]; ?>.php" importance='high'>
-	
+	<link rel="stylesheet" type="text/css" href="mobile<?php echo $version["style.css"]; ?>.php" media="(orientation: portrait) and (max-width: 1060px)">
 	<link rel="icon" type="image/png" href="img/minia_logo<?php echo $version["logo.png"]; ?>.png" />
 	<?php 
 	if($_GET['page'] == 'home'): 
