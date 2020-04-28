@@ -120,6 +120,7 @@ header{
 	top: 0;
 	font-size: 50px;
 	height: 100px;
+	overflow: visible;
 }
 #search input{
 	margin-left: 0;
@@ -130,7 +131,12 @@ header{
 	bottom: 38px;
 	font-size: 35px;
 	font-weight: normal;
+	font-family: 'Avenir';
+	line-height: 0;
+	height: 99%;
 }
+
+
 #search input[name='pays']{
 	margin-left: 0;
 }
@@ -239,7 +245,7 @@ nav.off_info #info{
 
 #btt_bottom{
 	font-size: 39px;
-	width: 508px;
+	width: 510px;
 	text-align: center;
 }
 
@@ -434,4 +440,17 @@ iframe.center{
     width: 525px;
     margin: auto;
     display: block;
+}
+
+
+
+#search .option{
+    left: 74px;
+    top: 85px;
+    width: 374px;
+    max-height: 600px;
+}
+#search .option div{
+	font-size: 40px;
+	text-align: center;
 }

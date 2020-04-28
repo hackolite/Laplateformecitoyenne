@@ -1003,3 +1003,57 @@ iframe.center{
     font-size: 18px;
     color: #ededed;
 }
+
+
+
+@media (orientation: landscape) and and (max-width: 1060px){
+	/*
+		lorsque l'écran est en mode paysage
+	*/
+	#bouton li{
+	    font-size: 14.5px;
+	    margin: 0px 4px;
+	    height: 40px;
+	    line-height: 40px;
+		margin-top: 4px;
+	}
+
+	#map nav{
+		top: 80px;
+	}
+}
+
+
+
+/*
+ FORMULAIRE MAP RECHERCHE
+*/
+
+
+#search .option{
+	position: absolute;
+    left: 45px;
+    top: 42px;
+    background: white;
+    width: 196px;
+    box-sizing: border-box;
+    z-index: 50;
+    border: 1px solid #d0d0d0;
+    font-weight: 300;
+    max-height: 252px;
+    overflow: auto;
+    opacity: 0;
+}
+
+#search input[name="pays"]:focus + .option{
+	opacity: 1;
+}
+
+#search .option div {
+    background: #fff;
+    padding: 8px 28px;
+    border-bottom: 1px solid #8b8b8b;
+}
+#search .option div:hover{
+	background: #e1e1e1;
+}

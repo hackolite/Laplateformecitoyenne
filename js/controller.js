@@ -7,10 +7,15 @@ var o = {};
 */
 
 f.query = function(elmt, all=false){
-	if(all == true){
-		return document.querySelectorAll(elmt);
+	try{
+		if(all == true){
+			return document.querySelectorAll(elmt);
+		}
+		return document.querySelector(elmt);
+	}catch(err){
+		console.error(err);
 	}
-	return document.querySelector(elmt);
+
 };
 
 f.AJAX = function (e){

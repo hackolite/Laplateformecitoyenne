@@ -1,8 +1,15 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-	initMap();
+
+	initSearch();
+	try{
+		initMap();
+	}catch(err){
+		console.error(err);
+	}
+	
 });
 
-var initMap = ()=>{
+const initMap = ()=>{
 
 var markerList=[];
 
@@ -140,3 +147,52 @@ getMarkers(["medical","maker"]);
 
 
 };
+
+const initSearch = ()=>{
+	/*
+		BAR DE RECHERCHE
+	*/
+	console.log("hello");
+	var pays = f.query("#search [name='pays']");
+	var old_value = "";
+
+	var elmt = f.query("#search .option.pays");
+
+	elmt.onblur =  (e)=>{
+		console.log("elle");
+		elmt.innerHTML = "";
+	};
+
+	pays.addEventListener("keyup", (e)=>{
+
+		
+
+		if(e.target.value != old_value && e.target.value != "" && /([a-z]+)/i.test(e.target.value)){
+
+			f.AJAX({
+				location: "/voc/pays.php",
+				type: "GET",
+				settings: "v=" + encodeURIComponent(pays.value.replace("é", "e")) + "&lang=" + lang,
+				ready: (rep)=>{
+					rep = rep.split(",");
+					elmt.innerHTML = "";
+					for (var i = 0; i < rep.length-1; i++) { // -1 car le dernier est vide du à la virgule
+						elmt.innerHTML += "<div>" + rep[i] + "</div>";
+					}
+					
+				},
+				error: (err)=>{
+					console.erro(err);
+				}
+			});
+
+			old_value = e.target.value;
+
+		}else if(e.target.value == ""){
+			elmt.innerHTML = "";
+		}
+
+
+	});
+
+}

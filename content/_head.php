@@ -97,7 +97,7 @@ More informations on the website.
 	<script>
 
 		// message
-var mssg = {
+const mssg = {
 	logout: {
 		auto:"<?php echo search("Vous(.+)succés.");?>", 
 		expired:"<?php echo search("Votre session(.+)reconnecter."); ?>"
@@ -117,7 +117,9 @@ var mssg = {
 	},
 	cgu: "<?php echo search("please accept(.+)of us"); ?>"
 
-}
+};
+
+const lang = <?php echo $l['lang']; ?>;
 	<?php
 	if(isset($_GET['logout']) && !empty($_GET['logout'])
 		&& isset($_GET['id']) && !empty($_GET['id'])):
