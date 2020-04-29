@@ -33,12 +33,19 @@ if(!isset($_SESSION['session']) || $_SESSION['session'] != 'true'){
 }
 
 if($_GET['page'] == 'home'){
-	include('content/map.php');
-	$_GET['action'] = 'recevoir';
-	include('content/receive.php');
+	if(isset($_SESSION["session"]) && $_SESSION["session"] == "true"){
+		// on affiche la carte si session
+		include('content/map.php');
+		$_GET['action'] = 'recevoir';
+		include('content/receive.php');
 
-	$_GET['action'] = 'donner';
-	include('content/receive.php');
+		$_GET['action'] = 'donner';
+		include('content/receive.php');
+	}else{
+		// sinon page d'accueil normal
+		include('content/home.php');
+	}
+
 
 }else if($_GET['page'] == 'about'){
 	include('content/about.php');

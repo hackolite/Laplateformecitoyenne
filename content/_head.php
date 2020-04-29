@@ -57,7 +57,7 @@ More informations on the website.
 	<link rel="stylesheet" type="text/css" href="mobile<?php echo $version["style.css"]; ?>.php" media="(orientation: portrait) and (max-width: 1060px)">
 	<link rel="icon" type="image/png" href="img/minia_logo<?php echo $version["logo.png"]; ?>.png" />
 	<?php 
-	if($_GET['page'] == 'home'): 
+	if($_GET['page'] == 'home' && isset($_SESSION["session"]) && $_SESSION["session"] == "true"): 
 		// si page home, on inclut tous les fichiers à index et à la map
 	?>
 	<!-- Bootstrap -->
@@ -79,6 +79,8 @@ More informations on the website.
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<!-- AwesomeMarkers -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+
+	<script src="js/map<?php echo $version["map.js"]; ?>.js"></script>
 
 	<?php
 	else:

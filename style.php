@@ -168,6 +168,7 @@ header {
     left: 356px;
     top: 23px;
     margin-bottom: 0px;
+    z-index: 12;
 }
 
 #lang a, #lang_menu a{
