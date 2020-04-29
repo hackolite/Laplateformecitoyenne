@@ -320,13 +320,13 @@ f.page.load.submit = function(e){
 			// si formulaire de log
 			let url = "";
 			if(form == "signup"){
-				url="/login";
-			}
-			else if(form == "signin"){
-				url="/register";
-			}else{
-				return;
-			}
+                    url="https://laplateformecitoyenne.com:5000/signup";
+            }
+            else if(form == "signin"){
+                    url="https://laplateformecitoyenne.com:5000/signin";
+            }else{
+                    return;
+            }
 
 			f.page.form.log(e, url, form);
 		}

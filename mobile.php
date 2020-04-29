@@ -325,7 +325,7 @@ nav.off_info #info{
     margin-bottom: 42px;
 }
 
-.mdp{
+span.mdp{
 	display: none;
 }
 

@@ -1006,7 +1006,7 @@ iframe.center{
 
 
 
-@media (orientation: landscape) and and (max-width: 1060px){
+@media (orientation: landscape) and (max-width: 1060px){
 	/*
 		lorsque l'écran est en mode paysage
 	*/
