@@ -243,9 +243,14 @@ f.page.load.action = function(e, action){
 
 	}
 
-	// afficher/cacher le bottom de la carte contenant les boutons
-	bottom.classList.add(p[1]);
-	bottom.classList.remove(p[0]);
+	try{
+		// afficher/cacher le bottom de la carte contenant les boutons
+		bottom.classList.add(p[1]);
+		bottom.classList.remove(p[0]);
+	}catch(err){
+		console.log(err);
+	}
+
 	// mise en surbrillance ou non du boutons sur l'en-tete
 	if(btt != null){
 		btt.classList.add(p[2]);
