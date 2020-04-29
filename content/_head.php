@@ -46,7 +46,7 @@ More informations on the website.
 <head>
 	<base href="/">
 	<meta charset="utf-8">
-	<meta name="description" content="La plateforme citoyenne est un site internet permettant de visualiser localement les besoins médicaux et les « makers » à partir d' une carte interactive, afin de favoriser les échanges locaux.">
+	<meta name="description" content='<?php echo search("La plateforme citoyenne(.+)les échanges locaux."); ?>'>
 	<title><?php 
 		$page_text = str_replace("à", "a", search($_GET['page']));
 		echo ucfirst($page_text); 
