@@ -30,6 +30,7 @@
 			left: 50%;
 			transform: translate(-50%) rotate(0deg);
 			transition: all 2s ease;
+			cursor: pointer;
 		}
 		#anim img{
 			width: 100%;
@@ -82,7 +83,7 @@
 
 	<div class="container">
 		<h2><span class="green" data-click="signin"><?php echo ucfirst(search("connectons-nous")); ?></span></h2>
-		<div id="anim">
+		<div id="anim" data-click="signin">
 			<img src="img/logo/anim1.png" >
 		</div>
 		<img src="img/home.png" >

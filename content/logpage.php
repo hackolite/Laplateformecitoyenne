@@ -53,7 +53,11 @@ if($_GET['action'] == 'signup'){
 
 			<input type="email" name="email" require placeholder="<?php echo search('email'); ?>">
 			<input type="password" name="mdp" require placeholder='<?php echo search("password");?>'>
-
+			<div style="margin: auto;text-align: center;">
+				<a href="#" data-click="signup" onclick="return false;"><?php echo search("Pas de compte"); ?> ?</a>
+				&nbsp&nbsp
+				<a href="#" data-click="signup" onclick="return false;"><?php echo search("forgot(.+)password"); ?> ?</a>
+			</div>
 			<?php
 			endif;
 			?>
