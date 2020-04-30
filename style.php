@@ -697,7 +697,7 @@ nav.off_info #info{
 .formulaire .btt_submit{ 
 	height: 56px;
 	font-size: 20px;
-	line-height: 52px; 
+	line-height: 55px; 
 	width: 200px; 
 	position: absolute; 
 	bottom: 6px;
