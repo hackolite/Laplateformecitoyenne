@@ -16,7 +16,7 @@
 }
 #info h2{
 	cursor: pointer;
-	margin: 0;
+	margin: auto;
 	padding: 10px 40px;
 	width: 756px;
 	height: 60px;
@@ -80,7 +80,7 @@
 }
 
 #anim + img{
-	margin-top: 190px;
+	margin-top: 200px;
 }
 
 @media (orientation: portrait) and (max-width: 1060px){
@@ -92,6 +92,10 @@
 	}
 	#info img{
 		width: 100%;
+	}
+	#info h2{
+		position: relative;
+		bottom: 45px;
 	}
 }
 </style>
