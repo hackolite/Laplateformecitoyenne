@@ -58,9 +58,16 @@
 			75%{transform: rotate(10deg);}
 			to{transform: rotate(0deg);}
 		}
+		@keyframes levelup{
+			from{margin-top: 190px;}
+			30%{margin-top: 200px;}
+			70%{margin-top: 190px;}
+			to{margin-top: 190px;}
+		}
 
 		#anim + img{
 			margin-top: 190px;
+			animation: 3s infinite levelup;
 		}
 
 		@media (orientation: portrait) and (max-width: 1060px){
