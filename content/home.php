@@ -31,7 +31,7 @@
 	animation: 3s infinite btt_h2;
 	font-size: 0.9em;
 }
-#info h2:hover span{
+#info h2 span:hover{
 	background: #00d08f;
 	font-size: 0.7em;
 	padding: 10px 40px;
@@ -96,6 +96,7 @@
 	#info h2{
 		position: relative;
 		bottom: 45px;
+		height: 155px;
 	}
 }
 </style>

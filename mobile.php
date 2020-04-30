@@ -7,7 +7,7 @@
 @charset 'utf-8';
 
 *{
-	transition: all 300ms ease;
+	transition: all 220ms ease;
 }
 
 #_box{
@@ -45,7 +45,7 @@ header{
 	right: -110%;
 	top: 148px;
 	box-sizing: border-box;
-	transition: right 800ms ease;
+	transition: right 500ms ease;
 }
 #bouton.on{
 	right: 0;
