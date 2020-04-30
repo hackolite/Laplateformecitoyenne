@@ -56,7 +56,7 @@ if($_GET['action'] == 'signup'){
 			<div style="margin: auto;text-align: center;">
 				<a href="#" data-click="signup" onclick="return false;"><?php echo search("Pas de compte"); ?> ?</a>
 				&nbsp&nbsp
-				<a href="#" data-click="signup" onclick="return false;"><?php echo search("forgot(.+)password"); ?> ?</a>
+				<a href="#" data-click="recovermdp" onclick="return false;"><?php echo search("forgot(.+)password"); ?> ?</a>
 			</div>
 			<?php
 			endif;
