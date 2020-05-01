@@ -1,29 +1,32 @@
 <?php
 	header('content-type: text/css');
-	require "serveur/versioning.php";
+	require "../serveur/versioning.php";
 	// nous utilisons php pour appliquer le versioning des images
 ?>
 
 @charset 'utf-8';
-
+/*
+	RISQUE DE RALENTIR CONSIDERABLEMENT LE CHARGEMENT DU SITE 
+	POUR LES NOUVEAUX UTILISATEURS (OU CACHE SUPPRIMEE)
+*/
 @font-face{
 	font-family: 'Avenir';
-	src: url("font/avenir_next_regular<?php echo $version["font_family"];?>.ttf");
+	src: url("/font/avenir_next_regular<?php echo $version["font_family"];?>.ttf");
 	font-weight: 300;
 }
 @font-face{
 	font-family: 'Avenir';
-	src: url("font/avenir_next_demi<?php echo $version["font_family"];?>.ttf");
+	src: url("/font/avenir_next_demi<?php echo $version["font_family"];?>.ttf");
 	font-weight: normal;
 }
 @font-face{
 	font-family: 'Avenir';
-	src: url("font/avenir_next_bold<?php echo $version["font_family"];?>.ttf");
+	src: url("/font/avenir_next_bold<?php echo $version["font_family"];?>.ttf");
 	font-weight: bold;
 }
 @font-face{
 	font-family: 'Avenir Condensed';
-	src: url("font/avenir_next__condensed_demi<?php echo $version["font_family"];?>.ttf");
+	src: url("/font/avenir_next__condensed_demi<?php echo $version["font_family"];?>.ttf");
 	font-weight: normal;
 }
 
@@ -43,12 +46,6 @@ body{
 .white_space{
 	margin: 0;
 	height: 70px;
-}
-
-
-p{
-	margin-top: 10px!important;
-	line-height: normal!important;
 }
 
 a{
@@ -500,10 +497,10 @@ nav.on_info .img_info, .img_info:hover{
 	font-weight: 300;
 	padding: 6px 22px;
 	box-sizing: border-box;
-	position: absolute;
-	top: 52px;
+	position: relative;
+	top: 20px;
 	border-radius: 0 7px 7px 0px;
-	box-shadow: 0px 0px 6px #656565;
+	box-shadow: 0px 0px 6px #b0b0b0;
 	border-left: 0px solid #005dee;
 	border-right: 0px solid #005dee;
 	transition: all 600ms ease;

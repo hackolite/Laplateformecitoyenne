@@ -52,9 +52,9 @@ More informations on the website.
 		echo ucfirst($page_text); 
 
 	?> - La Plateforme Citoyenne</title>
-	<link rel="stylesheet" type="text/css" href="/effect<?php echo $version["effect.css"]; ?>.css" importance='high'>
-	<link rel="stylesheet" type="text/css" href="/style<?php echo $version["style.css"]; ?>.php" importance='high'>
-	<link rel="stylesheet" type="text/css" href="mobile<?php echo $version["style.css"]; ?>.php" media="(orientation: portrait) and (max-width: 1060px)">
+	<link rel="stylesheet" type="text/css" href="/style/effect<?php echo $version["effect.css"]; ?>.css" importance='high'>
+	<link rel="stylesheet" type="text/css" href="/style/style<?php echo $version["style.css"]; ?>.php" importance='high'>
+	<link rel="stylesheet" type="text/css" href="/style/mobile<?php echo $version["style.css"]; ?>.php" media="(orientation: portrait) and (max-width: 1060px)">
 	<link rel="icon" type="image/png" href="img/minia_logo<?php echo $version["logo.png"]; ?>.png" />
 	<?php 
 	if($_GET['page'] == 'home' && isset($_SESSION["session"]) && $_SESSION["session"] == "true"): 
@@ -85,6 +85,11 @@ More informations on the website.
 		#lang{
 			top: 26px;
 		}
+		p{
+			margin-top: 10px!important;
+			line-height: normal!important;
+		}
+
 	</style>
 	<?php
 	else:

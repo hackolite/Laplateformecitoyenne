@@ -10,9 +10,9 @@
 		<li><a href="#"><?php echo search("Confidentialité"); ?></a></li>
 	</ul>
 	<ul>
-		<h3><?php echo search("partner"); ?></h3>
-		<li><a href='https://www.adresse93075.com/' target="_blank">adresse93075</a></li>
-		<li><a href='https://360medics.com/' target="_blank">360 medics</a></li>
+		<h3><?php echo search("our partners"); ?></h3>
+		<li><a href='/link/?link=adresse93075' target="_blank">adresse93075</a></li>
+		<li><a href='/link/?link=360medics' target="_blank">360 medics</a></li>
 	</ul>
 	<ul>
 		<h3>Contact</h3>
@@ -21,8 +21,8 @@
 	</ul>
 	<ul>
 		<h3><?php echo search("Social media"); ?></h3>
-		<li><a href="https://www.facebook.com/laplateformecitoyenne">Facebook</a></li>
-		<li><a href="https://www.linkedin.com/events/laplateformesolidaireenfinalehackthecrisisfrance-j">LinkedIn</a></li>
+		<li><a href="/link/?link=fb" target="_blank">Facebook</a></li>
+		<li><a href="/link/?link=lk" target="_blank">LinkedIn</a></li>
 	</ul>
 	<ul>
 		<h3>Citoyen</h3>

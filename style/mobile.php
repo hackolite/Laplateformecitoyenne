@@ -1,6 +1,6 @@
 <?php
 	header('content-type: text/css');
-	require "serveur/versioning.php";
+	require "../serveur/versioning.php";
 	// nous utilisons php pour appliquer le versioning des images
 ?>
 

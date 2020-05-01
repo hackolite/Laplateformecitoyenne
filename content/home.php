@@ -1,105 +1,5 @@
 <div id="info">
-<style>
-#info{
-    left: 50%;
-    transform: translate(-50%);
-    top: 112px;
-    font-size: 18px;
-    width: 80%;
-    max-width: 800px;
-    min-width: 300px;
-    border-radius: 7px;
-    text-align: center;
-}
-#info img{
-	width: 80%;
-}
-#info h2{
-	cursor: pointer;
-	margin: auto;
-	padding: 10px 40px;
-	width: 756px;
-	height: 60px;
-	box-sizing: border-box;
-}
-#info h2 span{
-	color: #fff;
-	transition: all 300ms ease;
-	background: transparent;
-	padding: 10px 20px;
-	border-radius: 3px;
-	animation: 3s infinite btt_h2;
-	font-size: 0.9em;
-}
-#info h2 span:hover{
-	background: #00d08f;
-	font-size: 0.7em;
-	padding: 10px 40px;
-}
-
-@keyframes btt_h2{
-	from{background: #00d08f;}
-	50%{background: #005dee;}
-	to{background: #00d08f;}
-}
-
-#anim{
-	width: 30%;
-	min-width: 240px;
-	position: absolute;
-	left: 50%;
-	transform: translate(-50%) rotate(0deg);
-	transition: all 2s ease;
-	cursor: pointer;
-}
-#anim img{
-	width: 100%;
-	transition: all 10s ease;
-	animation: 5s infinite reverse anim;
-}
-#anim::before{
-	content: '';
-	background-image: url("img/logo/anim2.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	z-index: 10;
-	animation: 5s infinite anim;
-}
-
-
-@keyframes anim{
-	from{transform: rotate(0deg);}
-	25%{transform: rotate(10deg);}
-	50%{transform: rotate(-10deg);}
-	75%{transform: rotate(10deg);}
-	to{transform: rotate(0deg);}
-}
-
-#anim + img{
-	margin-top: 200px;
-}
-
-@media (orientation: portrait) and (max-width: 1060px){
-	#info{
-		width: 100%;
-		max-width: unset;
-		font-size: 50px;
-		top: 290px;
-	}
-	#info img{
-		width: 100%;
-	}
-	#info h2{
-		position: relative;
-		bottom: 45px;
-		height: 155px;
-	}
-}
-</style>
+<link rel="stylesheet" type="text/css" href="/style/home.css">
 	<p>
 	<?php
 		echo search("LPC(.+).</span>", null, false);
@@ -116,44 +16,58 @@
 
 </div>
 
+<div class="banniere">
+	<ul class="social_btt">
+		<?php
+			$pre = "/img/social_logo/";
+			$social_list = ["Facebook", "LinkedIn", "Instagram", "Twitter", "Share"];
+			$social_link =[
+				"/link/?link=fb", "/link/?link=lk", "", "", "/"
+			];
+			for($i = 0; $i < sizeof($social_list); $i++):
+		?>
+		<li>
+			<a href="<?php echo $social_link[$i];?>" target="_blank">
+				<img <?php echo 'src="'.$pre.$social_list[$i].'" alt="'.$social_list[$i].'"';?> >
+			</a>
+		</li>
+		<?php
+			endfor;
+		?>
+	</ul>
 
-<!--
+	<div class="white_space"></div>
+</div>
 
-		from{
-		color: #00d08f;
-		background: transparent;
-		font-size: 1em;
-		padding: 10px 20px;
-	}
-	10%{
-		color: #fff;
-		background: #00d08f;
-		font-size: 0.8em;
-		padding: 10px 40px;
-	}
-	40%{
-		color: #fff;
-		background: #00d08f;
-		font-size: 0.8em;
-		padding: 10px 40px;
-	}
-	50%{
-		color: #fff;
-		background: #005dee;
-		font-size: 0.8em;
-		padding: 10px 40px;
-	}
-	90%{
-		color: #fff;
-		background: #005dee;
-		font-size: 0.8em;
-		padding: 10px 40px;
-	}
-	to{
-		color: #00d08f;
-		background: transparent;
-		font-size: 1em;
-		padding: 10px 20px;
-	}
+<div class="banniere box_center">
+	<h3>La Plateforme Citoyenne <?php echo search("en chiffres");?>:</h3>
+	<section class="box">
+		<h3><?php echo search("members"); ?></h3>
+		<p>6 4782</p>
+		<p>6 4782</p>
+	</section>
+	<section class="box">
+		<h3><?php echo search("donations"); ?></h3>
+		<p>500K</p>
+		<p>500K</p>
+	</section>
 
-	-->
+	
+</div>
+
+<div class="banniere box_center">
+	<h3><?php echo search("our partners"); ?>:</h3>
+	<section class="box">
+		<h3>ADRESSE 93075</h3>
+		<a href="/link/?link=adresse93075" target="_blank">
+			<img src="/img/logo/adresse93075.png" width="80px">
+		</a>
+	</section>
+	<section class="box">
+		<h3>360 medics</h3>
+		<a href="/link/?link=360medics" target="_blank">
+			<img src="/img/logo/360medics.png" width="170px">
+		</a>
+	</section>
+	<div class="white_space"></div>
+</div>
