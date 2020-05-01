@@ -34,7 +34,6 @@
 }
 
 
-
 header{
 	height: 150px;
 }
@@ -321,7 +320,7 @@ nav.off_info #info{
 	font-size: 60px;
 }
 
-.formulaire span, .formulaire p {
+.formulaire span, .formulaire p, .formulaire a {
     font-size: 50px!important;
     text-align: center;
 }
