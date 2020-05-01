@@ -301,7 +301,7 @@ a.btt{
     width: 100%;
     height: auto;
     min-height: 200px;
-    /*background: url('img/carte_test.jpg');*/
+    /*background: url('/img/carte_test.jpg');*/
     overflow: auto;
 }
 
@@ -408,10 +408,10 @@ box-sizing: border-box;
 
 
 #map .legend li .green{
-	background-image: url('img/puce_vert<?php echo $version["image_css"];?>.png');
+	background-image: url('/img/puce_vert<?php echo $version["image_css"];?>.png');
 }
 #map .legend li .blue{
-	background-image: url('img/puce_bleu<?php echo $version["image_css"];?>.png');
+	background-image: url('/img/puce_bleu<?php echo $version["image_css"];?>.png');
 }
 
 #map .legend .text{
@@ -464,7 +464,7 @@ box-sizing: border-box;
 	background-repeat: no-repeat;
 }
 #search .img_search{
-	background-image: url('img/search<?php echo $version["image_css"];?>.png');
+	background-image: url('/img/search<?php echo $version["image_css"];?>.png');
 	float: right;
 	right: 12px;
 	top: 5px;
@@ -475,7 +475,7 @@ box-sizing: border-box;
 	float: left;
 	top: 5px;
 	left: 0px;
-	background-image: url('img/info_blue<?php echo $version["image_css"];?>.png');
+	background-image: url('/img/info_blue<?php echo $version["image_css"];?>.png');
 	width: 24px;
 	height: 24px;
 	margin-left: 10px;
@@ -578,16 +578,16 @@ nav.off_info #info{
 }
 
 .formulaire .title .img.donner{
-	background-image: url('img/materiel/donner<?php echo $version["image_css"];?>.png');
+	background-image: url('/img/materiel/donner<?php echo $version["image_css"];?>.png');
 }
 .formulaire .title .img.recevoir{
-	background-image: url('img/materiel/recevoir<?php echo $version["image_css"];?>.png');
+	background-image: url('/img/materiel/recevoir<?php echo $version["image_css"];?>.png');
 }
 .formulaire .title .img.signin{
-	background-image: url('img/connexion<?php echo $version["image_css"];?>.png');
+	background-image: url('/img/connexion<?php echo $version["image_css"];?>.png');
 }
 .formulaire .title .img.signup{
-	background-image: url('img/signup<?php echo $version["image_css"];?>.png');
+	background-image: url('/img/signup<?php echo $version["image_css"];?>.png');
 }
 
 .formulaire .title .img{

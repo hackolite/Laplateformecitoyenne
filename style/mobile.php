@@ -53,7 +53,7 @@ header{
 
 
 #bouton > .btt{
-	background-image: url("img/menu<?php echo $version["image_css"];?>.png");
+	background-image: url("/img/menu<?php echo $version["image_css"];?>.png");
     content: '';
     position: fixed;
     background-repeat: no-repeat;
