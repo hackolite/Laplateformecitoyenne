@@ -383,7 +383,7 @@ f.page.form.log = function(e, url, form){
 				// si champs erreur, mais correct cette fois-ci
 				inputs[i].classList.remove('empty');
 			}
-			
+
 			/(.+)/.test(inputs[i].name);
 			if(RegExp.$1 == "username"){
 				// username
@@ -400,7 +400,7 @@ f.page.form.log = function(e, url, form){
 				if(inputs[i].value.length != 5 || !/([0-9]+)/.test(inputs[i].value)){
 					incorrect(inputs[i]);
 				}
-			}else if(RegExp.$1 == "mdp"){
+			}else if(RegExp.$1 == "mdp" && form != "signin"){
 				// ajouter regex vérification
 				if(inputs[i].value.length < 7 || inputs[i].value.length > 20){
 					incorrect(inputs[i]);
