@@ -22,7 +22,7 @@
 			$pre = "/img/social_logo/";
 			$social_list = ["Facebook", "LinkedIn", "Instagram", "Twitter", "Share"];
 			$social_link =[
-				"/link/?link=fb", "/link/?link=lk", "", "", "/"
+				"/link/?link=fb", "/link/?link=lk", "/link/?link=insta", "", "/"
 			];
 			for($i = 0; $i < sizeof($social_list); $i++):
 		?>
@@ -48,8 +48,8 @@
 	</section>
 	<section class="box">
 		<h3><?php echo search("donations"); ?></h3>
-		<p>500K</p>
-		<p>500K</p>
+		<p>518K</p>
+		<p>518K</p>
 	</section>
 
 	

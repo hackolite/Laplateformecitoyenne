@@ -33,6 +33,8 @@ else:
 				<input type="password" value="monmotdepasse" disabled>
 				
 			</div>
+			<div class="white_space"></div>
+			<div class="white_space"></div>
 		</div>
 		<div class="form right hidden"></div>
 

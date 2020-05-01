@@ -859,8 +859,8 @@ nav.off_info #info{
 }
 
 .formulaire img.account{
-    width: 150px;
-    height: 150px;
+    width: 32%;
+    height: 32%;
     margin: auto;
     display: block;
 }

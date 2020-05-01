@@ -6,7 +6,7 @@
 	<div style="margin-bottom: 45px;">&copy 2020 LaPlateformeCitoyenne - <?php echo search("all(.+)reserved"); ?></div>
 	<ul>
 		<h3><?php echo search("policy"); ?></h3>
-		<li><a href="#"><?php echo search("legal mention"); ?></a></li>
+		<li><a href="/link/?link=legal"><?php echo search("legal mention"); ?></a></li>
 		<li><a href="#"><?php echo search("Confidentialité"); ?></a></li>
 	</ul>
 	<ul>
@@ -23,6 +23,7 @@
 		<h3><?php echo search("Social media"); ?></h3>
 		<li><a href="/link/?link=fb" target="_blank">Facebook</a></li>
 		<li><a href="/link/?link=lk" target="_blank">LinkedIn</a></li>
+		<li><a href="/link/?link=insta" target="_blank">Instagram</a></li>
 	</ul>
 	<ul>
 		<h3>Citoyen</h3>

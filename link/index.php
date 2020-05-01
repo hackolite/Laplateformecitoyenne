@@ -5,7 +5,7 @@ if(!isset($_GET["link"]) || empty($_GET["link"])){
 	exit();
 }
 
-// PAGE DE REDIRECTION VERS DES LIENBS EXTERNES
+// PAGE DE REDIRECTION VERS DES LIENS EXTERNES OU FICHIER SPECIFIQUE
 
 $l = $_GET["link"];
 $url = "";
@@ -18,6 +18,10 @@ if($l == "fb"){
 	$url = "https://www.adresse93075.com/";
 }else if($l == "360medics"){
 	$url = "https://360medics.com/";
+}else if($l == "insta"){
+	$url = "https://www.instagram.com/la_plateforme_citoyenne/?hl=fr";
+}else if($l == "legal"){
+	$url = "/fichier/mentions_légales.pdf";
 }
 
 

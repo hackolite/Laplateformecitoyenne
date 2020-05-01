@@ -357,6 +357,12 @@ f.page.form.log = function(e, url, form){
 	// données à envoyer au serveur
 	let settings = ''; 
 	let valider = true;
+
+	let incorrect = (input)=>{
+		input.classList.add('empty');
+		valider = false;
+	};
+
 	for(var i = 0; i < inputs.length; i++){
 
 		if(inputs[i].name == 'cgu'){
@@ -368,15 +374,39 @@ f.page.form.log = function(e, url, form){
 		}
 		
 		if(/text|email|password/.test(inputs[i].type)){
-			// si champs de complétition
+			// si champs c un de complétition
+
 		 	if(inputs[i].value == ""){
 		 		// si vide erreur
-				inputs[i].classList.add('empty');
-				valider = false;
+				incorrect(inputs[i]);
 			}else if(/empty/.test(inputs[i].className)){
 				// si champs erreur, mais correct cette fois-ci
 				inputs[i].classList.remove('empty');
 			}
+			
+			/(.+)/.test(inputs[i].name);
+			if(RegExp.$1 == "username"){
+				// username
+				if(inputs[i].value.length < 2 || inputs[i].value.length > 48){
+					incorrect(inputs[i]);
+				}
+			}
+			else if(RegExp.$1 == "email"){
+				if(!/^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/.test(inputs[i].value)){
+					incorrect(inputs[i]);
+				}
+			}
+			else if(RegExp.$1 == "postal"){
+				if(inputs[i].value.length != 5 || !/([0-9]+)/.test(inputs[i].value)){
+					incorrect(inputs[i]);
+				}
+			}else if(RegExp.$1 == "mdp"){
+				// ajouter regex vérification
+				if(inputs[i].value.length < 7 || inputs[i].value.length > 20){
+					incorrect(inputs[i]);
+				}
+			}
+
 		}
 
 		let prefixe = '';

@@ -32,19 +32,19 @@ if($_GET['action'] == 'signup'){
 			if($_GET['action'] == 'signup'):
 			?>
 
-			<input type="text" name="username" require placeholder="<?php echo search('nom');?>">
-			<input type="email" name="email" require placeholder="<?php echo search('email');?>">
+			<input type="text" name="username" require min="2" max="48" placeholder="<?php echo search('nom');?>">
+			<input type="email" name="email" require min="2" max="320" placeholder="<?php echo search('email');?>">
 			<input type="text" name="postal" require placeholder="<?php echo search('code postal');?>">
 			<label class='mdp'>
-			<input type="password" name="mdp" require placeholder="<?php echo search('password'); ?>">
-			<span class='mdp' data-click='mdp'><?php echo ucfirst(search('afficher')); ?></span>
+				<input type="password" name="mdp" require min="7" max="20" placeholder="<?php echo search('password'); ?>">
+				<span class='mdp' data-click='mdp'><?php echo ucfirst(search('afficher')); ?></span>
 			</label>
 
 			<label class='checkbox off'>
 				<input type="checkbox" data-click='checkbox' name="cgu">
 			</label>
-			<p>
-				<?php echo search("En(.+)platforme.");?>
+			<p style="text-align: center;">
+				<?php echo search("En(.+)plateforme.");?>
 			</p>
 
 			<?php

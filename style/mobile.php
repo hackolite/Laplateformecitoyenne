@@ -78,9 +78,12 @@ header{
 	box-sizing: border-box;
 	padding: 55px 0px;
 	line-height: 0px;
-	border-bottom: 1px solid;
 	width: 90%
 }
+#bouton ul > .btt{
+	border-bottom: 1px solid;
+}
+
 #bouton .btt_submit.green{
 	background: #00d08f;
 	color: #fff;
@@ -284,12 +287,16 @@ nav.off_info #info{
     left: 35px;
 }
 .formulaire .btt_submit {
-    font-size: 55px;
+    font-size: 52px;
     height: 140px;
     line-height: 132px;
     border-radius: 70px;
     bottom: 32px;
     width: 415px;
+}
+
+.formulaire .info label{
+	font-size: 55px;
 }
 
 .formulaire form input {
