@@ -759,6 +759,7 @@ nav.off_info #info{
     box-shadow: inset 0 0 2px #ff0000de;
     color: black;
     border-radius: 4px;
+    background: #ffbbbb;
 }
 
 .formulaire form input:focus{
@@ -874,7 +875,7 @@ nav.off_info #info{
 	display: block;
     text-align: left;
     position: relative;
-    top: 8px;
+    top: 16px;
     left: 105px;
     font-size: 21px;
     text-transform: capitalize;
@@ -918,7 +919,7 @@ iframe.center{
 	position: relative;
 	bottom: 77px;
 	float: right;
-	right: 85px;
+	right: 92px;
 	font-size: 17px;
 	cursor: pointer;
 	border-left: 1px solid #c2c2c2;

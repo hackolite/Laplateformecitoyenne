@@ -42,7 +42,7 @@ else:
 			<div class="btt_submit fill red off next" onclick="document.location.href='/serveur/disconnect.php';">
 				<?php echo search('disconnect'); ?>
 			</div>
-			<div class="btt_submit empty green off submit" data-click='submit' data-form='account'>
+			<div class="btt_submit empty green off submit" data-click='link' data-link='log_info?edit=profil'>
 				<?php echo search('edit'); ?>
 			</div>
 		</div>

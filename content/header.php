@@ -1,6 +1,7 @@
 <?php
 $url_param_list = [];
 $url_param = "";
+
 foreach ($_GET as $name => $value) {
 	if($name != "lang"){
 		array_push($url_param_list, $name . "=" . $value);
@@ -93,7 +94,7 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 			<li class="btt_submit fill account red" data-click="account"><?php echo search("mon compte"); ?></li>
 			<?php
 				// on affiche les boutons inscriptions et connexions si aucun compte n'est logger
-				elseif(isset($_page) && $_page == "mdp"):
+				elseif(isset($_page) && $_page == "loginfo"):
 			?>
 			<li class="btt_submit fill green">Validation</li>
 			<?php

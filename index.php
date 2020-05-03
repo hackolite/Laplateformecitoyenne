@@ -18,9 +18,9 @@ if(!isset($_SESSION['session']) || $_SESSION['session'] != 'true'){
 
 	if($temps > 60*60){ // déconnexion au bout d'une heure
 		if(isset($_SESSION['id'])){
-			$id = $_SESSION['id'];
+			$id = $_SESSION['token'];
 			session_destroy();
-			header('Location: /logout/expired/'.$id);
+			header("Location: /?logout=expired&token=".$token);
 			exit();
 		}
 		session_destroy();

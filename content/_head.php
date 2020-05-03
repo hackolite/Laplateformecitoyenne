@@ -23,6 +23,25 @@ if(!isset($_GET['page'])){ // si page non définie, c l'accueil
 	$_GET['page'] = 'home';
 }
 
+if($_GET["page"] == "loginfo"){
+
+	// redirection vers la page d'invitation
+	// si présence de token
+
+	if(isset($_SESSION["session"]) && isset($_SESSION["token"])){
+		header("Location: /log_info?edit=profil");		
+		exit;
+	}
+	$_GET["page"] = "home";
+
+}
+
+// si la page est mdp, soit loginfo, on le redirige
+
+if(isset($_page) && $_page == "loginfo"){
+	$_GET["page"] = $_page;	
+}
+
 ?>
 <!--
 © 2020 LaPlateformeCitoyenne.com - All rights reserved
@@ -127,7 +146,11 @@ const mssg = {
 	},
 	account: {
 		noexist: "<?php echo search("aucun compte(.+)saisies");?>",
-		error: "<?php echo search("connection error"); ?>"
+		error: "<?php echo search("connection error"); ?>",
+		saved: {
+			success: "<?php echo search("saved"); ?>",
+			error: "<?php echo search("connection error"); ?>"
+		}
 	},
 	indisponible: "<?php echo search("non disponible(.+)moment"); ?>",
 	serveur: {

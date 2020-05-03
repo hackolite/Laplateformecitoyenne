@@ -162,6 +162,14 @@ f.clickEvent = function(e, v = null){
 f.page = {};
 f.page.load = {};
 
+f.page.load.link = (e)=>{
+	let attr = e.target.getAttribute('data-link');
+
+	if(attr){
+		document.location.href = "/" + attr;
+	}
+};
+
 f.page.load.menu = (e)=>{
 	// affichage menu en mode mobile
 	f.switcher(e.target.parentNode, "on", "off");
@@ -340,6 +348,11 @@ f.page.load.submit = function(e){
 			let url = '/'+form;
 			f.page.form.carte(e, url, form);
 		}
+
+		if(/update/.test(form)){
+			let url = "https://laplateformecitoyenne.com:5000/update_user";
+			f.page.form.log(e, url, form);
+		}
 	}
 
 	catch(err){
@@ -350,6 +363,7 @@ f.page.load.submit = function(e){
 };
 
 f.page.form = {};
+
 f.page.form.log = function(e, url, form){
 	// listage de tous les champs du formulaire afin de les passer en paramètres
 	let inputs = f.query('#' + e.target.getAttribute('data-form') + ' input', true);
@@ -377,8 +391,11 @@ f.page.form.log = function(e, url, form){
 			// si champs c un de complétition
 
 		 	if(inputs[i].value == ""){
-		 		// si vide erreur
-				incorrect(inputs[i]);
+		 		if(inputs[i].getAttribute("data-required") != "false"){
+			 		// si vide et que c requis, erreur
+					incorrect(inputs[i]);
+		 		}
+
 			}else if(/empty/.test(inputs[i].className)){
 				// si champs erreur, mais correct cette fois-ci
 				inputs[i].classList.remove('empty');
@@ -401,6 +418,7 @@ f.page.form.log = function(e, url, form){
 					incorrect(inputs[i]);
 				}
 			}else if(RegExp.$1 == "mdp" && form != "signin"){
+				// vérifie si le mot de passe est correct
 				// ajouter regex vérification
 				if(inputs[i].value.length < 7 || inputs[i].value.length > 20){
 					incorrect(inputs[i]);
@@ -437,6 +455,16 @@ f.page.form.log = function(e, url, form){
 			f.box(mssg.account.error + ": " + err);
 		}
 	});
+};
+
+f.page.form.update = (rep)=>{
+	// modification des données utilisateurs
+	if(rep.statuscode == "200"){
+		f.box(mssg.account.saved.success, "blue");
+	}else{
+		f.box(mssg.account.saved.error);
+	}
+	
 };
 
 f.page.form.signin = function(rep){
