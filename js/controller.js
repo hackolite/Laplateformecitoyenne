@@ -668,14 +668,10 @@ document.addEventListener('click', function(e){
 		f.clickEvent(e, attr);
 	}
 	if(e.target.id != "menu"){
-		console.log(e.target.id);
 		if(/on/.test(f.query("#bouton").className)){
 			f.switcher(f.query("#bouton"), "on", "off");
 		}
-		
 	}
-	
-
 });
 
 

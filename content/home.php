@@ -43,13 +43,13 @@
 	<h3>La Plateforme Citoyenne <?php echo search("en chiffres");?>:</h3>
 	<section class="box">
 		<h3><?php echo search("members"); ?></h3>
-		<p>6 4782</p>
-		<p>6 4782</p>
+		<p class="members">0</p>
+		<p class="members">0</p>
 	</section>
 	<section class="box">
 		<h3><?php echo search("donations"); ?></h3>
-		<p>518K</p>
-		<p>518K</p>
+		<p class="dons">0</p>
+		<p class="dons">0</p>
 	</section>
 
 	
@@ -66,3 +66,39 @@
 	</section>
 	<div class="white_space"></div>
 </div>
+
+<script defer>
+	f.AJAX({
+		location: "https://laplateformecitoyenne.com:5000/stats",
+		settings: null,
+		type:'GET',
+		ready: (rep)=>{
+			try{
+				rep = JSON.parse(rep);
+				setValue(rep);
+			}catch(err){
+				setValue(false);
+			}
+			
+		},
+		error: (err)=>{
+			setValue(false);
+		}
+	});
+	function setValue(v=false){
+		let m = f.query(".members", true);
+		let d = f.query(".dons", true);
+
+		if(v == false){
+			v = {
+				members: "X",
+				dons: "X"
+			}
+		}
+
+		for(var i = 0; i < m.length; i++){
+			m[i].innerText = v.members;
+			d[i].innerText = v.dons;
+		}
+	}
+</script>
