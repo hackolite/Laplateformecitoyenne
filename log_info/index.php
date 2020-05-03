@@ -2,9 +2,16 @@
 
 session_start();
 
-if(!isset($_SESSION["session"]) || $_SESSION["session"] != "true"){
+if((!isset($_SESSION["session"]) || $_SESSION["session"] != "true") || !isset($_GET["edit"])){
 	// si tokens non existant ou compte dj loggé
-	header("Location: /");
+	if($_GET["edit"] != "mdp"){
+		header("Location: /error.php?v=404");
+	}
+}
+
+if($_GET["edit"] == "mdp" && isset($_SESSION["session"]) && $_SESSION["session"] == "true"){
+	// si mdp mais une session est ouverte, on retourne à l'accueil
+	header("Location: /error.php?v=404");
 }
 
 $_page = "loginfo";
@@ -20,7 +27,8 @@ include($dossier."content/_head.php");
 }
 
 .paragraphe form h1 {
-    text-align: left;
+    text-align: center;
+    line-height: normal;
     animation-delay: 500ms;
     animation-duration: 800ms;
     color: #ee0042;
@@ -98,8 +106,10 @@ include($dossier."content/_head.php");
 
 <div class="paragraphe center formulaire">
 	
+	<?php
+	if($_GET["edit"] == "profil"):
+	?>
 	<form method="POST" action="" class="zoomIn animated" id="update">
-
 		<h1 class="zoomIn animated"><?php echo search("editing(.+)profil"); ?> 😎</h1>
 		<div class="zoomIn animated first">
 			<label class="legend"><?php echo search('nom'); ?>:</label>
@@ -128,6 +138,38 @@ include($dossier."content/_head.php");
 			</div>
 		</div>
 	</form>
+	<?php
+	elseif($_GET["edit"] == "mdp"):
+		if(!isset($_GET["token"])):
+			// si présence de token, alors on applique les modifications
+	?>
+	<form method="POST" action="" class="zoomIn animated" id="recup_mdp">
+		<h1 class="zoomIn animated"><?php echo search("I forgot(.+)password"); ?> 😪</h1>
+		<p><?php echo search("Nous vous(.+)passe"); ?></p>
+		<input type="text" name="email" placeholder="email">
+		<div class="btt_submit empty green off submit" data-click="submit" data-form="recup_mdp">
+			<?php echo search("valider"); ?>
+		</div>
+	</form>
+	<?php
+		else:
+	?>
+	<form method="POST" action="" class="zoomIn animated" id="change_mdp">
+		<h1 class="zoomIn animated"><?php echo search("Reinit my password"); ?> 🥰</h1>
+		<p><?php echo search("The password(.+)number"); ?></p>
+		<input type="hidden" name="token" value="<?php echo $_GET["token"]; ?>" >
+		<label class='mdp'>
+			<input type="password" name="mdp" require maxlength="20" placeholder="<?php echo search("new").' '.search('password'); ?>">
+			<span class='mdp' data-click='mdp'><?php echo ucfirst(search('afficher')); ?></span>
+		</label>
+		<div class="btt_submit empty green off submit" data-click="submit" data-form="change_mdp">
+			<?php echo search("valider"); ?>
+		</div>
+	</form>
+	<?php
+		endif;
+	endif;
+	?>
 
 	<div class="white_space"></div>
 

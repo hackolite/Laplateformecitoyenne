@@ -25,6 +25,8 @@ f.AJAX = function (e){
 		}
 
 	*/
+	document.body.style.cursor = "progress";
+	f.query("#logo").classList.add("on");
 	var xhr = new XMLHttpRequest();
 
 	if(e.type == "GET"){
@@ -49,6 +51,8 @@ f.AJAX = function (e){
 			}else{
 				e.error(xhr.status);
 			}
+			document.body.style.cursor = "default";
+			f.query("#logo").classList.remove("on");
 		}
 
 	};
@@ -353,6 +357,14 @@ f.page.load.submit = function(e){
 			let url = "https://laplateformecitoyenne.com:5000/update_user";
 			f.page.form.log(e, url, form);
 		}
+		if(/recup_mdp/.test(form)){
+			let url = "https://laplateformecitoyenne.com:5000/update_password";
+			f.page.form.log(e, url, form);
+		}
+		if(/change_mdp/.test(form)){
+			let url = "https://laplateformecitoyenne.com:5000/change_password";
+			f.page.form.log(e, url, form);
+		}
 	}
 
 	catch(err){
@@ -457,7 +469,15 @@ f.page.form.log = function(e, url, form){
 	});
 };
 
-f.page.form.update = (rep)=>{
+f.page.form.recup_mdp = (rep)=>{
+	if(rep.statuscode == "200"){
+		f.box(mssg.account.saved.recup_mdp, "blue");
+	}else{
+		f.box(mssg.account.saved.error);
+	}
+};
+
+f.page.form.change_mdp = f.page.form.update = (rep)=>{
 	// modification des données utilisateurs
 	if(rep.statuscode == "200"){
 		f.box(mssg.account.saved.success, "blue");
@@ -646,7 +666,6 @@ document.addEventListener('click', function(e){
 	if(attr){
 
 		f.clickEvent(e, attr);
-
 	}
 	if(e.target.id != "menu"){
 		console.log(e.target.id);

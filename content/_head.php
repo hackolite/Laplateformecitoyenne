@@ -149,8 +149,10 @@ const mssg = {
 		error: "<?php echo search("connection error"); ?>",
 		saved: {
 			success: "<?php echo search("saved"); ?>",
-			error: "<?php echo search("connection error"); ?>"
+			error: "<?php echo search("connection error"); ?>",
+			recup_mdp: "<?php echo search("Nous vous(.+)passe"); ?>"
 		}
+
 	},
 	indisponible: "<?php echo search("non disponible(.+)moment"); ?>",
 	serveur: {

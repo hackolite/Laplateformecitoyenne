@@ -4,6 +4,7 @@
 if(!isset($_GET['v']) || empty($_GET['v'])){
 	header('Location: /');
 }*/
+$dossier = "";
 require('voc/voc.php');
 
 require('serveur/lang.php');

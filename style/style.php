@@ -128,6 +128,15 @@ header {
 	transform: rotate(720deg);
 }
 
+#logo.on img{
+	animation: 10s linear infinite logo;
+}
+
+@keyframes logo{
+	from{transform: rotate(0deg);}
+	to{transform: rotate(3600deg);}
+}
+
 #logo .title {
 	display: inline-block;
 	position: absolute;
