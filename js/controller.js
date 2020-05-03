@@ -659,7 +659,7 @@ f.trycatch(function(){
 	f.AJAX({
 		location: '/logout',
 		type: 'POST',
-		settings: 'id=' + logout[1],
+		settings: 'token=' + logout[1],
 		ready: function(){},
 		error: function(){}
 	})

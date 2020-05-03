@@ -3,11 +3,11 @@ session_start();
 
 // déconnection du compte utilisateurs côté php
 try {
-	$id = $_SESSION['id'];
+	$token = $_SESSION['token'];
 
 	session_destroy();
 	//header('Location: /?logout=auto&id='.$id);
-	header('Location: /?logout=auto&id='.$id);
+	header('Location: /?logout=auto&token='.$token);
 	exit();
 
 } catch (Exception $e) {
