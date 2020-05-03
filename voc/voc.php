@@ -3,7 +3,7 @@
 
 // convertion du fichier csv en tableau php
 try{
-	$filename = "voc/voc.csv";
+	$filename = $dossier."voc/voc.csv";
 	$f = fopen($filename, 'r');
 	$contents = fread($f, filesize($filename));
 	fclose($f);

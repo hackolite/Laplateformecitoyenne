@@ -7,7 +7,7 @@
 	<ul>
 		<h3><?php echo search("policy"); ?></h3>
 		<li><a href="/link/?link=legal"><?php echo search("legal mention"); ?></a></li>
-		<li><a href="#"><?php echo search("Confidentialité"); ?></a></li>
+		<!--<li><a href="#"><?php echo search("Confidentialité"); ?></a></li>-->
 	</ul>
 	<ul>
 		<h3><?php echo search("our partners"); ?></h3>

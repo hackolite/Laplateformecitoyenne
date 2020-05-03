@@ -2,7 +2,7 @@
 
 session_start();
 
-$list_requis = ['id', 'username', 'email', 'postal'];
+$list_requis = ['id', 'username', 'email', 'postal', 'token'];
 
 
 for($i=0; $i < sizeof($list_requis); $i++) { 

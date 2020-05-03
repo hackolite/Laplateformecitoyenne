@@ -93,6 +93,10 @@ for($i=0; $i < sizeof($url_param_list); $i++) {
 			<li class="btt_submit fill account red" data-click="account"><?php echo search("mon compte"); ?></li>
 			<?php
 				// on affiche les boutons inscriptions et connexions si aucun compte n'est logger
+				elseif(isset($_page) && $_page == "mdp"):
+			?>
+			<li class="btt_submit fill green">Validation</li>
+			<?php
 				else:
 			?>
 			<li class="btt_submit empty signup green" data-click="signup"><?php echo search("inscription"); ?></li>

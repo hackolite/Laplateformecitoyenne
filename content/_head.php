@@ -1,16 +1,22 @@
 <?php
 
-session_start();
+if(session_status() !== PHP_SESSION_ACTIVE){
+	session_start();
+}
+
 
 /*
 	##### GESTION DU LANGAGE DU SITE ####
 */
+if(!isset($dossier)){
+	$dossier = "./";
+}
 
-require('voc/voc.php');
+require($dossier.'voc/voc.php');
 
-require('serveur/lang.php');
+require($dossier.'serveur/lang.php');
 
-require('serveur/versioning.php');
+require($dossier.'serveur/versioning.php');
 
 
 if(!isset($_GET['page'])){ // si page non définie, c l'accueil
@@ -53,6 +59,7 @@ More informations on the website.
 
 	?> - La Plateforme Citoyenne</title>
 	<link rel="stylesheet" type="text/css" href="/style/effect<?php echo $version["effect.css"]; ?>.css" importance='high'>
+	<link rel="stylesheet" type="text/css" href="/style/animate<?php echo $version["effect.css"]; ?>.css">
 	<link rel="stylesheet" type="text/css" href="/style/style<?php echo $version["style.css"]; ?>.php" importance='high'>
 	<link rel="stylesheet" type="text/css" href="/style/mobile<?php echo $version["style.css"]; ?>.php" media="(orientation: portrait) and (max-width: 1060px)">
 	<link rel="icon" type="image/png" href="img/minia_logo<?php echo $version["logo.png"]; ?>.png" />
@@ -80,7 +87,7 @@ More informations on the website.
 	<!-- AwesomeMarkers -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
 
-	<script src="js/map<?php echo $version["map.js"]; ?>.js"></script>
+	<script src="js/map<?php echo $version["map.js"]; ?>.js" defer></script>
 	<style>
 		#lang{
 			top: 26px;
@@ -126,7 +133,15 @@ const mssg = {
 	serveur: {
 		error: "<?php echo search("Erreur inattendue(.+)serveur"); ?>"
 	},
-	cgu: "<?php echo search("please accept(.+)of us"); ?>"
+	cgu: "<?php echo search("please accept(.+)of us"); ?>",
+	map: {
+		visor: "<?php echo ucfirst(search("visor"));?>",
+		tissu: "<?php echo ucfirst(search("cloth mask")); ?>",
+		chirurgical: "<?php echo ucfirst(search("chirurgical mask"));?>",
+		chantier: "<?php echo ucfirst(search("construction mask")); ?>",
+		lunette: "<?php echo ucfirst(search("lunette"));?>",
+		blouse: "<?php echo ucfirst(search("blouse"));?>"
+	}
 
 };
 
@@ -148,6 +163,6 @@ const lang = <?php echo $l['lang']; ?>;
 </head>
 <body>
 
-	<?php include('content/header.php'); ?>
+	<?php include($dossier.'content/header.php'); ?>
 
 	<div id="page">

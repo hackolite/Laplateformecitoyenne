@@ -1,8 +1,5 @@
 @charset 'utf-8';
 
-body{
-	background: #eaeaea;
-}
 #info{
     left: 50%;
     transform: translate(-50%);

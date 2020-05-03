@@ -37,6 +37,7 @@
 body{
 	margin: 0;
 	line-height: 1.5;
+	background: #eaeaea;
 }
 
 #page > div{
@@ -892,7 +893,7 @@ nav.off_info #info{
     font-weight: 300;
     line-height: 25px;
 	background: #fff;
-	box-shadow: 0px 0px 5px #424242;
+	box-shadow: 0px 0px 5px #c4c4c4;
 	padding: 30px 80px;
     box-sizing: border-box;
 }
@@ -909,12 +910,11 @@ iframe.center{
 
 }
 
-.article label.mdp{
+.formulaire label.mdp{
 	width: 100%;
 }
 
-.article label.mdp .mdp{
-	content: 'Afficher';
+.formulaire label.mdp .mdp{
 	position: relative;
 	bottom: 77px;
 	float: right;
@@ -1054,4 +1054,35 @@ iframe.center{
 }
 #search .option div:hover{
 	background: #e1e1e1;
+}
+
+
+
+/*
+##### MAP ####
+*/
+
+.map_popup{
+	list-style: none;
+	padding: 10px 5px; 
+}
+
+.map_popup h3{
+	text-transform: capitalize;
+	padding-bottom: 5px;
+	font-size: 24px;
+}
+
+.map_popup h3.medical{
+	border-bottom: 4px solid #00D08F;
+}
+.map_popup h3.maker{
+	border-bottom: 4px solid #005DEE;
+
+}
+
+.map_popup li {
+    font-size: 14px;
+    font-weight: 300;
+    padding: 1px 0px;
 }
