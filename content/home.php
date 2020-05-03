@@ -57,12 +57,7 @@
 
 <div class="banniere box_center">
 	<h3><?php echo search("our partners"); ?>:</h3>
-	<section class="box">
-		<h3>ADRESSE 93075</h3>
-		<a href="/link/?link=adresse93075" target="_blank">
-			<img src="/img/logo/adresse93075.png" width="80px">
-		</a>
-	</section>
+
 	<section class="box">
 		<h3>360 medics</h3>
 		<a href="/link/?link=360medics" target="_blank">

@@ -11,7 +11,6 @@
 	</ul>
 	<ul>
 		<h3><?php echo search("our partners"); ?></h3>
-		<li><a href='/link/?link=adresse93075' target="_blank">adresse93075</a></li>
 		<li><a href='/link/?link=360medics' target="_blank">360 medics</a></li>
 	</ul>
 	<ul>
