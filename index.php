@@ -21,6 +21,8 @@ if(!isset($_SESSION['session']) || $_SESSION['session'] != 'true'){
 			$token = $_SESSION['token'];
 			session_destroy();
 			header("Location: /?logout=expired&token=".$token);
+			// on met un script car le header ne marche pas(raison pas trouvée)
+			echo "<script>document.location.href='/?logout=expired&token='".$token.";</script>";
 			exit();
 		}
 		session_destroy();

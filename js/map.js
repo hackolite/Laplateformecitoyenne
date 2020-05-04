@@ -79,7 +79,6 @@ var afficherPoint = (points)=>{
 		if (point.latitude!=undefined && point.longitude !=undefined){
 			var color = "blue";
 			if (point.type=="medical") {
-				console.log("medical");
 				var coloredMarker = L.AwesomeMarkers.icon({
 					icon: 'medkit',
 					markerColor: "green",
@@ -87,7 +86,6 @@ var afficherPoint = (points)=>{
 				});
 			}
 			else if (point.type=="maker") {
-				console.log("maker");
 				var coloredMarker = L.AwesomeMarkers.icon({
 					icon: 'cogs',
 					markerColor: "blue",
@@ -95,7 +93,6 @@ var afficherPoint = (points)=>{
 				});
 			}
 			else {
-				console.log("other");
 				var coloredMarker = L.AwesomeMarkers.icon({
 					icon: 'cogs',
 					markerColor: "red",
@@ -141,7 +138,6 @@ var afficherPoint = (points)=>{
 				.setContent(desc);
 
 			//create the marker
-			console.log([point.latitude,point.longitude])
 			var marker = L.marker([point.latitude,point.longitude], {
 				icon: coloredMarker,
 			});

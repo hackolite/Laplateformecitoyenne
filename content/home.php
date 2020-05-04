@@ -28,7 +28,7 @@
 		?>
 		<li>
 			<a href="<?php echo $social_link[$i];?>" target="_blank">
-				<img <?php echo 'src="'.$pre.$social_list[$i].'" alt="'.$social_list[$i].'"';?> >
+				<img <?php echo 'src="'.$pre.$social_list[$i].'.png" alt="'.$social_list[$i].'"';?> >
 			</a>
 		</li>
 		<?php

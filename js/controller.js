@@ -29,7 +29,7 @@ f.AJAX = function (e){
 	f.query("#logo").classList.add("on");
 	var xhr = new XMLHttpRequest();
 
-	if(e.type == "GET"){
+	if(e.type == "GET" && e.settings != null){
 		e.location += "?" + e.settings;
 	}
 
