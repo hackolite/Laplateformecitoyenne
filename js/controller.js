@@ -707,6 +707,8 @@ f.trycatch(function(){
 		error: function(){}
 	})
 
+}, function(err){
+	console.log(err);
 });
 
 };

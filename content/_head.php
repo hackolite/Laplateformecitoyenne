@@ -175,11 +175,11 @@ const mssg = {
 const lang = <?php echo $l['lang']; ?>;
 	<?php
 	if(isset($_GET['logout']) && !empty($_GET['logout'])
-		&& isset($_GET['id']) && !empty($_GET['id'])):
+		&& isset($_GET['token']) && !empty($_GET['token'])):
 		// permet d'afficher le message de déconnexion, et de le transmettre à Python
 	?>
 
-		var logout = ['<?php echo $_GET['logout']; ?>', '<?php echo $_GET['id']; ?>'];
+		var logout = ['<?php echo $_GET['logout']; ?>', '<?php echo $_GET['token']; ?>'];
 
 	<?php
 	endif;
