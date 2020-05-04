@@ -64,6 +64,7 @@ if($_GET['action'] == 'signup'){
 
 			</div>
 			<div class="white_space"></div>
+			<div class="white_space"></div>
 		</div>
 
 		<div class="form right hidden"></div>

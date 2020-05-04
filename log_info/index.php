@@ -23,7 +23,10 @@ include($dossier."content/_head.php");
 <style>
 .paragraphe{
 	min-height: 800px;
-	overflow: visible;
+	overflow: hidden;
+}
+.paragraphe form{
+	overflow: hidden;
 }
 
 .paragraphe form h1 {

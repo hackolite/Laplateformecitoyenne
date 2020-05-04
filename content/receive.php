@@ -91,6 +91,8 @@ endfor;
 				</div>
 			</div>
 			<div class="white_space"></div>
+			<div class="white_space"></div>
+			
 		</div>
 		<div class="form right hidden">
 			<!--<input type="text" name="name" placeholder="<?php echo search("nom");?>">

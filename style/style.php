@@ -90,11 +90,11 @@ a:active, a:hover{
 }
 
 #_box.red{
-	background: #ed1f0aeb;
+	background: rgba(237, 31, 10, 0.92);
 	box-shadow: 0 0 10px #ce0000;
 }
 #_box.blue{
-	background: #0a84edeb;
+	background: rgba(10, 132, 237, 0.92);
 	box-shadow: 0 0 10px #1d8dee;
 }
 

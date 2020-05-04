@@ -168,7 +168,7 @@ section.box p {
 
 section.box p:last-child {
 	/* Réflexion */
-    text-shadow: 0px 27px 0px #00ff1f26;
+    text-shadow: 0px 27px 0px rgba(0, 255, 31, 0.149);
     color: transparent;
     transform: rotateX(180deg);
     position: relative;
