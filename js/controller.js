@@ -274,10 +274,26 @@ f.page.load.action = function(e, action){
 f.page.load.recevoir 
 = f.page.load.donner 
 = f.page.load.signup 
-= f.page.load.signin 
+= f.page.load.signin
+= f.page.load.chat
 = f.page.load.account = function(e){
 	// on assigne les fonctions recevoir et donner à la même fonction
 	f.page.load.action(e, e.target.getAttribute('data-click'));
+};
+
+f.page.load.chat = function(e, action){
+	// affichage de la popup de droite
+	let chat = f.query('#chat');
+
+	try{
+		if(e.target.className.includes('close')) {
+			chat.classList.remove('extend');
+		} else if (e.target.className.includes('open')) {
+			chat.classList.add('extend');
+		}
+	}catch(err){
+		console.log(err);
+	}
 };
 
 
