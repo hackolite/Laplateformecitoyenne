@@ -109,6 +109,7 @@ More informations on the website.
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
 
 	<script src="js/map<?php echo $version["map.js"]; ?>.js" defer></script>
+    <script src="js/chat<?= $version["chat.js"]; ?>.js"></script>
 	<style>
 		#lang{
 			top: 26px;

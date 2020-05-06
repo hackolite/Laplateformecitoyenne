@@ -7,8 +7,6 @@
     max-width: 1000px;
     height: 40px;
     min-height: 40px;
-    max-height: 40px;
-    transition: max-height 250ms ease-out;
     background: #E6EAEA;
     z-index: 400;
     display: flex;
@@ -19,12 +17,14 @@
     height: 60vh;
     min-height: 200px;
     max-height: 720px;
-    transition: max-height 250ms ease-out;
+    transition: max-height 500ms ease-out;
 }
 
 #chat:not(.extend) {
     min-width: 120px;
     max-width: 300px;
+    max-height: 40px;
+    transition: max-height 500ms ease-out;
 }
 
 #chat:not(.extend) .content {

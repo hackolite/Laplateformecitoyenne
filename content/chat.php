@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/style/chat.css" xmlns="http://www.w3.org/1999/html">
 
-<div id="chat" class="extend">
+<div id="chat" class="">
     <div class="content">
         <div class="contact-profile">
             <p>Maker 2</p>

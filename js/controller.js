@@ -282,7 +282,6 @@ f.page.load.recevoir
 };
 
 f.page.load.chat = function(e, action){
-	// affichage de la popup de droite
 	let chat = f.query('#chat');
 
 	try{
