@@ -283,13 +283,35 @@ f.page.load.recevoir
 
 f.page.load.chat = function(e, action){
 	let chat = f.query('#chat');
+	let spinner = f.query('#spinnerOpenChat');
 
 	try{
 		if(e.target.className.includes('close')) {
 			chat.classList.remove('extend');
-		} else if (e.target.className.includes('open')) {
+
+		} else if (e.target.id.includes('startChat')) {
+			spinner.classList.add('loading');
 			chat.classList.add('extend');
+			openChat({username: 'user2'}).then(r => {
+				spinner.classList.remove('loading')
+
+			});
+		} else if (e.target.className.includes('openContact')) {
+			spinner.classList.add('loading');
+			chat.classList.add('extend');
+			openChat().then(r => {
+				spinner.classList.remove('loading')
+			});
+		} else if (e.target.className.includes('submit')) {
+			const messageToSend = e.target.previousElementSibling.value;
+			console.log("-> messageToSend", messageToSend);
+			if(messageToSend !== '' || typeof messageToSend !== undefined) {
+				postMessageToRocket({username: 'user2'}, messageToSend).then(r => {
+					console.log(r)
+				});
+			}
 		}
+
 	}catch(err){
 		console.log(err);
 	}
