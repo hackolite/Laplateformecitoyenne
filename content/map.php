@@ -16,6 +16,8 @@
 			<p>
 			<?php
 				echo search("LPC(.+).</span>", null, false);
+				echo "<br ><br >";
+				echo search("Les positions(.+)membres.");
 			?>
 			</p>
 		</div>
