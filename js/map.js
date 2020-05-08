@@ -9,11 +9,37 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	
 });
 
-const initMap = ()=>{
-
+const initMap = ()=>{	
+	let localisation = {
+		lat: 48.8534,
+		long: 2.3488
+	};
 	var markerList=[];
+	drawMap();
+	if ("geolocation" in navigator) {
+	  /* la géolocalisation est disponible */
+		navigator.geolocation.getCurrentPosition(function(position) {
+			// on localise l'utilisateur pour afficher sont emplacement sur la carte
+			localisation.lat = position.coords.latitude;
+			localisation.long = position.coords.longitude;
+			
+			map.setView([localisation.lat, localisation.long], 10);
 
-	var map = L.map('mapid').setView([48.8589507,2.2770202], 8);
+			// traçage de la position de l'utilisateur
+			L.circleMarker([localisation.lat, localisation.long], {
+				radius: 10,
+				color: "#ff4b7d",
+				opacity: 1,
+				fillColor: "#ee0042",
+				fillOpacity: 0.4	
+			}).addTo(map);
+		});
+	} else {
+		f.box("La géolocalisation n'est pas disponible sur votre navigateur.")
+	}	
+
+function drawMap(localise=false){
+	map = L.map('mapid').setView([localisation.lat, localisation.long], 10);
 
 
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -31,6 +57,8 @@ const initMap = ()=>{
 	  position: 'bottomleft',
 	  prefix: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
 	}).addTo(map);
+}
+
 
 function eraseMarker(){
 	markerList.forEach((marker, i) => {
@@ -41,6 +69,7 @@ function eraseMarker(){
 
 getMarkers = (type=[])=>{
 	eraseMarker(); // on efface les anciens marqueur
+	// à adapter pour éviter les requêtes vers le serveur trops nombreuses
 	let url= "https://laplateformecitoyenne.com:5000/user_need";
 
 	if (type.length!=0) {

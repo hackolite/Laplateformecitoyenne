@@ -416,7 +416,7 @@ f.page.form.log = function(e, url, form){
 			/(.+)/.test(inputs[i].name);
 			if(RegExp.$1 == "username"){
 				// username
-				if(inputs[i].value.length < 2 || inputs[i].value.length > 48){
+				if(inputs[i].value.length < 2 || inputs[i].value.length > 48 || !/^([a-zéèëêöùàç ]+)$/i.test(inputs[i].value)){
 					incorrect(inputs[i]);
 				}
 			}
