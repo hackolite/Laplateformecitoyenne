@@ -72,7 +72,7 @@ More informations on the website.
 	<base href="/">
 	<meta charset="utf-8">
 	<?php if($_GET["page"] == "index"): ?>
-	<meta name="description" content='<?php echo search("La plateforme citoyenne(.+)les échanges locaux."); ?>'>
+	<meta name="description" content="<?php echo search("La plateforme citoyenne(.+)les échanges locaux."); ?>">
 	<?php endif; ?>
 	<title><?php 
 		$page_text = str_replace("à", "a", search($_GET['page']));
