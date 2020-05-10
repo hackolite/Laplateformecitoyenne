@@ -9,7 +9,8 @@
         </ul>
         <div class="message-input">
             <label for="message-input" aria-hidden="true" hidden>Taper votre message</label>
-            <input id="message-input" placeholder="Message"/>
+            <input id="message-input" name="message" placeholder="Message"/>
+            <input type="hidden" name="roomId"/>
             <button class="submit" data-click="chat"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
         </div>
     </div>

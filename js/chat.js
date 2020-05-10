@@ -1,6 +1,6 @@
 const userToConnect = {user: "clement.b17@laposte.net", password: "4jd#3xh5XB%dUC8MU6J"};
 const userToChatWith = {username: 'User2'};
-let userConnected;
+let userConnected = null;
 let credential = null;
 
 ///// Function générique permettant de faire les requêtes sur le serveur Rocket.chat avec un proxy /////
@@ -64,18 +64,18 @@ const getRoomWithUser = async (userToChatWith) => {
     return await requestToRocket('im.create', 'POST', userToChatWith, true);
 }
 
-const getRoomListHtml = (roomObject, userConnected, classAttributes = '') => {
+const getRoomListHtml = (roomObject, classAttributes = '') => {
     const id = roomObject._id;
     let lastMessage = '';
     let name = '';
 
-    if (roomObject.lastMessage) {
-        lastMessage = roomObject.lastMessage.msg;
-    }
+    // if (roomObject.lastMessage) {
+    //     lastMessage = roomObject.lastMessage.msg;
+    // }
 
     if (roomObject.name) {
         name = roomObject.name;
-    } else {
+    } else if(userConnected !== null) {
         const usernames = roomObject.usernames;
         usernames.forEach((username) => {
             if (username !== userConnected.username) {
@@ -83,7 +83,7 @@ const getRoomListHtml = (roomObject, userConnected, classAttributes = '') => {
             }
         });
     }
-    return "<li id='" + id + "' class='room " + classAttributes + "' data-click='chat'><div class='wrap' data-click='chat'><div class='meta' data-click='chat'><p class='name' data-click='chat'>" + name + "</p><p class='preview'>" + lastMessage + "</p></div></div></li>";
+    return "<li id='" + id + "' class='room " + classAttributes + "' data-click='chat'><div class='wrap' data-click='chat'><div class='meta' data-click='chat'><p class='name' data-click='chat'>" + name + "</p></div></div></li>";
 }
 
 const getRoomMessages = async (roomId) => {
@@ -116,14 +116,16 @@ const getRoomName = (room, userConnected) => {
     return '';
 }
 
-const selectRoom = async (roomId, roomName = '', userConnected = null) => {
+const selectRoom = async (roomId, roomName = '') => {
     const activeRoom = f.query('.room.active');
     const selectedRoom = f.query(".room#" + roomId);
     const wrapperRoomName = f.query('#room-name');
     const wrapperMessages = f.query('#messages-wrapper');
+    const inputRoomId = f.query("input[name='roomId']");
 
     activeRoom.classList.remove('active');
     selectedRoom.classList.add('active');
+    inputRoomId.value = roomId;
 
     await getRoomMessages(roomId)
         .then(r => {
@@ -139,7 +141,7 @@ const selectRoom = async (roomId, roomName = '', userConnected = null) => {
                     }
                 });
                 wrapperMessages.innerHTML = messageList;
-                // wrapperRoomName.innerHTML = roomName.length > 0 ? roomName : getRoomName(room, userConnected);
+                // wrapperRoomName.innerHTML = roomName.length > 0 ? roomName : getRoomName(room);
                 wrapperRoomName.innerHTML = roomName;
             } else {
                 return r.errorType;
@@ -175,13 +177,13 @@ const openChat = async (chatWithUser = null) => {
     let roomListHTML = '';
     roomList.forEach((room) => {
         if (roomToLoad !== null && room._id === roomToLoad._id) { // si on doit ouvrir une room en particulier
-            roomListHTML += getRoomListHtml(room, userConnected, 'active');
+            roomListHTML += getRoomListHtml(room, 'active');
         } else if (room.name === undefined && !oneRoomIsActivated) { // sinon on ouvre la room ayant le message le plus récent
             oneRoomIsActivated = true;
             roomToLoad = room;
-            roomListHTML += getRoomListHtml(room, userConnected, 'active');
+            roomListHTML += getRoomListHtml(room, 'active');
         } else if (room.name === undefined) {
-            roomListHTML += getRoomListHtml(room, userConnected, '');
+            roomListHTML += getRoomListHtml(room, '');
         }
     });
     wrapperRooms.innerHTML = roomListHTML;
@@ -189,22 +191,17 @@ const openChat = async (chatWithUser = null) => {
     await selectRoom(roomToLoad._id, '', userConnected);
 }
 
-const postMessageToRocket = async (roomId, message) => {
+const postMessageToRocket = async () => {
     const wrapperMessages = f.query('#messages-wrapper');
     const inputMessage = f.query('#message-input');
+    const message = inputMessage.value;
+    const roomId = f.query("input[name='roomId']").value;
+    const messageToPost = {msg: message, id: 'newMessage'};
 
-    let room;
-    await getRoomWithUser(userToChatWith)
-        .then(r => {
-            if(r.success) {
-                const messageToPost = {msg: message, id: 'newMessage'};
-                room = r.room;
-                inputMessage.value = '';
-                wrapperMessages.innerHTML += getMessageHtml(messageToPost, 'sent', '');
-            }
-        });
+    inputMessage.value = '';
+    wrapperMessages.innerHTML += getMessageHtml(messageToPost, 'sent', '');
 
-    await sendMessage(message, room._id);
+    await sendMessage(message, roomId);
 
     // if(messageSent.success === true) {
     //     updateNewMessageWithStatus()

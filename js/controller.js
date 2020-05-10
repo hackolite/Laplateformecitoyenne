@@ -308,9 +308,8 @@ f.page.load.chat = function(e, action){
 
 		} else if (e.target.className.includes('submit')) {
 			const messageToSend = e.target.previousElementSibling.value;
-			const roomId = e.target;
 			if(messageToSend !== '' || typeof messageToSend !== undefined) {
-				postMessageToRocket(roomId, messageToSend)
+				postMessageToRocket()
 					.then(r => console.log(r));
 			}
 
