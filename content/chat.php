@@ -2,14 +2,14 @@
 
 <div id="chat" class="">
     <div class="content">
-        <div class="contact-profile">
-            <p>Maker 2</p>
+        <div id="room-name" class="contact-profile">
         </div>
         <ul id="messages-wrapper" class="messages">
             <li>Chargement...</li>
         </ul>
         <div class="message-input">
-            <textarea rows="1" placeholder="Votre message"></textarea>
+            <label for="message-input" aria-hidden="true" hidden>Taper votre message</label>
+            <input id="message-input" placeholder="Message"/>
             <button class="submit" data-click="chat"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
         </div>
     </div>

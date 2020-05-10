@@ -294,22 +294,31 @@ f.page.load.chat = function(e, action){
 			chat.classList.add('extend');
 			openChat({username: 'user2'}).then(r => {
 				spinner.classList.remove('loading')
-
 			});
+
 		} else if (e.target.className.includes('openContact')) {
 			spinner.classList.add('loading');
 			chat.classList.add('extend');
-			openChat().then(r => {
-				spinner.classList.remove('loading')
-			});
+			openChat()
+				.then(r => spinner.classList.remove('loading'))
+				.catch(r => {
+					spinner.classList.remove('loading');
+					console.log('error : ', r);
+				});
+
 		} else if (e.target.className.includes('submit')) {
 			const messageToSend = e.target.previousElementSibling.value;
-			console.log("-> messageToSend", messageToSend);
+			const roomId = e.target;
 			if(messageToSend !== '' || typeof messageToSend !== undefined) {
-				postMessageToRocket({username: 'user2'}, messageToSend).then(r => {
-					console.log(r)
-				});
+				postMessageToRocket(roomId, messageToSend)
+					.then(r => console.log(r));
 			}
+
+		} else if (e.target.className.includes('room')) {
+			spinner.classList.add('loading');
+			const roomName = e.target.querySelector('.name').innerHTML;
+			selectRoom(e.target.id, roomName, userConnected)
+				.then(r => spinner.classList.remove('loading'));
 		}
 
 	}catch(err){

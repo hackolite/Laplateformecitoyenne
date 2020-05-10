@@ -147,38 +147,38 @@
 #chat #sidepanel #contacts::-webkit-scrollbar-thumb {
     background-color: #243140;
 }
-#chat #sidepanel #contacts li.contact {
+#chat #sidepanel #contacts li.room {
     position: relative;
     padding: 10px 0 15px 0;
     font-size: 0.9em;
     cursor: pointer;
 }
 @media screen and (max-width: 735px) {
-    #chat #sidepanel #contacts li.contact {
+    #chat #sidepanel #contacts li.room {
         padding: 6px 0 46px 8px;
     }
 }
-#chat #sidepanel #contacts li.contact:hover {
+#chat #sidepanel #contacts li.room:hover {
     background: #32465a;
 }
-#chat #sidepanel #contacts li.contact.active {
+#chat #sidepanel #contacts li.room.active {
     background: #32465a;
     border-right: 5px solid #435f7a;
 }
-#chat #sidepanel #contacts li.contact.active span.contact-status {
+#chat #sidepanel #contacts li.room.active span.room-status {
     border: 2px solid #32465a !important;
 }
-#chat #sidepanel #contacts li.contact .wrap {
+#chat #sidepanel #contacts li.room .wrap {
     width: 88%;
     margin: 0 auto;
     position: relative;
 }
 @media screen and (max-width: 735px) {
-    #chat #sidepanel #contacts li.contact .wrap {
+    #chat #sidepanel #contacts li.room .wrap {
         width: 100%;
     }
 }
-#chat #sidepanel #contacts li.contact .wrap span {
+#chat #sidepanel #contacts li.room .wrap span {
     position: absolute;
     left: 0;
     margin: -2px 0 0 -2px;
@@ -188,28 +188,28 @@
     border: 2px solid #2c3e50;
     background: #95a5a6;
 }
-#chat #sidepanel #contacts li.contact .wrap span.online {
+#chat #sidepanel #contacts li.room .wrap span.online {
     background: #2ecc71;
 }
-#chat #sidepanel #contacts li.contact .wrap span.away {
+#chat #sidepanel #contacts li.room .wrap span.away {
     background: #f1c40f;
 }
-#chat #sidepanel #contacts li.contact .wrap span.busy {
+#chat #sidepanel #contacts li.room .wrap span.busy {
     background: #e74c3c;
 }
-#chat #sidepanel #contacts li.contact .wrap .meta {
+#chat #sidepanel #contacts li.room .wrap .meta {
     padding: 5px 0 0 0;
 }
 @media screen and (max-width: 735px) {
-    #chat #sidepanel #contacts li.contact .wrap .meta {
+    #chat #sidepanel #contacts li.room .wrap .meta {
         display: none;
     }
 }
-#chat #sidepanel #contacts li.contact .wrap .meta .name {
+#chat #sidepanel #contacts li.room .wrap .meta .name {
     font-weight: 400;
     font-size: 1.1em;
 }
-#chat #sidepanel #contacts li.contact .wrap .meta .preview {
+#chat #sidepanel #contacts li.room .wrap .meta .preview {
     margin: 5px 0 0 0;
     padding: 0 0 1px;
     font-weight: 400;
@@ -221,7 +221,7 @@
     -webkit-transition: 1s all ease;
     transition: 1s all ease;
 }
-#chat #sidepanel #contacts li.contact .wrap .meta .preview span {
+#chat #sidepanel #contacts li.room .wrap .meta .preview span {
     position: initial;
     border-radius: initial;
     background: none;
@@ -237,7 +237,7 @@
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 60px 1fr 80px;
+    grid-template-rows: 60px 1fr 50px;
 }
 @media screen and (max-width: 735px) {
     #chat .content {
@@ -318,7 +318,7 @@
     display: flex;
     z-index: 99;
 }
-#chat .content .message-input textarea {
+#chat .content .message-input input {
     flex: 5;
     border: none;
     padding: 11px 32px 10px 8px;
@@ -326,11 +326,11 @@
     color: #32465a;
 }
 @media screen and (max-width: 735px) {
-    #chat .content .message-input textarea {
+    #chat .content .message-input input {
         padding: 15px 32px 16px 8px;
     }
 }
-#chat .content .message-input textarea:focus {
+#chat .content .message-input input:focus {
     outline: none;
 }
 #chat .content .message-input button {
