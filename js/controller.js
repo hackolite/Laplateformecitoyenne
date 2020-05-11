@@ -289,10 +289,11 @@ f.page.load.chat = function(e, action){
 		if(e.target.className.includes('close')) {
 			chat.classList.remove('extend');
 
-		} else if (e.target.id.includes('startChat')) {
+		} else if (e.target.id.includes('chatWith')) {
 			spinner.classList.add('loading');
 			chat.classList.add('extend');
-			openChat({username: 'user2'}).then(r => {
+			const username = e.target.id.substring(9);
+			openChat(username).then(r => {
 				spinner.classList.remove('loading')
 			});
 

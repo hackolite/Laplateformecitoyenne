@@ -1,5 +1,3 @@
-const userToConnect = {user: "clement.b17@laposte.net", password: "4jd#3xh5XB%dUC8MU6J"};
-const userToChatWith = {username: 'User2'};
 let userConnected = null;
 let credential = null;
 
@@ -60,8 +58,8 @@ const getAllRoomOfUser = async () => {
     return await requestToRocket('rooms.get', 'GET', {}, true);
 }
 
-const getRoomWithUser = async (userToChatWith) => {
-    return await requestToRocket('im.create', 'POST', userToChatWith, true);
+const getRoomWithUser = async (username) => {
+    return await requestToRocket('im.create', 'POST', {username: username}, true);
 }
 
 const getRoomListHtml = (roomObject, classAttributes = '') => {
@@ -87,6 +85,11 @@ const getRoomListHtml = (roomObject, classAttributes = '') => {
 }
 
 const getRoomMessages = async (roomId) => {
+    const url = 'im.history?roomId=' + roomId;
+    return await requestToRocket(url, 'GET', {}, true)
+}
+
+const getRoomUnreadMessages = async (roomId) => {
     const url = 'im.history?roomId=' + roomId;
     return await requestToRocket(url, 'GET', {}, true)
 }
@@ -150,7 +153,7 @@ const selectRoom = async (roomId, roomName = '') => {
         .catch(r => console.log(r))
 }
 
-const openChat = async (chatWithUser = null) => {
+const openChat = async (username = null) => {
     let roomList = [];
     await getAllRoomOfUser()
         .then(r => {
@@ -163,17 +166,17 @@ const openChat = async (chatWithUser = null) => {
             }
         });
     let roomToLoad = null;
-    if (chatWithUser !== null) { // si une room est spécifiquement demandée, on la charge
-        await getRoomWithUser(userToChatWith)
+    if (username !== null) { // si une room est spécifiquement demandée, on la charge
+        await getRoomWithUser(username)
             .then(r => {
-                if (r.status === 'success') {
+                if (r.success) {
                     roomToLoad = r.room;
                 }
             });
     }
 
     const wrapperRooms = f.query('#contacts');
-    let oneRoomIsActivated = chatWithUser !== null; // si on doit ouvrir une room en particulier on empêche l'activation d'une autre room
+    let oneRoomIsActivated = username !== null; // si on doit ouvrir une room en particulier on empêche l'activation d'une autre room
     let roomListHTML = '';
     roomList.forEach((room) => {
         if (roomToLoad !== null && room._id === roomToLoad._id) { // si on doit ouvrir une room en particulier
@@ -207,3 +210,34 @@ const postMessageToRocket = async () => {
     //     updateNewMessageWithStatus()
     // }
 }
+
+const getNewMessages = async () => {
+    const wrapperMessages = f.query('#messages-wrapper');
+    const roomId = f.query("input[name='roomId']").value;
+
+    if(roomId) {
+        await getRoomUnreadMessages(roomId)
+            .then(r => {
+                if (r.success) {
+                    const messages = r.messages.reverse(); // récupère le tableau de message inversé (message le plus vieux en premier)
+
+                    let messageList = '';
+                    messages.forEach((message) => {
+                        if (message.u._id === userConnected.me._id) {
+                            messageList += getMessageHtml(message, 'sent');
+                        } else {
+                            messageList += getMessageHtml(message, 'replies');
+                        }
+                    });
+                    wrapperMessages.innerHTML = messageList;
+                } else {
+                    return r.errorType;
+                }
+            })
+            .catch(r => console.log(r))
+    }
+
+    console.log('fetching messages...')
+}
+
+const fetchMessages = setInterval(() => getNewMessages(), 30000);
