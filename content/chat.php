@@ -4,6 +4,10 @@
     <div class="content">
         <div id="room-name" class="contact-profile">
         </div>
+        <div id="spinnerConversation" class="spinner loading">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
         <ul id="messages-wrapper" class="messages">
             <li>Chargement...</li>
         </ul>
@@ -26,6 +30,10 @@
             <div class="close_btt" title="Fermer" data-click="chat">+</div>
         </div>
         <ul id="contacts">
+            <li class="spinner loading">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </li>
         </ul>
     </div>
 </div>

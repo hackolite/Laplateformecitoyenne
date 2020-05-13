@@ -282,43 +282,28 @@ f.page.load.recevoir
 };
 
 f.page.load.chat = function(e, action){
-	let chat = f.query('#chat');
-	let spinner = f.query('#spinnerOpenChat');
+	const chat = f.query('#chat');
 
 	try{
 		if(e.target.className.includes('close')) {
 			chat.classList.remove('extend');
 
+		} else if (e.target.className.includes('openContact')) {
+			chat.classList.add('extend');
+
 		} else if (e.target.id.includes('chatWith')) {
-			spinner.classList.add('loading');
 			chat.classList.add('extend');
 			const username = e.target.id.substring(9);
-			openChat(username).then(r => {
-				spinner.classList.remove('loading')
-			});
-
-		} else if (e.target.className.includes('openContact')) {
-			spinner.classList.add('loading');
-			chat.classList.add('extend');
-			openChat()
-				.then(r => spinner.classList.remove('loading'))
-				.catch(r => {
-					spinner.classList.remove('loading');
-					console.log('error : ', r);
-				});
+			// openChat(username);
 
 		} else if (e.target.className.includes('submit')) {
 			const messageToSend = e.target.previousElementSibling.value;
 			if(messageToSend !== '' || typeof messageToSend !== undefined) {
-				postMessageToRocket()
-					.then(r => console.log(r));
+				postMessageToRocket();
 			}
 
 		} else if (e.target.className.includes('room')) {
-			spinner.classList.add('loading');
-			const roomName = e.target.querySelector('.name').innerHTML;
-			selectRoom(e.target.id, roomName, userConnected)
-				.then(r => spinner.classList.remove('loading'));
+			selectRoom(e.target.id);
 		}
 
 	}catch(err){
