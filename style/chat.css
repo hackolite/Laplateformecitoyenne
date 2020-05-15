@@ -1,42 +1,25 @@
 #chat {
     position: absolute;
-    right: 20px;
+    right: 10px;
     bottom: 0;
     width: 60%;
     min-width: 300px;
     max-width: 1000px;
-    height: 40px;
-    min-height: 40px;
+    min-height: 0;
+    max-height: 0;
+    height: 0;
     background: #E6EAEA;
     z-index: 400;
     display: flex;
     flex-direction: row;
+    transition: max-height 500ms ease-out;
 }
 
 #chat.extend {
     height: 60vh;
-    min-height: 200px;
+    min-height: 300px;
     max-height: 720px;
     transition: max-height 500ms ease-out;
-}
-
-#chat:not(.extend) {
-    min-width: 120px;
-    max-width: 300px;
-    max-height: 40px;
-    transition: max-height 500ms ease-out;
-}
-
-#chat:not(.extend) .content {
-    display: none;
-}
-
-#chat:not(.extend) #sidepanel #profile {
-    display: none;
-}
-
-#chat.extend #head {
-    display: none;
 }
 
 @media screen and (max-width: 360px) {
@@ -45,7 +28,6 @@
         height: 100vh;
     }
 }
-
 #chat #sidepanel {
     flex: 1;
     height: 100%;
@@ -62,9 +44,6 @@
         min-width: 58px;
     }
 }
-#chat:not(.extend) #sidepanel {
-    height: 60px;
-}
 #chat:not(.extend) #profile {
     display: none;
 }
@@ -73,9 +52,19 @@
 }
 #chat #sidepanel #head {
     display: flex;
-    height: 60px;
+    height: 100%;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
+    text-align: center;
+}
+#chat #sidepanel #head div {
+    width: max-content;
+}
+#chat #sidepanel #head .info {
+    font-size: 0.8rem;
+    font-weight: 300;
 }
 #chat.extend #sidepanel #head {
     display: none;
@@ -168,6 +157,9 @@
 }
 #chat #sidepanel #contacts li.room.active span.room-status {
     border: 2px solid #32465a !important;
+}
+#chat #sidepanel #contacts li.room.unread {
+    background: #1a242f;
 }
 #chat #sidepanel #contacts li.room .wrap {
     width: 88%;
@@ -292,9 +284,11 @@
 #chat .content .messages li.sent.faded p {
     color: rgba(245, 245, 245, 0.47);
 }
+#chat .content .messages li.replies  {
+    float: right;
+}
 #chat .content .messages li.replies p {
     background: #f5f5f5;
-    float: right;
 }
 #chat .content .messages li.replies.faded p {
     background: rgba(245, 245, 245, 0.75);

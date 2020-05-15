@@ -51,12 +51,11 @@
 	}
 
 }, 10);*/
-
 document.addEventListener('DOMContentLoaded', (event) => {
 	onReady();
-    <?php if(isset($_SESSION["session"]) && $_SESSION["session"] == "true") { ?>
-       const userToConnect = {user: "clmbrb", password: "51f8d80ab3641d470b9682e130c920acc1d8cae2c564694fc60fab158ee3630f"}; // TODO utiliser les infos du serveur
-       connectChat(userToConnect.user, userToConnect.password);
+    // TODO modifier $_SESSION["token"] avec la bonne variable (attendre retour Loïc)
+    <?php if(isset($_SESSION["session"]) && $_SESSION["session"] === "true" && $_SESSION["token"]) { ?>
+       connectChat("<?= $_SESSION['token'] ?>");
     <?php } ?>
 });
 

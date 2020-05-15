@@ -36,6 +36,11 @@
 			</ul>
 		</div>
 
+        <div id="openChat" class="btt_submit empty blue" data-click="chat">
+            <?php echo search("chat"); ?>
+            <span id="chatUnreadMessage" hidden>*</span>
+        </div>
+
 		<div class="btt_submit fill green" data-click="recevoir">
 			<?php echo search("recevoir"); ?>
 		</div>

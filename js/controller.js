@@ -276,6 +276,8 @@ f.page.load.recevoir
 = f.page.load.signup 
 = f.page.load.signin
 = f.page.load.chat
+= f.page.load.chatWith
+= f.page.load.chatSelectRoom
 = f.page.load.account = function(e){
 	// on assigne les fonctions recevoir et donner à la même fonction
 	f.page.load.action(e, e.target.getAttribute('data-click'));
@@ -285,32 +287,47 @@ f.page.load.chat = function(e, action){
 	const chat = f.query('#chat');
 
 	try{
+		chat.classList.add('extend');
+
+		// supprime l'alerte 'message non lu'
+		const bttSpanNewMessage = f.query('#chatUnreadMessage');
+		if (bttSpanNewMessage.hidden === false) {
+			bttSpanNewMessage.hidden = true;
+		}
+
 		if(e.target.className.includes('close')) {
 			chat.classList.remove('extend');
 
-		} else if (e.target.className.includes('openContact')) {
-			chat.classList.add('extend');
-
-		} else if (e.target.id.includes('chatWith')) {
-			chat.classList.add('extend');
-			const username = e.target.id.substring(9);
-			// openChat(username);
-
 		} else if (e.target.className.includes('submit')) {
 			const messageToSend = e.target.previousElementSibling.value;
-			if(messageToSend !== '' || typeof messageToSend !== undefined) {
+			if (messageToSend !== '' || typeof messageToSend !== undefined) {
 				postMessageToRocket();
 			}
-
-		} else if (e.target.className.includes('room')) {
-			selectRoom(e.target.id);
 		}
-
 	}catch(err){
 		console.log(err);
 	}
 };
 
+f.page.load.chatSelectRoom = function(e, action) { // FIXME stopper propagation du clique sur une room
+	e.stopPropagation();
+	// try {
+	// 	selectRoom(e.target.id);
+	// }catch(err){
+	// 	console.log(err);
+	// }
+}
+
+f.page.load.chatWith = function(e, action) {
+	e.preventDefault();
+	const username = JSON.parse(e.target.attributes.username.value);
+
+	try {
+		discussWith(username);
+	}catch(err){
+		console.log(err);
+	}
+}
 
 f.page.load.next = function(e){
 

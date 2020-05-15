@@ -1,7 +1,9 @@
-const url = 'wss://plateformecitoyenne.rocket.chat/websocket';
+const url = 'ws://laplateformecitoyenne.com:3000/websocket';
 const ws = new WebSocket(url);
 
 const now = Date.now();
+const divChat = f.query('#chat');
+
 let roomToLoad = null;
 let userConnected = null;
 let subscriptions = null;
@@ -73,6 +75,18 @@ const sendMessage = (text, roomId) => {
     ws.send(JSON.stringify(message));
 }
 
+const createDirectMessageWith = (username) => {
+    const message = {
+        "msg": "method",
+        "method": "createDirectMessage",
+        "id": "createDirectMessage",
+        "params": [
+            username
+        ]
+    };
+    ws.send(JSON.stringify(message));
+}
+
 // Handler functions
 const getRoomHtmlForContactWrapper = (roomObject, classAttributes = '') => {
     const id = roomObject._id;
@@ -80,7 +94,7 @@ const getRoomHtmlForContactWrapper = (roomObject, classAttributes = '') => {
     let name = '';
 
     if (roomObject.lastMessage) {
-        lastMessage = DOMPurify.sanitize(roomObject.lastMessage.msg);
+        lastMessage = DOMPurify.sanitize(roomObject.lastMessage.msg).substring(0,20) + "...";
     }
 
     if (roomObject.name) {
@@ -93,7 +107,12 @@ const getRoomHtmlForContactWrapper = (roomObject, classAttributes = '') => {
             }
         });
     }
-    return "<li id='" + id + "' class='room " + classAttributes + "' data-click='chat'><div class='wrap' data-click='chat'><div class='meta' data-click='chat'><p class='name' data-click='chat'>" + name + "</p><p class='preview'>"+ lastMessage +"</p></div></div></li>";
+    return "<li id='" + id + "' class='room " + classAttributes + "' data-click='chatSelectRoom'>" +
+        "<div class='wrap' >" +
+        "<div class='meta'>" +
+        "<p class='name'>" + name + "</p>" +
+        "<p class='preview'>"+ lastMessage +"</p>" +
+        "</div></div></li>";
 }
 
 const getMessageHtml = (messageObject, type, classAttributes = '') => {
@@ -104,12 +123,23 @@ const getMessageHtml = (messageObject, type, classAttributes = '') => {
     }
 }
 
+// Ajoute le message entrant à la fenêtre de conversation ouverte,
+// sinon place une notification sur la room concernée,
+// sinon place une notification sur le bouton d'ouverture du chat
 const pushMessage = (roomId, message) => {
+    const chat = f.query('#chat');
     const wrapperMessages = f.query('#messages-wrapper');
     const roomIdCurrentConversation = f.query("input[name='roomId']").value;
+    const roomHasNewMessage = f.query('li.room#'+roomId);
 
-    if(roomId === roomIdCurrentConversation) {
+    if (roomId === roomIdCurrentConversation) {
         wrapperMessages.innerHTML += getMessageHtml(message, 'replies');
+    } else if (roomHasNewMessage) {
+        roomHasNewMessage.classList.add('unread');
+    }
+
+    if(!chat.classList.contains('extend')) { // si la fenêtre de chat est réduite, on ajoute une notification
+        f.query('#chatUnreadMessage').hidden = false;
     }
 }
 
@@ -129,6 +159,9 @@ const selectRoom = (roomId = '') => {
     }
     if(selectedRoom) {
         selectedRoom.classList.add('active');
+    }
+    if(selectedRoom.classList.contains('unread')) {
+        selectedRoom.classList.remove('unread');
     }
     inputRoomId.value = roomId;
     wrapperRoomName.innerHTML = roomName;
@@ -152,33 +185,27 @@ const postMessageToRocket = () => {
     sendMessage(message, roomId);
 }
 
-const connectChat = (username, password) => {
-    const pingMessage = {
+const connectChat = (tokenUserToConnect) => {
+    const pingMessage = { // premier message pour pinger la websocket
         "msg": "connect",
         "version": "1",
         "support": ["1"]
     };
 
-    const login = {
+    const login = { // second message de connection (on utilise un token envoyé par le serveur)
         "msg": "method",
         "method": "login",
         "id": "login",
         "params": [
-            {
-                "user": {"username": username},
-                "password": {
-                    "digest": password,
-                    "algorithm": "sha-256"
-                }
-            }
+            { "resume": tokenUserToConnect }
         ]
     };
 
     ws.onopen = () => {
         ws.send(JSON.stringify(pingMessage));
         ws.send(JSON.stringify(login));
-        getAllRoomOfUser();
-        getSubscriptions();
+        getAllRoomOfUser(); // récupère toutes les rooms dont l'utilisateur connecté est lié
+        getSubscriptions(); // on s'inscrit à toutes les rooms trouvées précédemment
     }
 
     ws.onerror = (error) => {
@@ -187,7 +214,7 @@ const connectChat = (username, password) => {
 
     ws.onmessage = (e) => {
         const data = JSON.parse(e.data);
-        if(data.msg === 'ping') { // heart beating...
+        if(data.msg === 'ping') { // heart beating : garde la session ouverte
             pong();
         }
 
@@ -225,6 +252,16 @@ const connectChat = (username, password) => {
                 const wrapperRooms = f.query('#contacts');
                 wrapperRooms.innerHTML = roomListHTML;
                 selectRoom(roomToLoad._id, '', userConnected);
+
+                // Event listener
+                wrapperRooms.childNodes.forEach((room) => {
+                    room.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        const elmt = e.target;
+                    }, true);
+                });
+
                 break;
 
             case 'history':
@@ -244,8 +281,17 @@ const connectChat = (username, password) => {
             case 'subscriptions':
                 subscriptions = data.result;
                 break;
+            case 'createDirectMessage':
+                roomToLoad = data.result.rid;
+                break;
             case 'subscribeToRoom':
                 break;
         }
     }
+}
+
+const discussWith = (username) => {
+    createDirectMessageWith(username); // créer ou récupère si elle existe la room avec un utilisateur
+    selectRoom(roomToLoad); // charge la room
+    divChat.classList.add('extend'); // déploie la fenêtre de chat
 }

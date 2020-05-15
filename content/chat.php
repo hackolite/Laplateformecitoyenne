@@ -19,9 +19,6 @@
         </div>
     </div>
     <div id="sidepanel">
-        <div id="head" class="openContact" data-click="chat">
-            Conversations
-        </div>
         <div id="profile">
             <div id="spinnerOpenChat" class="spinner">
                 <div class="double-bounce1"></div>
