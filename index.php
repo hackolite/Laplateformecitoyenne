@@ -43,6 +43,8 @@ if($_GET['page'] == 'home'){
 
 		$_GET['action'] = 'donner';
 		include('content/receive.php');
+
+		include('content/chat.php');
 	}else{
 		// sinon page d'accueil normal
 		include('content/home.php');

@@ -51,9 +51,12 @@
 	}
 
 }, 10);*/
-
 document.addEventListener('DOMContentLoaded', (event) => {
 	onReady();
+    // TODO modifier $_SESSION["token"] avec la bonne variable (attendre retour Loïc)
+    <?php if(isset($_SESSION["session"]) && $_SESSION["session"] === "true" && $_SESSION["token"]) { ?>
+       connectChat("<?= $_SESSION['token'] ?>");
+    <?php } ?>
 });
 
 </script>

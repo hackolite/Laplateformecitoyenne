@@ -1,0 +1,397 @@
+#chat {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    width: 60%;
+    min-width: 300px;
+    max-width: 1000px;
+    min-height: 0;
+    max-height: 0;
+    height: 0;
+    background: #E6EAEA;
+    z-index: 400;
+    display: flex;
+    flex-direction: row;
+    transition: max-height 500ms ease-out;
+}
+
+#chat.extend {
+    height: 60vh;
+    min-height: 300px;
+    max-height: 720px;
+    transition: max-height 500ms ease-out;
+}
+
+@media screen and (max-width: 360px) {
+    #chat {
+        width: 100%;
+        height: 100vh;
+    }
+}
+#chat #sidepanel {
+    flex: 1;
+    height: 100%;
+    background: #2c3e50;
+    color: #f5f5f5;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 735px) {
+    #chat #sidepanel {
+        width: 58px;
+        min-width: 58px;
+    }
+}
+#chat:not(.extend) #profile {
+    display: none;
+}
+#chat:not(.extend) #contacts {
+    display: none;
+}
+#chat #sidepanel #head {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+}
+#chat #sidepanel #head div {
+    width: max-content;
+}
+#chat #sidepanel #head .info {
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+#chat.extend #sidepanel #head {
+    display: none;
+}
+#chat #sidepanel #profile {
+    display: flex;
+    justify-content: flex-end;
+    height: 60px;
+    margin-left: 1em;
+    margin-right: 1em;
+    position: relative;
+}
+#chat #sidepanel #profile .close_btt {
+    margin-left: 0;
+    font-weight: normal;
+    color: white;
+    position: relative;
+}
+@media screen and (max-width: 735px) {
+    #chat #sidepanel #profile {
+        width: 100%;
+        margin: 0 auto;
+        padding: 5px 0 0 0;
+        background: #32465a;
+    }
+}
+#chat #sidepanel #profile .wrap {
+    height: 60px;
+    line-height: 60px;
+    overflow: hidden;
+    -moz-transition: 0.3s height ease;
+    -o-transition: 0.3s height ease;
+    -webkit-transition: 0.3s height ease;
+    transition: 0.3s height ease;
+}
+@media screen and (max-width: 735px) {
+    #chat #sidepanel #profile .wrap {
+        height: 55px;
+    }
+}
+#chat #sidepanel #profile .wrap p {
+    float: left;
+    margin-left: 15px;
+}
+@media screen and (max-width: 735px) {
+    #chat #sidepanel #profile .wrap p {
+        display: none;
+    }
+}
+#chat #sidepanel #contacts {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    position: relative;
+}
+@media screen and (max-width: 735px) {
+    #chat #sidepanel #contacts::-webkit-scrollbar {
+        display: none;
+    }
+}
+#chat #sidepanel #contacts {
+    list-style: none;
+    padding-left: 0;
+    height: 100%;
+}
+#chat #sidepanel #contacts::-webkit-scrollbar {
+    width: 8px;
+    background: #2c3e50;
+}
+#chat #sidepanel #contacts::-webkit-scrollbar-thumb {
+    background-color: #243140;
+}
+#chat #sidepanel #contacts li.room {
+    position: relative;
+    padding: 10px 0 15px 0;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+@media screen and (max-width: 735px) {
+    #chat #sidepanel #contacts li.room {
+        padding: 6px 0 46px 8px;
+    }
+}
+#chat #sidepanel #contacts li.room:hover {
+    background: #32465a;
+}
+#chat #sidepanel #contacts li.room.active {
+    background: #32465a;
+    border-right: 5px solid #435f7a;
+}
+#chat #sidepanel #contacts li.room.active span.room-status {
+    border: 2px solid #32465a !important;
+}
+#chat #sidepanel #contacts li.room.unread {
+    background: #1a242f;
+}
+#chat #sidepanel #contacts li.room .wrap {
+    width: 88%;
+    margin: 0 auto;
+    position: relative;
+}
+@media screen and (max-width: 735px) {
+    #chat #sidepanel #contacts li.room .wrap {
+        width: 100%;
+    }
+}
+#chat #sidepanel #contacts li.room .wrap span {
+    position: absolute;
+    left: 0;
+    margin: -2px 0 0 -2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #2c3e50;
+    background: #95a5a6;
+}
+#chat #sidepanel #contacts li.room .wrap span.online {
+    background: #2ecc71;
+}
+#chat #sidepanel #contacts li.room .wrap span.away {
+    background: #f1c40f;
+}
+#chat #sidepanel #contacts li.room .wrap span.busy {
+    background: #e74c3c;
+}
+#chat #sidepanel #contacts li.room .wrap .meta {
+    padding: 5px 0 0 0;
+}
+@media screen and (max-width: 735px) {
+    #chat #sidepanel #contacts li.room .wrap .meta {
+        display: none;
+    }
+}
+#chat #sidepanel #contacts li.room .wrap .meta .name {
+    font-weight: 400;
+    font-size: 1.1em;
+}
+#chat #sidepanel #contacts li.room .wrap .meta .preview {
+    margin: 5px 0 0 0;
+    padding: 0 0 1px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -moz-transition: 1s all ease;
+    -o-transition: 1s all ease;
+    -webkit-transition: 1s all ease;
+    transition: 1s all ease;
+}
+#chat #sidepanel #contacts li.room .wrap .meta .preview span {
+    position: initial;
+    border-radius: initial;
+    background: none;
+    border: none;
+    padding: 0 2px 0 0;
+    margin: 0 0 0 1px;
+    opacity: .5;
+}
+#chat .content {
+    flex: 2;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr 50px;
+}
+@media screen and (max-width: 735px) {
+    #chat .content {
+        width: calc(100% - 58px);
+        min-width: 300px !important;
+    }
+}
+@media screen and (min-width: 900px) {
+    #chat .content {
+        width: calc(100% - 340px);
+    }
+}
+#chat .content .contact-profile {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    background: #f5f5f5;
+    align-items: center;
+    padding: .5em 3em;
+}
+#chat .content .contact-profile span {
+    width: 100%;
+}
+#chat .content .messages {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 1em 2em;
+}
+#chat .content .messages::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+}
+#chat .content .messages::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+#chat .content .messages li {
+    display: inline-block;
+    clear: both;
+    float: left;
+    font-size: 0.9em;
+}
+#chat .content .messages li:nth-last-child(1) {
+    margin-bottom: 20px;
+}
+#chat .content .messages li.sent p {
+    background: #435f7a;
+    color: #f5f5f5;
+}
+#chat .content .messages li.sent.faded p {
+    color: rgba(245, 245, 245, 0.47);
+}
+#chat .content .messages li.replies  {
+    float: right;
+}
+#chat .content .messages li.replies p {
+    background: #f5f5f5;
+}
+#chat .content .messages li.replies.faded p {
+    background: rgba(245, 245, 245, 0.75);
+}
+#chat .content .messages li p {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 205px;
+    line-height: 130%;
+    margin: 0;
+}
+@media screen and (min-width: 735px) {
+    #chat .content .messages li p {
+        max-width: 300px;
+    }
+}
+#chat .content .message-input {
+    border-top: 2px solid #2c3e50;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    z-index: 99;
+}
+#chat .content .message-input input {
+    flex: 5;
+    border: none;
+    padding: 11px 32px 10px 8px;
+    font-size: 1em;
+    color: #32465a;
+}
+@media screen and (max-width: 735px) {
+    #chat .content .message-input input {
+        padding: 15px 32px 16px 8px;
+    }
+}
+#chat .content .message-input input:focus {
+    outline: none;
+}
+#chat .content .message-input button {
+    flex: 1;
+    max-width: 50px;
+    border: none;
+    width: 50px;
+    padding: 12px 0;
+    cursor: pointer;
+    background: #32465a;
+    color: #f5f5f5;
+}
+@media screen and (max-width: 735px) {
+    #chat .content .message-input button {
+        padding: 16px 0;
+    }
+}
+#chat .content .message-input button:hover {
+    background: #435f7a;
+}
+#chat .content .message-input button:focus {
+    outline: none;
+}
+
+.spinner.loading {
+    position: absolute;
+    top: calc(50% - 10px);
+    left: calc(50% - 10px);
+    height: 20px;
+    width: 20px;
+}
+
+.spinner:not(.loading) {
+    display: none;
+}
+
+.double-bounce1, .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 50% {
+          transform: scale(1.0);
+          -webkit-transform: scale(1.0);
+      }
+}

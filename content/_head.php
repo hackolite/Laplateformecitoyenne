@@ -107,8 +107,11 @@ More informations on the website.
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<!-- AwesomeMarkers -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <!-- Sanitize -->
+    <script type="text/javascript" src="/lib/purify.min.js"></script>
 
 	<script src="js/map<?php echo $version["map.js"]; ?>.js" defer></script>
+    <script src="js/chat<?= $version["chat.js"]?>.js" defer></script>
 	<style>
 		#lang{
 			top: 26px;

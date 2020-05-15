@@ -131,7 +131,9 @@ var afficherPoint = (points)=>{
 
 			var desc = "<ul class='map_popup'>";
 				desc += "<li><h3 class='"+point.type+"'>"+point.first_name+"</h3></li>";
-				
+
+			desc += "<li><a data-click='chatWith' username='"+point.username+"' href='#'>Lancer une discussion</a><li>";
+
 			if (point.fabricMask>0) {
 				desc+="<li>"+mssg.map.tissu+" : "+point.fabricMask+"</li>";
 			}
